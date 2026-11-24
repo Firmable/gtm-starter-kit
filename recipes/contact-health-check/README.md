@@ -97,7 +97,7 @@ A channel is confirmed when:
 
 A mobile that Firmable records on the Do Not Call register is not a confirmed channel. A Do Not Call answer of unknown is not a confirmed channel either; `is_mobile_on_dnc` answers unknown for numbers outside Australia.
 
-Other statuses: `invalid_input` (an identifier or expected value is malformed), `person_not_found` (`fetch_person` is true and Firmable has no profile, so no checks were asked), `error` (the row failed before its checks) and `not_processed` (the run stopped before this row).
+Other statuses: `invalid_input` (an identifier or expected value is malformed), `person_not_found` (Firmable has no person for the identifier, so no further checks were asked; this comes from the profile lookup when `fetch_person` is true, or from the first Decisions answer when it is false), `error` (the row failed before its checks) and `not_processed` (the run stopped before this row).
 
 `phone_channel` summarises the mobile and Do Not Call answers: `held_not_on_dnc`, `held_on_dnc`, `held_dnc_unknown`, `held_dnc_not_checked`, `held_dnc_error`, `not_held`, `unknown`, `error` or `not_checked`.
 

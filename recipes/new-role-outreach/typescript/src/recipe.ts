@@ -25,7 +25,7 @@ const ACCOUNT_COLUMNS = ["company_id", "domain"];
 
 const STATUS_TONE: Record<string, string> = {
   eligible: "good", eligible_contacts_found: "good", not_eligible: "bad", no_eligible_contacts: "bad",
-  needs_review: "review", incomplete: "error", no_people_found: "unknown", company_not_found: "unknown",
+  needs_review: "review", incomplete: "error", no_people_found: "unknown", company_not_found: "unknown", person_not_found: "unknown",
   invalid_input: "error", error: "error", not_processed: "unknown",
 };
 const RESULT_TONE: Record<string, string> = { pass: "good", fail: "bad", unknown: "unknown", error: "error", not_asked: "neutral" };
@@ -306,6 +306,11 @@ export async function run(ctx: RunContext): Promise<{ rows: Json[]; summary: Jso
       try {
         resp = await client.makeDecision(TOOLS[t], { ...subject, ...inputs[t] }, { withReasoning: cfg.with_reasoning });
       } catch (e) {
+        if (e instanceof NotFoundError && e.code === "person_not_found") {
+          return { status: "person_not_found",
+            status_reason: "Decisions found no Firmable person for this identifier, so the remaining triggers were not asked.",
+            triggers: results, trigger_reasons: [], conflicts: [] };
+        }
         if (!(e instanceof FirmableError)) throw e;
         results.push({ ...entry, result: "error", error: ctx.recordError(rowId, e) });
         continue;

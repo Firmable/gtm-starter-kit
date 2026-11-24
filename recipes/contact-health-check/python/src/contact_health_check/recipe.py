@@ -401,6 +401,13 @@ def run(ctx: RunContext) -> dict[str, Any]:
                 continue
             try:
                 resp = client.make_decision(TOOLS[c], question, with_reasoning=cfg["with_reasoning"])
+            except NotFoundError as e:
+                if e.code == "person_not_found":
+                    return {**base, "status": "person_not_found", "checks": results,
+                            "status_reason": "Decisions found no Firmable person for this identifier, so the remaining "
+                                             "checks were not asked."}
+                results.append({**entry, "result": "error", "error": ctx.record_error(row["row_id"], e)})
+                continue
             except FirmableError as e:
                 results.append({**entry, "result": "error", "error": ctx.record_error(row["row_id"], e)})
                 continue

@@ -178,3 +178,12 @@ test("CLI rejects rows without an identifier", async () => {
   writeFileSync(join(d, "in.csv"), "name,expected_title\nAlex Example,Manager\n");
   assert.equal(await cliMain(RECIPE, ["--input", join(d, "in.csv"), "--config", join(F, "config.json"), "--out", d]), 2);
 });
+
+test("Decisions person_not_found is a status, not an error", async () => {
+  const [result, t] = await run("person-not-found", { config: "person-not-found.config.json" });
+  const rows = byId(result);
+  assert.equal(rows.c1.status, "person_not_found");
+  assert.deepEqual(result.errors, []);
+  assert.equal(t.sent.filter((r: Json) => r.jsonBody?.question?.work_email).length, 1);
+  assert.equal(rows.c2.status, "current");
+});

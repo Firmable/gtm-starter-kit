@@ -189,3 +189,13 @@ test("CLI rejects rows without an account or contact", async () => {
   writeFileSync(join(d, "in.csv"), "name\nAcme\n");
   assert.equal(await cliMain(RECIPE, ["--input", join(d, "in.csv"), "--config", join(F, "config.json"), "--out", d]), 2);
 });
+
+test("Decisions person_not_found stops that contact", async () => {
+  const [result, t] = await run("person-not-found");
+  const rows: Record<string, Json> = Object.fromEntries(result.rows.map((r: Json) => [r.row_id, r]));
+  assert.equal(rows.c1.status, "person_not_found");
+  assert.equal(rows.c1.people[0].status, "person_not_found");
+  assert.deepEqual(result.errors, []);
+  assert.equal(t.sent.filter((r: Json) => r.jsonBody?.question?.work_email === "nobody@acme.example").length, 1);
+  assert.ok(["not_eligible", "needs_review"].includes(rows.c2.status));
+});

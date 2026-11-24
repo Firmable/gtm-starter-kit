@@ -91,7 +91,3 @@ Open `out/report.html`. `out/results.csv` and `out/results.json` hold the same r
 ## Contributing and security
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
-
-## Licence
-
-The licence for this repository is to be confirmed before public release.

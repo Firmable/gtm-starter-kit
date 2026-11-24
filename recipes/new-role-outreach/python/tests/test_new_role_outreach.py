@@ -210,3 +210,13 @@ def test_cli_rejects_rows_without_account_or_contact(tmp_path):
     bad = tmp_path / "in.csv"
     bad.write_text("name\nAcme\n")
     assert cli_main(RECIPE, ["--input", str(bad), "--config", str(F / "config.json"), "--out", str(tmp_path)]) == 2
+
+
+def test_decisions_person_not_found_stops_that_contact():
+    result, t = run("person-not-found")
+    rows = {r["row_id"]: r for r in result["rows"]}
+    assert rows["c1"]["status"] == "person_not_found"
+    assert rows["c1"]["people"][0]["status"] == "person_not_found"
+    assert result["errors"] == []
+    assert sum(1 for r in t.sent if r.json_body and r.json_body["question"].get("work_email") == "nobody@acme.example") == 1
+    assert rows["c2"]["status"] in ("not_eligible", "needs_review")

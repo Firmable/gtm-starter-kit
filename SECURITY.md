@@ -24,4 +24,4 @@ CSV exports prefix values starting with `=`, `+`, `-`, `@`, tab or carriage retu
 
 ## Reporting a vulnerability
 
-Report security issues privately to Firmable rather than in a public issue. The contact for this repository is to be confirmed before public release.
+Report security issues privately by email to Samuel Medina at samuel@firmable.com. Do not open a public issue for a security problem.

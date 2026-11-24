@@ -184,3 +184,12 @@ def test_cli_rejects_rows_without_an_identifier(tmp_path):
     bad = tmp_path / "in.csv"
     bad.write_text("name,expected_title\nAlex Example,Manager\n")
     assert cli_main(RECIPE, ["--input", str(bad), "--config", str(F / "config.json"), "--out", str(tmp_path)]) == 2
+
+
+def test_decisions_person_not_found_is_a_status_not_an_error():
+    result, t = run("person-not-found", config="person-not-found.config.json")
+    rows = by_id(result)
+    assert rows["c1"]["status"] == "person_not_found"
+    assert result["errors"] == []
+    assert sum(1 for r in t.sent if r.json_body and r.json_body["question"].get("work_email")) == 1
+    assert rows["c2"]["status"] == "current"

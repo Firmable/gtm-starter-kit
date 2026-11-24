@@ -361,6 +361,10 @@ export async function run(ctx: RunContext): Promise<{ rows: Json[]; summary: Jso
       try {
         resp = await client.makeDecision(TOOLS[c], question, { withReasoning: cfg.with_reasoning });
       } catch (e) {
+        if (e instanceof NotFoundError && e.code === "person_not_found") {
+          return { ...base, status: "person_not_found", checks: results,
+            status_reason: "Decisions found no Firmable person for this identifier, so the remaining checks were not asked." };
+        }
         if (!(e instanceof FirmableError)) throw e;
         results.push({ ...entry, result: "error", error: ctx.recordError(row.row_id, e) });
         continue;

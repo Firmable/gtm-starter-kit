@@ -105,7 +105,7 @@ A contact row takes the status of its person. An account row gets the first stat
 | `needs_review` | No person is eligible, and at least one person is `needs_review`. |
 | `no_eligible_contacts` | Every person is `not_eligible`. |
 
-Other statuses: `invalid_input` (an identifier is malformed), `company_not_found` (Firmable has no profile for the account domain, so no people were searched), `error` (the row failed, for example people search returned an error) and `not_processed` (the run stopped before this row).
+Other statuses: `invalid_input` (an identifier is malformed), `company_not_found` (Firmable has no profile for the account domain, so no people were searched), `person_not_found` (a contact row's identifier matches no Firmable person, so no further triggers were asked), `error` (the row failed, for example people search returned an error) and `not_processed` (the run stopped before this row).
 
 ## Conflicts
 

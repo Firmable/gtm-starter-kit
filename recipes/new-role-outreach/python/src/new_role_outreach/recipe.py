@@ -49,7 +49,8 @@ ACCOUNT_COLUMNS = ["company_id", "domain"]
 
 STATUS_TONE = {"eligible": "good", "eligible_contacts_found": "good", "not_eligible": "bad",
                "no_eligible_contacts": "bad", "needs_review": "review", "incomplete": "error",
-               "no_people_found": "unknown", "company_not_found": "unknown", "invalid_input": "error",
+               "no_people_found": "unknown", "company_not_found": "unknown", "person_not_found": "unknown",
+               "invalid_input": "error",
                "error": "error", "not_processed": "unknown"}
 RESULT_TONE = {"pass": "good", "fail": "bad", "unknown": "unknown", "error": "error", "not_asked": "neutral"}
 _TOP_KEYS = {"evaluation_date", "window_months", "triggers", "executive_only", "executive_seniorities",
@@ -318,6 +319,14 @@ def run(ctx: RunContext) -> dict[str, Any]:
                 continue
             try:
                 resp = client.make_decision(TOOLS[t], {**subject, **inputs[t]}, with_reasoning=cfg["with_reasoning"])
+            except NotFoundError as e:
+                if e.code == "person_not_found":
+                    return {"status": "person_not_found",
+                            "status_reason": "Decisions found no Firmable person for this identifier, so the remaining "
+                                             "triggers were not asked.",
+                            "triggers": results, "trigger_reasons": [], "conflicts": []}
+                results.append({**entry, "result": "error", "error": ctx.record_error(row_id, e)})
+                continue
             except FirmableError as e:
                 results.append({**entry, "result": "error", "error": ctx.record_error(row_id, e)})
                 continue

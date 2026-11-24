@@ -1,0 +1,3 @@
+row_id,domain,company_id,person_id,work_email,linkedin_url
+c1,,,,nobody@acme.example,
+c2,,,,dana.example@delta.example,
