@@ -1,0 +1,35 @@
+{
+  "campaigns": [
+    {
+      "id": "au_design_teams",
+      "label": "AU design teams",
+      "campaign": {
+        "message": "Shared brand templates for marketing and design teams at Australian software companies",
+        "countries": ["AU"],
+        "min_staff": 200
+      }
+    },
+    {
+      "id": "nz_small_business",
+      "label": "NZ small business accounting",
+      "campaign": {
+        "message": "Bookkeeping and payroll for small businesses in New Zealand",
+        "countries": ["NZ"],
+        "max_staff": 50
+      }
+    },
+    {
+      "id": "enterprise_it",
+      "label": "Enterprise IT service management",
+      "campaign": {
+        "message": "IT service management for large organisations with complex internal support",
+        "min_staff": 1000,
+        "staff_in": "AU",
+        "revenue_bands": ["$250M - $500M", "$500M - $1B", ">$1B+"]
+      }
+    }
+  ],
+  "exclude_existing_customers": true,
+  "with_reasoning": true,
+  "fetch_company": false
+}

@@ -1,0 +1,11 @@
+row_id,domain,company_id,account_name,crm_note
+a1,https://www.acme.example/team,,Acme key account,Key account
+a2,,f900000000002,,
+a3,ACME.example,,,Duplicate of a1
+a4,not a domain,,,
+a5,ghost.example,,,
+a6,,f900000000003,,=HYPERLINK("http://x")
+a7,,f900000000004,Delta,
+a8,,f900000000005,,
+a9,,f900000000006,,<script>alert(1)</script>
+a10,,f900000000007,,

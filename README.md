@@ -22,6 +22,11 @@ Every recipe has a Python and a TypeScript implementation that produce the same 
 | [territory-routing](recipes/territory-routing) | Assigns accounts to teams with ordered rules and a review queue | Company, Decisions (optional) |
 | [duplicate-account-review](recipes/duplicate-account-review) | Reviews candidate duplicate pairs and explains the evidence | Company, Decisions |
 | [pre-call-account-pack](recipes/pre-call-account-pack) | Assembles company facts, contacts, technologies and checks before a call | Company, People search, People, Tech Intel, Decisions, AI Adoption (optional) |
+| [champion-tracker](recipes/champion-tracker) | Finds people at your target accounts who used to work at your customers or other companies you name | Company, People search, Decisions, People (optional) |
+| [buying-committee-map](recipes/buying-committee-map) | Shows who fills each buying-committee role at an account and which roles have no one observed | Company, People search, Decisions |
+| [inbound-lead-router](recipes/inbound-lead-router) | Routes an inbound lead from a work email or domain to a queue with ordered rules, in a batch or from a local server | Company, Decisions (optional), People (optional) |
+| [campaign-audience-check](recipes/campaign-audience-check) | Checks accounts against one or more campaign audiences and says include, exclude or review | Decisions, Company (optional) |
+| [expansion-signals](recipes/expansion-signals) | Flags accounts recorded in several countries, with several sites or with local teams, and assigns expansion tiers | Decisions, Company (optional) |
 
 Each recipe folder has a README with inputs, rules, costs and commands, plus `python/README.md` and `typescript/README.md` for language-specific setup.
 

@@ -20,6 +20,15 @@
       "path": "recipes/ai-adoption-segmentation/typescript"
     },
     {
+      "path": "recipes/buying-committee-map/typescript"
+    },
+    {
+      "path": "recipes/campaign-audience-check/typescript"
+    },
+    {
+      "path": "recipes/champion-tracker/typescript"
+    },
+    {
       "path": "recipes/contact-health-check/typescript"
     },
     {
@@ -27,6 +36,12 @@
     },
     {
       "path": "recipes/duplicate-account-review/typescript"
+    },
+    {
+      "path": "recipes/expansion-signals/typescript"
+    },
+    {
+      "path": "recipes/inbound-lead-router/typescript"
     },
     {
       "path": "recipes/new-role-outreach/typescript"

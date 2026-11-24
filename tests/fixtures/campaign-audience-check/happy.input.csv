@@ -1,0 +1,11 @@
+row_id,account_name,domain,company_id,existing_customer
+r1,Acme,https://www.acme.example/about,,
+r2,Beta,,f900000000002,false
+r3,Gamma,gamma.example,,
+r4,Acme again,ACME.example,,
+r5,Broken,not a domain,,
+r6,Delta,delta.example,,TRUE
+r7,Eps,eps.example,,maybe
+r8,Zeta,zeta.example,f123,
+r9,"=HYPERLINK(""http://x"")",theta.example,,
+r10,<script>alert(1)</script>,iota.example,,

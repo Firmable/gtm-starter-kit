@@ -1,0 +1,26 @@
+{
+  "roles": [
+    {
+      "id": "economic_buyer",
+      "label": "Economic buyer",
+      "departments": [
+        "Finance"
+      ],
+      "seniorities": [
+        "C-Suite / Partner"
+      ],
+      "required": true
+    }
+  ],
+  "with_reasoning": true,
+  "search": {
+    "selected_country": "NZ",
+    "department": "Finance",
+    "seniority": "3",
+    "max_people": 2
+  },
+  "decision_maker": {
+    "seller": "Accounts payable automation software for mid-sized companies",
+    "buyer": "CFO and finance team"
+  }
+}

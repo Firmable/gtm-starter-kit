@@ -1,0 +1,19 @@
+{
+  "past_companies": [
+    "Delta Example",
+    "f900000000050"
+  ],
+  "include_current": false,
+  "with_reasoning": true,
+  "fetch_contact_details": true,
+  "search": {
+    "selected_country": "AU",
+    "seniority": "4",
+    "max_people": 4
+  },
+  "opener_templates": [
+    "Hi {first_name}, I noticed you spent time at {past_employer}. Would you introduce us to the team at {account_name}?",
+    "As {title}, you may know how {past_employer} uses our product.",
+    "A note for the {account_name} team."
+  ]
+}

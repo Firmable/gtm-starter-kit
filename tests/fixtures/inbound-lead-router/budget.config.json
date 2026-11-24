@@ -1,0 +1,21 @@
+{
+  "personal_email_domains": [
+    "personal.example",
+    "gmail.com"
+  ],
+  "review_queue": "Sales ops review",
+  "default_queue": "Marketing nurture",
+  "personal_email_queue": "Self-serve",
+  "rules": [
+    {
+      "id": "anz",
+      "queue": "ANZ team",
+      "when": {
+        "hq_country_in": [
+          "AU",
+          "NZ"
+        ]
+      }
+    }
+  ]
+}

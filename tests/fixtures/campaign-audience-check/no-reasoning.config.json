@@ -1,0 +1,17 @@
+{
+  "campaigns": [
+    {
+      "id": "au_fleet",
+      "label": "AU fleet telematics",
+      "campaign": {
+        "message": "Cut fuel costs across your fleet with telematics",
+        "countries": [
+          "AU"
+        ],
+        "min_staff": 50
+      }
+    }
+  ],
+  "exclude_existing_customers": false,
+  "with_reasoning": false
+}

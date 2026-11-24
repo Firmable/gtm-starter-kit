@@ -1,0 +1,15 @@
+{
+  "past_companies": ["Atlassian", "Canva", "Xero"],
+  "include_current": false,
+  "with_reasoning": false,
+  "fetch_contact_details": false,
+  "search": {
+    "selected_country": "AU",
+    "seniority": "4",
+    "max_people": 10
+  },
+  "opener_templates": [
+    "Hi {first_name}, I saw you were at {past_employer}. Would you be open to a short chat about how {account_name} handles this?",
+    "As {title}, you may have seen how {past_employer} works with us."
+  ]
+}

@@ -1,0 +1,8 @@
+row_id,work_email,domain
+e1,a.example@acme.example,
+e2,b.example@beta.example,
+e3,,gamma.example
+e4,,delta.example
+e5,e.example@eps.example,
+e6,,zeta.example
+e7,,eta.example

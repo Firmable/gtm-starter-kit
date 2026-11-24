@@ -1,0 +1,21 @@
+{
+  "description": "GET /decisions fails, so nothing is asked.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 500,
+        "json": {
+          "error": {
+            "code": "server_error",
+            "message": "Something went wrong"
+          }
+        }
+      }
+    }
+  ]
+}

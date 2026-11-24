@@ -1,0 +1,26 @@
+{
+  "checks": {
+    "multinational": true,
+    "multiple_sites": true,
+    "offices_in": [
+      "AU"
+    ]
+  },
+  "tiers": [
+    {
+      "id": "anz_multi",
+      "label": "Multinational with an Australian presence",
+      "when": {
+        "all": [
+          "multinational"
+        ],
+        "any": [
+          "multiple_sites",
+          "office_in:AU"
+        ]
+      }
+    }
+  ],
+  "with_reasoning": true,
+  "fetch_company": true
+}

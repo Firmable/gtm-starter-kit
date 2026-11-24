@@ -1,0 +1,260 @@
+{
+  "description": "include_current is passed through; the account itself counts and is not flagged.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "previously_worked_at",
+              "summary": "Did this person once work at any of the companies you name in `companies`, by name or Firmable company ID (alumni, ex-customer, ex-competitor)? Leaves out their current employer unless `include_current` is true. For the current employer, use `works_at_company`.",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Your own ID for this row, echoed back",
+                    "title": "External Id"
+                  },
+                  "person_id": {
+                    "anyOf": [
+                      {
+                        "pattern": "^fp\\d{12}$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Firmable person ID; or give linkedin_url or work_email",
+                    "examples": [
+                      "fp000463941370"
+                    ],
+                    "title": "Person Id"
+                  },
+                  "linkedin_url": {
+                    "anyOf": [
+                      {
+                        "maxLength": 300,
+                        "pattern": "(?i)linkedin\\.com/in/([^/?#\\s]+)",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their LinkedIn profile URL, e.g. https://www.linkedin.com/in/jane-doe",
+                    "title": "Linkedin Url"
+                  },
+                  "work_email": {
+                    "anyOf": [
+                      {
+                        "maxLength": 254,
+                        "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their work email. Used to find them only; never stored or echoed",
+                    "title": "Work Email"
+                  },
+                  "name": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: the person's name as you hold it; a mismatch gives unknown",
+                    "title": "Name"
+                  },
+                  "company": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: their employer as you hold it; a mismatch gives unknown",
+                    "title": "Company"
+                  },
+                  "companies": {
+                    "description": "Company names or Firmable company IDs; any one matches, e.g. ['Atlassian', 'f000002437529']",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 50,
+                    "minItems": 1,
+                    "title": "Companies",
+                    "type": "array"
+                  },
+                  "include_current": {
+                    "default": false,
+                    "description": "Count their current employer too, including earlier roles there",
+                    "title": "Include Current",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "companies"
+                ],
+                "title": "Input",
+                "type": "object"
+              },
+              "details": [
+                "employer",
+                "past_employers_checked",
+                "title",
+                "years_there"
+              ],
+              "example": {
+                "person_id": "fp900000000001",
+                "companies": [
+                  "Deloitte",
+                  "Accenture"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "id": "f900000000008"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000008",
+          "name": "Theta Example",
+          "fqdn": "theta.example",
+          "website": "https://www.theta.example",
+          "hq_country": "AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "body": {
+          "companyId": "f900000000008",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 1,
+          "records": [
+            {
+              "id": "fp900000000011",
+              "person_id": "fp900000000011",
+              "name": "Lee Example",
+              "pName": "Lee Example",
+              "position": "Head of Product",
+              "company_name": "Theta Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "previously_worked_at",
+          "question": {
+            "person_id": "fp900000000011",
+            "companies": [
+              "Theta Example"
+            ],
+            "include_current": true
+          }
+        },
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "employer": "Theta Example",
+            "years_there": 4,
+            "title": "Product Manager",
+            "past_employers_checked": 4
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000011",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000011",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": null
+        }
+      }
+    }
+  ]
+}

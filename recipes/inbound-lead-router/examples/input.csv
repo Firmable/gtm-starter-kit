@@ -1,0 +1,5 @@
+row_id,work_email,domain,lead_name,source
+lead-001,,canva.com,Canva enquiry,contact form
+lead-002,,atlassian.com,Atlassian enquiry,demo request
+lead-003,jane.citizen@example.com,xero.com,Jane Citizen,webinar
+lead-004,,linfox.com,Linfox enquiry,contact form

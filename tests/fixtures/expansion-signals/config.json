@@ -1,0 +1,59 @@
+{
+  "checks": {
+    "multinational": true,
+    "multiple_sites": {
+      "min_sites": 3
+    },
+    "local_teams": [
+      {
+        "country": "AU",
+        "min_staff": 10
+      },
+      {
+        "country": "SG",
+        "min_staff": 5
+      }
+    ],
+    "offices_in": [
+      "NZ",
+      "US"
+    ]
+  },
+  "tiers": [
+    {
+      "id": "global_expand",
+      "label": "Global with a local team",
+      "when": {
+        "all": [
+          "multinational",
+          "local_team:AU"
+        ],
+        "any": [
+          "office_in:NZ",
+          "office_in:US"
+        ]
+      }
+    },
+    {
+      "id": "multi_site",
+      "label": "Several sites",
+      "when": {
+        "all": [
+          "multiple_sites"
+        ]
+      }
+    },
+    {
+      "id": "regional",
+      "label": "Office in a target market",
+      "when": {
+        "any": [
+          "office_in:NZ",
+          "office_in:US"
+        ]
+      }
+    }
+  ],
+  "with_reasoning": false,
+  "fetch_company": false
+}

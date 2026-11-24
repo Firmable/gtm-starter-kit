@@ -1,0 +1,236 @@
+{
+  "description": "Existing customers are asked when exclusion is off; no reasoning requested.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "matches_campaign_audience",
+              "summary": "Synthetic matches_campaign_audience",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "$defs": {
+                  "Campaign": {
+                    "type": "object",
+                    "properties": {
+                      "min_staff": {
+                        "anyOf": [
+                          {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "max_staff": {
+                        "anyOf": [
+                          {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "staff_in": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "industries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "countries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "revenue_bands": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "message": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "message"
+                    ]
+                  }
+                },
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "campaign": {
+                    "$ref": "#/$defs/Campaign"
+                  }
+                },
+                "required": [
+                  "campaign"
+                ]
+              },
+              "details": [
+                "filters"
+              ],
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "domain": "acme.example",
+            "campaign": {
+              "message": "Cut fuel costs across your fleet with telematics",
+              "countries": [
+                "AU"
+              ],
+              "min_staff": 50
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "filters": {
+              "countries": "passed"
+            }
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "domain": "beta.example",
+            "campaign": {
+              "message": "Cut fuel costs across your fleet with telematics",
+              "countries": [
+                "AU"
+              ],
+              "min_staff": 50
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "filters": {
+              "countries": "passed"
+            }
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    }
+  ]
+}

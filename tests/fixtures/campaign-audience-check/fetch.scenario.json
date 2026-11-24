@@ -1,0 +1,554 @@
+{
+  "description": "Profiles fetched for display; a missing profile still gets asked; a profile with conflicting classification is shown as returned.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "matches_campaign_audience",
+              "summary": "Synthetic matches_campaign_audience",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "$defs": {
+                  "Campaign": {
+                    "type": "object",
+                    "properties": {
+                      "min_staff": {
+                        "anyOf": [
+                          {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "max_staff": {
+                        "anyOf": [
+                          {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "staff_in": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "industries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "countries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "revenue_bands": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "message": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "message"
+                    ]
+                  }
+                },
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "campaign": {
+                    "$ref": "#/$defs/Campaign"
+                  }
+                },
+                "required": [
+                  "campaign"
+                ]
+              },
+              "details": [
+                "filters"
+              ],
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Transport and logistics"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2009,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "company_id": "f900000000001",
+            "campaign": {
+              "message": "Cut fuel costs across your fleet with telematics",
+              "countries": [
+                "AU"
+              ],
+              "min_staff": 50
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "filters": {
+              "countries": "passed"
+            }
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Runs a fleet.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "company_id": "f900000000001",
+            "campaign": {
+              "message": "Point of sale for retailers with several stores",
+              "countries": [
+                "NZ"
+              ],
+              "industries": [
+                "Retail"
+              ]
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "filters": {
+              "countries": "passed"
+            }
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Not in New Zealand.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": {
+            "code": "not_found",
+            "message": "Company not found"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "domain": "ghost.example",
+            "campaign": {
+              "message": "Cut fuel costs across your fleet with telematics",
+              "countries": [
+                "AU"
+              ],
+              "min_staff": 50
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "filters": {}
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "No company matches this domain.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "domain": "ghost.example",
+            "campaign": {
+              "message": "Point of sale for retailers with several stores",
+              "countries": [
+                "NZ"
+              ],
+              "industries": [
+                "Retail"
+              ]
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "filters": {}
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "No company matches this domain.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "id": "f900000000003"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "name": "Kappa Example",
+          "fqdn": "kappa.example",
+          "website": "https://www.kappa.example",
+          "hq_country": "NZ",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Retail"
+          ],
+          "company_type": "Government agency",
+          "year_founded": 2031,
+          "linkedin": "kappa",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "company_id": "f900000000003",
+            "campaign": {
+              "message": "Cut fuel costs across your fleet with telematics",
+              "countries": [
+                "AU"
+              ],
+              "min_staff": 50
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "filters": {
+              "countries": "passed"
+            }
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Head office is in New Zealand.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "matches_campaign_audience",
+          "question": {
+            "company_id": "f900000000003",
+            "campaign": {
+              "message": "Point of sale for retailers with several stores",
+              "countries": [
+                "NZ"
+              ],
+              "industries": [
+                "Retail"
+              ]
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "filters": {
+              "countries": "passed"
+            }
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Retailer with stores in New Zealand.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    }
+  ]
+}

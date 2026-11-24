@@ -1,0 +1,85 @@
+{
+  "personal_email_domains": [
+    "personal.example",
+    "gmail.com",
+    "outlook.com",
+    "hotmail.com",
+    "yahoo.com",
+    "icloud.com",
+    "bigpond.com"
+  ],
+  "icp": {
+    "min_staff": 100,
+    "staff_in": "AU",
+    "countries": [
+      "AU",
+      "NZ"
+    ],
+    "criteria": [
+      "Sells to other businesses",
+      "Has a sales team"
+    ]
+  },
+  "fetch_person": true,
+  "with_reasoning": true,
+  "review_queue": "Sales ops review",
+  "default_queue": "Marketing nurture",
+  "personal_email_queue": "Self-serve",
+  "rules": [
+    {
+      "id": "nz_leads",
+      "queue": "NZ team",
+      "when": {
+        "hq_country_in": [
+          "NZ"
+        ]
+      }
+    },
+    {
+      "id": "enterprise_exec",
+      "queue": "Enterprise AE",
+      "when": {
+        "hq_country_in": [
+          "AU"
+        ],
+        "employee_count_min": 1000,
+        "icp_fit": "yes",
+        "seniority_in": [
+          "C-Suite / Partner",
+          "VP/Director / Head of",
+          "Owner / Founder"
+        ]
+      }
+    },
+    {
+      "id": "enterprise",
+      "queue": "Enterprise SDR",
+      "when": {
+        "hq_country_in": [
+          "AU"
+        ],
+        "employee_count_min": 1000
+      }
+    },
+    {
+      "id": "commercial_fit",
+      "queue": "Commercial team",
+      "when": {
+        "hq_country_in": [
+          "AU"
+        ],
+        "employee_count_max": 999,
+        "icp_fit": "yes"
+      }
+    },
+    {
+      "id": "software",
+      "queue": "Software team",
+      "when": {
+        "industries_any": [
+          "computer software"
+        ]
+      }
+    }
+  ]
+}

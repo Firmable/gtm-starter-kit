@@ -1,0 +1,15 @@
+row_id,work_email,domain,lead_name,source
+l1,alex.example@acme.example,,Alex Example,demo request
+l2,sam.example@beta.example,beta.example,Sam Example,webinar
+l3,,gamma.example,Gamma enquiry,contact form
+l4,jo@personal.example,,Jo Example,trial sign-up
+l5,pat@personal.example,delta.example,Pat Example,trial sign-up
+l6,lee.example@eps.example,other.example,Lee Example,webinar
+l7,kim.example@zeta.example,,Kim Example,demo request
+l8,Alex.Example@ACME.example,,Alex again,demo request
+l9,not an email,,Broken,import
+l10,x.example@ghost.example,,Ghost,import
+l11,lee.eta@eta.example,,Lee Eta,contact form
+l12,robin.example@theta.example,,<b>Theta</b> lead,=HYPERLINK("http://x")
+l13,,outlook.com,Outlook domain,import
+l14,,iota.example,Iota enquiry,contact form

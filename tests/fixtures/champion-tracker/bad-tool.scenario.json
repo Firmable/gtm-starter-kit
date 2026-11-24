@@ -1,0 +1,150 @@
+{
+  "description": "A changed tool stops the run before paid calls.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "previously_worked_at",
+              "summary": "Did this person once work at any of the companies you name in `companies`, by name or Firmable company ID (alumni, ex-customer, ex-competitor)? Leaves out their current employer unless `include_current` is true. For the current employer, use `works_at_company`.",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Your own ID for this row, echoed back",
+                    "title": "External Id"
+                  },
+                  "person_id": {
+                    "anyOf": [
+                      {
+                        "pattern": "^fp\\d{12}$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Firmable person ID; or give linkedin_url or work_email",
+                    "examples": [
+                      "fp000463941370"
+                    ],
+                    "title": "Person Id"
+                  },
+                  "linkedin_url": {
+                    "anyOf": [
+                      {
+                        "maxLength": 300,
+                        "pattern": "(?i)linkedin\\.com/in/([^/?#\\s]+)",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their LinkedIn profile URL, e.g. https://www.linkedin.com/in/jane-doe",
+                    "title": "Linkedin Url"
+                  },
+                  "work_email": {
+                    "anyOf": [
+                      {
+                        "maxLength": 254,
+                        "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their work email. Used to find them only; never stored or echoed",
+                    "title": "Work Email"
+                  },
+                  "name": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: the person's name as you hold it; a mismatch gives unknown",
+                    "title": "Name"
+                  },
+                  "company": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: their employer as you hold it; a mismatch gives unknown",
+                    "title": "Company"
+                  },
+                  "companies": {
+                    "description": "Company names or Firmable company IDs; any one matches, e.g. ['Atlassian', 'f000002437529']",
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 50,
+                    "minItems": 1,
+                    "title": "Companies",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "companies"
+                ],
+                "title": "Input",
+                "type": "object"
+              },
+              "details": [
+                "employer",
+                "past_employers_checked",
+                "title",
+                "years_there"
+              ],
+              "example": {
+                "person_id": "fp900000000001",
+                "companies": [
+                  "Deloitte",
+                  "Accenture"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

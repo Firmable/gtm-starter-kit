@@ -1,0 +1,38 @@
+{
+  "description": "Credit limit reached before the second company profile.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    }
+  ]
+}

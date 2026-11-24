@@ -1,0 +1,43 @@
+{
+  "roles": [
+    {
+      "id": "economic_buyer",
+      "label": "Economic buyer",
+      "departments": [
+        "Finance"
+      ],
+      "seniorities": [
+        "C-Suite / Partner"
+      ],
+      "required": true
+    },
+    {
+      "id": "finance_lead",
+      "label": "Finance lead",
+      "departments": [
+        "Finance"
+      ],
+      "seniorities": [
+        "VP/Director / Head of",
+        "Manager"
+      ],
+      "required": true
+    },
+    {
+      "id": "it_owner",
+      "label": "IT owner",
+      "departments": [
+        "Engineering & Technical"
+      ],
+      "seniorities": [
+        "VP/Director / Head of",
+        "C-Suite / Partner"
+      ],
+      "required": false
+    }
+  ],
+  "search": {
+    "selected_country": "AU",
+    "max_people": 5
+  }
+}

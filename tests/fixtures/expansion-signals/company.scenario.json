@@ -1,0 +1,537 @@
+{
+  "description": "fetch_company with reasoning, a missing profile, an identifier conflict and a 500.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_multinational",
+              "summary": "Synthetic is_multinational",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "has_multiple_sites",
+              "summary": "Synthetic has_multiple_sites",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "min_sites": {
+                    "type": "integer"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "has_local_team",
+              "summary": "Synthetic has_local_team",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "min_staff": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "country"
+                ]
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_located_in",
+              "summary": "Synthetic is_located_in",
+              "subject": "company or person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "countries": {
+                    "type": "array"
+                  },
+                  "places": {
+                    "type": "array"
+                  },
+                  "where": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Logistics"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2009,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "countries": [
+              "AU",
+              "NZ",
+              "US"
+            ]
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic reason for a yes answer.",
+            "source": "Firmable company records",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "company_id": "f900000000001",
+            "min_sites": 2
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 4
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic reason for a yes answer.",
+            "source": "Firmable company records",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "company_id": "f900000000001",
+            "countries": [
+              "AU"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "AU",
+            "location_held": [
+              "AU",
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic reason for a yes answer.",
+            "source": "Firmable company records",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Company profile not found"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "id": "f900000000003"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "name": "Gamma Example",
+          "fqdn": "gamma.example",
+          "website": "https://www.gamma.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Logistics"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2009,
+          "linkedin": "gamma",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "company_id": "f900000000003"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Synthetic reason for a unknown answer.",
+            "source": "Firmable company records",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "Newer records show otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "company_id": "f900000000003",
+            "min_sites": 2
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 1
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic reason for a no answer.",
+            "source": "Firmable company records",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "Newer records show otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "company_id": "f900000000003",
+            "countries": [
+              "AU"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "AU",
+            "location_held": [
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic reason for a no answer.",
+            "source": "Firmable company records",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "Newer records show otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 500,
+        "json": {
+          "error": "internal"
+        }
+      }
+    }
+  ]
+}

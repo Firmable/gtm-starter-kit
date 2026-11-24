@@ -1,0 +1,1713 @@
+{
+  "description": "Every non-error status, both identifiers, duplicates and conflicts.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_multinational",
+              "summary": "Synthetic is_multinational",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "has_multiple_sites",
+              "summary": "Synthetic has_multiple_sites",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "min_sites": {
+                    "type": "integer"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "has_local_team",
+              "summary": "Synthetic has_local_team",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "min_staff": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "country"
+                ]
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_located_in",
+              "summary": "Synthetic is_located_in",
+              "subject": "company or person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "countries": {
+                    "type": "array"
+                  },
+                  "places": {
+                    "type": "array"
+                  },
+                  "where": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "domain": "acme.example"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "countries": [
+              "AU",
+              "NZ",
+              "US"
+            ]
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "domain": "acme.example",
+            "min_sites": 3
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 4
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "acme.example",
+            "country": "AU",
+            "min_staff": 10
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "country": "AU",
+            "staff_in_country": 25
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "acme.example",
+            "country": "SG",
+            "min_staff": 5
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "country": "SG"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "acme.example",
+            "countries": [
+              "NZ"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "NZ",
+            "location_held": [
+              "NZ",
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "acme.example",
+            "countries": [
+              "US"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "US",
+            "location_held": [
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "company_id": "f900000000002"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "countries": [
+              "AU"
+            ]
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "company_id": "f900000000002",
+            "min_sites": 3
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 4
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "company_id": "f900000000002",
+            "country": "AU",
+            "min_staff": 10
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "country": "AU",
+            "staff_in_country": 3
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "company_id": "f900000000002",
+            "country": "SG",
+            "min_staff": 5
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "country": "SG"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "company_id": "f900000000002",
+            "countries": [
+              "NZ"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "NZ",
+            "location_held": [
+              "NZ",
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "company_id": "f900000000002",
+            "countries": [
+              "US"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "US",
+            "location_held": [
+              "US",
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "domain": "gamma.example"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "domain": "gamma.example",
+            "min_sites": 3
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 4
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "gamma.example",
+            "country": "AU",
+            "min_staff": 10
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "country": "AU",
+            "staff_in_country": 25
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "gamma.example",
+            "country": "SG",
+            "min_staff": 5
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "country": "SG"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "gamma.example",
+            "countries": [
+              "NZ"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "NZ",
+            "location_held": [
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "gamma.example",
+            "countries": [
+              "US"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "US",
+            "location_held": [
+              "US",
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "domain": "delta.example"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "countries": [
+              "AU"
+            ]
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000004",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000004",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "domain": "delta.example",
+            "min_sites": 3
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 1
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000004",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000004",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "delta.example",
+            "country": "AU",
+            "min_staff": 10
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "country": "AU",
+            "staff_in_country": 3
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000004",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000004",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "delta.example",
+            "country": "SG",
+            "min_staff": 5
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "country": "SG"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000004",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000004",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "delta.example",
+            "countries": [
+              "NZ"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "NZ",
+            "location_held": [
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000004",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000004",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "delta.example",
+            "countries": [
+              "US"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "US",
+            "location_held": [
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000004",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000004",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "domain": "eps.example"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "countries": [
+              "AU",
+              "NZ",
+              "US"
+            ]
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000005",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000005",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "domain": "eps.example",
+            "min_sites": 3
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 1
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000005",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000005",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "eps.example",
+            "country": "AU",
+            "min_staff": 10
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "country": "AU",
+            "staff_in_country": 3
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000005",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000005",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "eps.example",
+            "country": "SG",
+            "min_staff": 5
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "country": "SG"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000005",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000005",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "eps.example",
+            "countries": [
+              "NZ"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000005",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000005",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "eps.example",
+            "countries": [
+              "US"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "US",
+            "location_held": [
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000005",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000005",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "domain": "zeta.example"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "countries": [
+              "AU",
+              "NZ",
+              "US"
+            ]
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000006",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000006",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_multiple_sites",
+          "question": {
+            "domain": "zeta.example",
+            "min_sites": 3
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "locations_held": 1
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000006",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000006",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "zeta.example",
+            "country": "AU",
+            "min_staff": 10
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "country": "AU",
+            "staff_in_country": 3
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000006",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000006",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "has_local_team",
+          "question": {
+            "domain": "zeta.example",
+            "country": "SG",
+            "min_staff": 5
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": null,
+          "details": {
+            "country": "SG"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000006",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000006",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "zeta.example",
+            "countries": [
+              "NZ"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "NZ",
+            "location_held": [
+              "NZ",
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000006",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000006",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "domain": "zeta.example",
+            "countries": [
+              "US"
+            ],
+            "where": "any_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "location_checked": "US",
+            "location_held": [
+              "US",
+              "AU"
+            ],
+            "places": []
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000006",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000006",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_multinational",
+          "question": {
+            "domain": "ghost.example"
+          }
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "decision": null,
+          "error": {
+            "code": "company_not_found",
+            "message": "No company matches this domain"
+          }
+        }
+      }
+    }
+  ]
+}

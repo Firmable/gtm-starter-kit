@@ -1,0 +1,10 @@
+{
+  "past_companies": [
+    "Theta Example"
+  ],
+  "include_current": true,
+  "with_reasoning": false,
+  "search": {
+    "max_people": 2
+  }
+}

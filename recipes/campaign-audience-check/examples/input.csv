@@ -1,0 +1,4 @@
+row_id,account_name,domain,company_id,existing_customer
+acct-001,Canva,canva.com,,false
+acct-002,Atlassian,atlassian.com,,
+acct-003,Xero,xero.com,,true

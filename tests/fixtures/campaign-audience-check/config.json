@@ -1,0 +1,44 @@
+{
+  "campaigns": [
+    {
+      "id": "au_fleet",
+      "label": "AU fleet telematics",
+      "campaign": {
+        "message": "Cut fuel costs across your fleet with telematics",
+        "countries": [
+          "AU"
+        ],
+        "min_staff": 50
+      }
+    },
+    {
+      "id": "nz_retail",
+      "label": "NZ retail point of sale",
+      "campaign": {
+        "message": "Point of sale for retailers with several stores",
+        "countries": [
+          "NZ"
+        ],
+        "industries": [
+          "Retail"
+        ]
+      }
+    },
+    {
+      "id": "enterprise_payroll",
+      "label": "Enterprise payroll",
+      "campaign": {
+        "message": "Payroll for large employers with complex awards",
+        "min_staff": 1000,
+        "staff_in": "AU",
+        "revenue_bands": [
+          "$100M - $250M",
+          ">$1B+"
+        ]
+      }
+    }
+  ],
+  "exclude_existing_customers": true,
+  "with_reasoning": true,
+  "fetch_company": false
+}

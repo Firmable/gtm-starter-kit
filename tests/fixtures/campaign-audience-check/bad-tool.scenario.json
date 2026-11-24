@@ -1,0 +1,39 @@
+{
+  "description": "matches_campaign_audience is not in the tool list.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

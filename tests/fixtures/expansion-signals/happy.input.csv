@@ -1,0 +1,12 @@
+row_id,domain,company_id,account_name
+r1,https://www.acme.example/about,,Acme
+r2,,f900000000002,Beta
+r3,gamma.example,,Gamma
+r4,ACME.example,,Acme again
+r5,not a domain,,Broken
+r6,,f123,Broken id
+r7,delta.example,,Delta
+r8,eps.example,,<script>alert(1)</script>
+r9,zeta.example,,=HYPERLINK("http://x")
+r10,ghost.example,,Ghost
+r11,other.example,f900000000002,Beta by id

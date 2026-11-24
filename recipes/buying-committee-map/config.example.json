@@ -1,0 +1,34 @@
+{
+  "roles": [
+    {
+      "id": "economic_buyer",
+      "label": "Economic buyer",
+      "departments": ["Finance", "General Management"],
+      "seniorities": ["C-Suite / Partner", "Owner / Founder"],
+      "required": true
+    },
+    {
+      "id": "finance_lead",
+      "label": "Finance lead",
+      "departments": ["Finance"],
+      "seniorities": ["VP/Director / Head of", "Manager"],
+      "required": true
+    },
+    {
+      "id": "technical_owner",
+      "label": "Technical owner",
+      "departments": ["Engineering & Technical"],
+      "seniorities": ["C-Suite / Partner", "VP/Director / Head of"],
+      "required": false
+    },
+    {
+      "id": "operations_user",
+      "label": "Operations user",
+      "departments": ["Operations"],
+      "seniorities": ["VP/Director / Head of", "Manager"],
+      "required": false
+    }
+  ],
+  "search": { "selected_country": "AU", "max_people": 25 },
+  "with_reasoning": false
+}

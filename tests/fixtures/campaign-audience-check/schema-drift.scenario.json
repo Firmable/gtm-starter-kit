@@ -1,0 +1,134 @@
+{
+  "description": "The live Campaign schema has no revenue_bands.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "matches_campaign_audience",
+              "summary": "Synthetic matches_campaign_audience",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "$defs": {
+                  "Campaign": {
+                    "type": "object",
+                    "properties": {
+                      "min_staff": {
+                        "anyOf": [
+                          {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "max_staff": {
+                        "anyOf": [
+                          {
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "staff_in": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "default": null
+                      },
+                      "industries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "countries": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "message": {
+                        "type": "string",
+                        "minLength": 3,
+                        "maxLength": 2000
+                      }
+                    },
+                    "required": [
+                      "message"
+                    ]
+                  }
+                },
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "campaign": {
+                    "$ref": "#/$defs/Campaign"
+                  }
+                },
+                "required": [
+                  "campaign"
+                ]
+              },
+              "details": [
+                "filters"
+              ],
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

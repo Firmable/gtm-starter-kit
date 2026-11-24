@@ -1,0 +1,5 @@
+row_id,account_name,domain,company_id,existing_customer
+f1,Acme,acme.example,,
+f2,Ghost,ghost.example,,
+f3,Kappa,,f900000000003,
+f4,Lambda,,f900000000004,true

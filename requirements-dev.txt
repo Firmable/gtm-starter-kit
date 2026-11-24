@@ -14,3 +14,8 @@ pytest>=8
 -e recipes/territory-routing/python
 -e recipes/duplicate-account-review/python
 -e recipes/pre-call-account-pack/python
+-e recipes/champion-tracker/python
+-e recipes/buying-committee-map/python
+-e recipes/inbound-lead-router/python
+-e recipes/campaign-audience-check/python
+-e recipes/expansion-signals/python

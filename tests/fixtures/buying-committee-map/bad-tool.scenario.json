@@ -1,0 +1,280 @@
+{
+  "description": "A tool the configuration needs is missing from the tool list.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "matches_department",
+              "summary": "Does this person work in one of the departments you target? Reads the main title by rules against Firmable's departments (for example Finance, Sales, Marketing, Operations, Legal, Product, Engineering & Technical; full list in the accepted values). For \"would they make the buying call\", use `is_decision_maker`.",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Your own ID for this row, echoed back",
+                    "title": "External Id"
+                  },
+                  "person_id": {
+                    "anyOf": [
+                      {
+                        "pattern": "^fp\\d{12}$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Firmable person ID; or give linkedin_url or work_email",
+                    "examples": [
+                      "fp000463941370"
+                    ],
+                    "title": "Person Id"
+                  },
+                  "linkedin_url": {
+                    "anyOf": [
+                      {
+                        "maxLength": 300,
+                        "pattern": "(?i)linkedin\\.com/in/([^/?#\\s]+)",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their LinkedIn profile URL, e.g. https://www.linkedin.com/in/jane-doe",
+                    "title": "Linkedin Url"
+                  },
+                  "work_email": {
+                    "anyOf": [
+                      {
+                        "maxLength": 254,
+                        "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their work email. Used to find them only; never stored or echoed",
+                    "title": "Work Email"
+                  },
+                  "name": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: the person's name as you hold it; a mismatch gives unknown",
+                    "title": "Name"
+                  },
+                  "company": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: their employer as you hold it; a mismatch gives unknown",
+                    "title": "Company"
+                  },
+                  "departments": {
+                    "description": "Any one matches, e.g. [\"Finance\", \"Operations\"]",
+                    "items": {
+                      "maxLength": 100,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "maxItems": 20,
+                    "minItems": 1,
+                    "title": "Departments",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "departments"
+                ],
+                "title": "Input",
+                "type": "object"
+              },
+              "details": [
+                "department",
+                "matched"
+              ],
+              "example": {
+                "person_id": "fp900000000001",
+                "departments": [
+                  "Research & Analysis",
+                  "Engineering & Technical"
+                ]
+              }
+            },
+            {
+              "name": "matches_seniority",
+              "summary": "Is this person at one of the seniority levels you target? Reads the main title by rules against Firmable's levels: Owner / Founder, C-Suite / Partner, Board Member / Company Director, VP/Director / Head of, Manager, Other. Short forms such as Director also match; an unrecognised level answers no. For \"would they make the buying call\", use `is_decision_maker`.",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Your own ID for this row, echoed back",
+                    "title": "External Id"
+                  },
+                  "person_id": {
+                    "anyOf": [
+                      {
+                        "pattern": "^fp\\d{12}$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Firmable person ID; or give linkedin_url or work_email",
+                    "examples": [
+                      "fp000463941370"
+                    ],
+                    "title": "Person Id"
+                  },
+                  "linkedin_url": {
+                    "anyOf": [
+                      {
+                        "maxLength": 300,
+                        "pattern": "(?i)linkedin\\.com/in/([^/?#\\s]+)",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their LinkedIn profile URL, e.g. https://www.linkedin.com/in/jane-doe",
+                    "title": "Linkedin Url"
+                  },
+                  "work_email": {
+                    "anyOf": [
+                      {
+                        "maxLength": 254,
+                        "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Their work email. Used to find them only; never stored or echoed",
+                    "title": "Work Email"
+                  },
+                  "name": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: the person's name as you hold it; a mismatch gives unknown",
+                    "title": "Name"
+                  },
+                  "company": {
+                    "anyOf": [
+                      {
+                        "maxLength": 200,
+                        "minLength": 2,
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Optional: their employer as you hold it; a mismatch gives unknown",
+                    "title": "Company"
+                  },
+                  "seniorities": {
+                    "description": "Any one matches. Use Firmable's seniority labels: Owner / Founder, C-Suite / Partner, Board Member / Company Director, VP/Director / Head of, Manager, Other",
+                    "items": {
+                      "maxLength": 100,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "maxItems": 20,
+                    "minItems": 1,
+                    "title": "Seniorities",
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "seniorities"
+                ],
+                "title": "Input",
+                "type": "object"
+              },
+              "details": [
+                "matched",
+                "seniority"
+              ],
+              "example": {
+                "person_id": "fp900000000001",
+                "seniorities": [
+                  "C-Suite / Partner",
+                  "VP/Director / Head of"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

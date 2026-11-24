@@ -1,0 +1,153 @@
+{
+  "description": "One lead posted to the local server.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "1001 - 5000",
+          "employee_count": 1200,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_icp_fit",
+          "question": {
+            "company_id": "f900000000001",
+            "icp": {
+              "min_staff": 100,
+              "staff_in": "AU",
+              "countries": [
+                "AU",
+                "NZ"
+              ],
+              "criteria": [
+                "Sells to other businesses",
+                "Has a sales team"
+              ]
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.85,
+          "details": {
+            "filters": {
+              "countries": "met",
+              "min_staff": "met"
+            },
+            "criteria": [
+              {
+                "criterion": "Sells to other businesses",
+                "met": true
+              }
+            ]
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "ICP fit answer yes from the company profile.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "alex.example@acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000001",
+          "name": "Alex Example",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "position": "Head of Sales",
+          "seniority": "C-Suite / Partner",
+          "department": "Sales",
+          "country": "AU",
+          "location": [
+            "Sydney"
+          ],
+          "time_in_current_role": "2 years",
+          "month_joined": 3,
+          "year_joined": 2024,
+          "linkedin": null,
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Synthetic employer",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": []
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "hidden@example.invalid"
+              }
+            ],
+            "personal": []
+          },
+          "phones": []
+        }
+      },
+      "times": 1
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "personal_email_domains": [
+    "personal.example",
+    "gmail.com"
+  ],
+  "icp": {
+    "industries": [
+      "Computer software"
+    ],
+    "revenue_bands": [
+      "$10M - $50M",
+      "$50M - $100M"
+    ]
+  },
+  "with_reasoning": false,
+  "review_queue": "Sales ops review",
+  "default_queue": "Marketing nurture",
+  "personal_email_queue": "Self-serve",
+  "rules": [
+    {
+      "id": "icp_unknown",
+      "queue": "Research queue",
+      "when": {
+        "icp_fit": "unknown"
+      }
+    },
+    {
+      "id": "icp_yes",
+      "queue": "Sales team",
+      "when": {
+        "icp_fit": "yes"
+      }
+    }
+  ]
+}

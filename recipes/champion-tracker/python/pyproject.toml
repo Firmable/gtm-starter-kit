@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gtm-champion-tracker"
+version = "0.1.0"
+description = "gtm-starter-kit recipe: find people at target accounts who used to work at your customers or named companies."
+requires-python = ">=3.11"
+dependencies = ["firmable-gtm-client"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+gtm-champion-tracker = "champion_tracker.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,3 @@
+row_id,account_name,domain,company_id,existing_customer
+n1,Acme,acme.example,,true
+n2,Beta,beta.example,,
