@@ -1,0 +1,40 @@
+{
+  "with_evidence": false,
+  "max_pages": 1,
+  "fetch_company": false,
+  "targets": [
+    {
+      "id": "salesforce",
+      "label": "Salesforce",
+      "relationship": "integration",
+      "match": {
+        "vendor_slugs": [
+          "salesforce"
+        ]
+      }
+    },
+    {
+      "id": "hubspot",
+      "label": "HubSpot",
+      "relationship": "competitor",
+      "match": {
+        "product_slugs": [
+          "hubspot-crm"
+        ],
+        "aliases": [
+          "HubSpot"
+        ]
+      }
+    },
+    {
+      "id": "snowflake",
+      "label": "Snowflake",
+      "relationship": "implementation opportunity",
+      "match": {
+        "aliases": [
+          "Snowflake"
+        ]
+      }
+    }
+  ]
+}

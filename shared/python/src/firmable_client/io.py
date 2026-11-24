@@ -17,6 +17,7 @@ from .errors import ConfigError, InputError
 
 _FORMULA_PREFIXES = ("=", "+", "-", "@", "\t", "\r")
 _PLAIN_NUMBER = re.compile(r"^-?\d+(\.\d+)?$")
+_PHONE = re.compile(r"^\+\d[\d ()]*$")  # +61 412 345 678: digits, spaces and brackets cannot form a formula
 _DOMAIN = re.compile(r"^(?=.{1,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$")
 
 
@@ -142,7 +143,7 @@ def safe_cell(value: Any) -> str:
     """Formats a value for CSV and neutralises spreadsheet formulas.
 
     A text value starting with =, +, -, @, tab or carriage return gets a leading apostrophe.
-    Plain numbers such as -5 are left alone.
+    Plain numbers such as -5 and phone numbers such as +61 412 345 678 are left alone.
     """
     if value is None:
         return ""
@@ -153,7 +154,7 @@ def safe_cell(value: Any) -> str:
     if isinstance(value, (list, tuple)):
         value = "; ".join(safe_cell(v) for v in value)
     s = json.dumps(value, ensure_ascii=False, separators=(",", ":")) if isinstance(value, dict) else str(value)
-    if s.startswith(_FORMULA_PREFIXES) and not _PLAIN_NUMBER.match(s):
+    if s.startswith(_FORMULA_PREFIXES) and not _PLAIN_NUMBER.match(s) and not _PHONE.match(s):
         return "'" + s
     return s
 

@@ -1,0 +1,860 @@
+{
+  "description": "Assignments, review cases, a duplicate and an invalid domain.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "alpha.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "alpha.example"
+          },
+          "company": {
+            "firmable_id": "f910000000001",
+            "company_name": "Alpha Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "STRONG",
+            "explanation": "Synthetic explanation for Alpha Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "STRONG",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "bravo.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "bravo.example"
+          },
+          "company": {
+            "firmable_id": "f910000000002",
+            "company_name": "Bravo Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "MODERATE",
+            "explanation": "Synthetic explanation for Bravo Example.",
+            "momentum": {
+              "label": "EXPANDING",
+              "signals": [
+                {
+                  "kind": "AI hiring",
+                  "count": 3,
+                  "latest": "2026-10-13"
+                }
+              ]
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "charlie.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "charlie.example"
+          },
+          "company": {
+            "firmable_id": "f910000000003",
+            "company_name": "Charlie Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "MODERATE",
+            "explanation": "Synthetic explanation for Charlie Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": [
+                {
+                  "kind": "AI hiring",
+                  "count": 1,
+                  "latest": "2026-09-02"
+                }
+              ]
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f910000000003"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f910000000003",
+          "total": 2,
+          "tech_intelligence": [
+            {
+              "product": "Claude (Anthropic)",
+              "product_slug": "anthropic",
+              "vendor": "Claude (Anthropic)",
+              "vendor_slug": "anthropic",
+              "filter": "LLM APIs & apps",
+              "filter_slug": "llm-apis-apps",
+              "category": "AI & Machine Learning",
+              "category_slug": "ai-machine-learning",
+              "pillar_slug": "ai-machine-learning",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-10-28",
+              "nature": "direct"
+            },
+            {
+              "product": "Salesforce",
+              "product_slug": "salesforce",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "LLM APIs & apps",
+              "filter_slug": "llm-apis-apps",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "business-applications",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-10-28",
+              "nature": "direct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "delta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "delta.example"
+          },
+          "company": {
+            "firmable_id": "f910000000004",
+            "company_name": "Delta Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "BASIC",
+            "explanation": "Synthetic explanation for Delta Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f910000000004"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f910000000004",
+          "total": 1,
+          "tech_intelligence": [
+            {
+              "product": "Salesforce",
+              "product_slug": "salesforce",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "LLM APIs & apps",
+              "filter_slug": "llm-apis-apps",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "business-applications",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-10-28",
+              "nature": "direct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "echo.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "echo.example"
+          },
+          "company": {
+            "firmable_id": "f910000000005",
+            "company_name": "Echo Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "BASIC",
+            "explanation": "Synthetic explanation for Echo Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f910000000005"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f910000000005",
+          "total": 230,
+          "tech_intelligence": [
+            {
+              "product": "Salesforce",
+              "product_slug": "salesforce",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "LLM APIs & apps",
+              "filter_slug": "llm-apis-apps",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "business-applications",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-10-28",
+              "nature": "direct"
+            }
+          ],
+          "next_cursor": "CURSOR-ECHO-2"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "foxtrot.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "company": null,
+          "error": {
+            "code": "not_found",
+            "message": "No AI adoption data for this company"
+          },
+          "usage": {
+            "billable": false
+          },
+          "input": {
+            "domain": "foxtrot.example"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "golf.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "golf.example"
+          },
+          "company": {
+            "firmable_id": "f910000000007",
+            "company_name": "Golf Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "EXTREME",
+            "explanation": "Synthetic explanation for Golf Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "hotel.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "<b>hotel</b>.example"
+          },
+          "company": {
+            "firmable_id": "f910000000008",
+            "company_name": "<b>Hotel</b> Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "STRONG",
+            "explanation": "Synthetic explanation for <b>Hotel</b> Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "india.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "india.example"
+          },
+          "company": {
+            "firmable_id": "f910000000009",
+            "company_name": "India Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "ADVANCED",
+            "explanation": "Synthetic explanation for India Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "MEANINGFUL",
+                "headline": "Synthetic workforce headline.",
+                "observability": "LOW",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "juliet.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "juliet.example"
+          },
+          "company": {
+            "firmable_id": "f910000000010",
+            "company_name": "Juliet Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "MEANINGFUL",
+            "explanation": "Synthetic explanation for Juliet Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "EXTREME",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f910000000010"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f910000000010",
+          "total": 1,
+          "tech_intelligence": [
+            {
+              "product": "Copilot",
+              "product_slug": "copilot",
+              "vendor": "Copilot",
+              "vendor_slug": "copilot",
+              "filter": "LLM APIs & apps",
+              "filter_slug": "llm-apis-apps",
+              "category": "AI & Machine Learning",
+              "category_slug": "ai-machine-learning",
+              "pillar_slug": "ai-machine-learning",
+              "confidence": "low",
+              "recency": "30d",
+              "last_observed": "2026-10-28",
+              "nature": "direct"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

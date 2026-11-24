@@ -1,0 +1,15 @@
+{
+  "evaluation_date": "2026-03-31",
+  "window_months": 1,
+  "triggers": [
+    "new_exec",
+    "new_to_role"
+  ],
+  "executive_only": true,
+  "executive_seniorities": [
+    "C-Suite",
+    "VP"
+  ],
+  "with_reasoning": false,
+  "fetch_contact_details": false
+}

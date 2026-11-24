@@ -1,0 +1,431 @@
+{
+  "description": "Profiles fetched first; a missing profile stops checks for that row.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "works_at_company",
+              "summary": "Synthetic works_at_company",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "company_id"
+                ]
+              },
+              "details": [
+                "current_employer",
+                "matched_by",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_contact_current",
+              "summary": "Synthetic is_contact_current",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title"
+                ]
+              },
+              "details": [
+                "current_title",
+                "employer",
+                "ended",
+                "last_role",
+                "started"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_email_valid",
+              "summary": "Synthetic is_email_valid",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "as_at",
+                "deliverability_grade",
+                "live_result",
+                "matched_work_email"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_mobile_valid",
+              "summary": "Synthetic is_mobile_valid",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "mobile": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "country",
+                "is_mobile",
+                "matched_held_mobile"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_mobile_on_dnc",
+              "summary": "Synthetic is_mobile_on_dnc",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "mobile": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "as_at",
+                "matched_held_mobile",
+                "number_checked",
+                "status",
+                "statuses"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "alex.example@acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000001",
+          "name": "Alex Example",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "position": "Head of Operations",
+          "seniority": "Manager",
+          "department": "Operations",
+          "country": "AU",
+          "location": [
+            "Melbourne, Victoria, AU"
+          ],
+          "time_in_current_role": "2 years",
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Acme Example",
+            "website": null,
+            "linkedin": null,
+            "size": "51 - 200",
+            "industry": []
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "alex.example@acme.example"
+              }
+            ],
+            "personal": []
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 001",
+              "is_dnd": false
+            }
+          ],
+          "linkedin": null
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "works_at_company",
+          "question": {
+            "person_id": "fp900000000001",
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": null
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_email_valid",
+          "question": {
+            "person_id": "fp900000000001",
+            "email": "alex.example@acme.example"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "as_at": "2026-10-30",
+            "deliverability_grade": "Highly likely",
+            "live_result": null,
+            "matched_work_email": true
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": null
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_mobile_valid",
+          "question": {
+            "person_id": "fp900000000001",
+            "mobile": "0400 000 001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": null
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "ln_url": "https://linkedin.com/in/nobody-example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Person not found"
+        }
+      },
+      "times": 1
+    }
+  ]
+}

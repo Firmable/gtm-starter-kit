@@ -1,0 +1,478 @@
+{
+  "description": "Decisions asked only for accounts that reach the segment that uses them.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "claims_rd_tax_incentive",
+              "summary": "Synthetic claims_rd_tax_incentive",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "lima.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "lima.example"
+          },
+          "company": {
+            "firmable_id": "f910000000012",
+            "company_name": "Lima Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "STRONG",
+            "explanation": "Synthetic explanation for Lima Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f910000000012"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f910000000012",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "reasoning": {
+            "reason": "Sells software to businesses.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "mike.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "mike.example"
+          },
+          "company": {
+            "firmable_id": "f910000000013",
+            "company_name": "Mike Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "ADVANCED",
+            "explanation": "Synthetic explanation for Mike Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f910000000013"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f910000000013",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "reasoning": {
+            "reason": "No customer information held.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          },
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "november.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "november.example"
+          },
+          "company": {
+            "firmable_id": "f910000000014",
+            "company_name": "November Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "BASIC",
+            "explanation": "Synthetic explanation for November Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "oscar.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "oscar.example"
+          },
+          "company": {
+            "firmable_id": "f910000000015",
+            "company_name": "Oscar Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "STRONG",
+            "explanation": "Synthetic explanation for Oscar Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f910000000015"
+          }
+        }
+      },
+      "response": {
+        "status": 502,
+        "json": {
+          "error": {
+            "code": "upstream_error",
+            "message": "The decision service is unavailable"
+          }
+        }
+      }
+    }
+  ]
+}

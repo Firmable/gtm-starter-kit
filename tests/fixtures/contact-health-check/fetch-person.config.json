@@ -1,0 +1,9 @@
+{
+  "fetch_person": true,
+  "with_reasoning": false,
+  "checks": [
+    "employment",
+    "email",
+    "mobile"
+  ]
+}

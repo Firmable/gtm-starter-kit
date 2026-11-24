@@ -1,0 +1,825 @@
+{
+  "description": "First-match routing with every non-error status.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_public_sector_or_nonprofit",
+              "summary": "Synthetic is_public_sector_or_nonprofit",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_located_in",
+              "summary": "Synthetic is_located_in",
+              "subject": "company or person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "countries": {
+                    "type": "array"
+                  },
+                  "places": {
+                    "type": "array"
+                  },
+                  "where": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "has_local_team",
+              "summary": "Synthetic has_local_team",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "min_staff": {}
+                },
+                "required": [
+                  "country"
+                ]
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "1001 - 5000",
+          "employee_count": 1500,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Public sector answer no.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "Beta Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "51 - 200",
+          "employee_count": 120,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "beta",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000002"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Public sector answer no.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "gamma.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "name": "Gamma Example",
+          "fqdn": "gamma.example",
+          "website": "https://www.gamma.example",
+          "hq_country": "NZ",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "gamma",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000003"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Public sector answer no.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "delta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000004",
+          "name": "Delta Council",
+          "fqdn": "delta.example",
+          "website": "https://www.delta.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Government administration"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "delta",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000004"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000004",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000004",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Listed as a local government body.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "eps.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000005",
+          "name": "Eps Example",
+          "fqdn": "eps.example",
+          "website": "https://www.eps.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "eps",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000005"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000005",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000005",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Public sector answer unknown.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "zeta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000006",
+          "name": "Zeta Example",
+          "fqdn": "zeta.example",
+          "website": "https://www.zeta.example",
+          "hq_country": null,
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "zeta",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000006"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000006",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000006",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Public sector answer no.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Company profile not found"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "id": "f900000000007"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000007",
+          "name": "Iota Example",
+          "fqdn": "iota.example",
+          "website": "https://www.iota.example",
+          "hq_country": "US",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "iota",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000007"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000007",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000007",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Public sector answer no.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "eta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000008",
+          "name": "Eta Example",
+          "fqdn": "eta.example",
+          "website": "https://www.eta.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "1001 - 5000",
+          "employee_count": 50,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "eta",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000008"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000008",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000008",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Public sector answer no.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "id": "f900000000009"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000009",
+          "name": "<b>Theta</b> Example",
+          "fqdn": "theta.example",
+          "website": "https://www.theta.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales",
+          "company_size": "1001 - 5000",
+          "employee_count": 2000,
+          "industries": [
+            "Computer software"
+          ],
+          "states": [
+            "NSW"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "theta",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_public_sector_or_nonprofit",
+          "question": {
+            "company_id": "f900000000009"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000009",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000009",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Public sector answer no.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer profile shows otherwise."
+          }
+        }
+      }
+    }
+  ]
+}

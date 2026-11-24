@@ -1,0 +1,79 @@
+{
+  "with_reasoning": true,
+  "overlap": "first_match",
+  "default_team": null,
+  "teams": [
+    {
+      "id": "public_sector",
+      "name": "Public Sector",
+      "owner": "Public sector queue"
+    },
+    {
+      "id": "nz",
+      "name": "NZ",
+      "owner": "NZ queue"
+    },
+    {
+      "id": "enterprise",
+      "name": "ANZ Enterprise",
+      "owner": "Enterprise queue"
+    },
+    {
+      "id": "commercial",
+      "name": "ANZ Commercial",
+      "owner": "Commercial queue"
+    }
+  ],
+  "decision_checks": [
+    {
+      "id": "public_sector",
+      "label": "Public sector or non-profit",
+      "tool": "is_imaginary",
+      "inputs": {}
+    }
+  ],
+  "rules": [
+    {
+      "id": "public_sector",
+      "label": "Public sector",
+      "team": "public_sector",
+      "when": {
+        "decisions": {
+          "public_sector": "yes"
+        }
+      }
+    },
+    {
+      "id": "nz_head_office",
+      "label": "NZ head office",
+      "team": "nz",
+      "when": {
+        "hq_country_in": [
+          "NZ"
+        ]
+      }
+    },
+    {
+      "id": "au_enterprise",
+      "label": "AU enterprise",
+      "team": "enterprise",
+      "when": {
+        "hq_country_in": [
+          "AU"
+        ],
+        "employee_count_min": 1000
+      }
+    },
+    {
+      "id": "au_commercial",
+      "label": "AU commercial",
+      "team": "commercial",
+      "when": {
+        "hq_country_in": [
+          "AU"
+        ],
+        "employee_count_max": 999
+      }
+    }
+  ]
+}

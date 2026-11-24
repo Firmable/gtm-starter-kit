@@ -1,1 +1,1 @@
-"""new-role-outreach recipe for gtm-starter-kit."""
+"""New role outreach recipe for gtm-starter-kit."""

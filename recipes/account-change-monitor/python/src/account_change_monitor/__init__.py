@@ -1,1 +1,1 @@
-"""account-change-monitor recipe for gtm-starter-kit."""
+"""Account change monitor recipe for gtm-starter-kit."""

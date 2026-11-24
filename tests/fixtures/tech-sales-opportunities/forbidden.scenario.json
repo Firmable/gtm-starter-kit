@@ -1,0 +1,22 @@
+{
+  "description": "403 from Tech Intel means it is not on the plan; the run stops.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "acme.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 403,
+        "json": {
+          "error": "Tech Intelligence is not on your plan"
+        }
+      },
+      "times": 1
+    }
+  ]
+}

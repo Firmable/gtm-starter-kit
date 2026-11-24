@@ -1,0 +1,102 @@
+{
+  "description": "No Decisions checks; position search; detail limit.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "body": {
+          "companyId": "f900000000001",
+          "selectedCountry": "NZ",
+          "position": "Chief Financial Officer",
+          "from": "0",
+          "size": "5"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [
+            {
+              "id": "fp900000000001",
+              "person_id": "fp900000000001",
+              "name": "Alex Example",
+              "pName": "Alex Example",
+              "position": "Chief Financial Officer",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "id": "fp900000000008",
+              "person_id": "fp900000000008",
+              "name": "Gus Example",
+              "pName": "Gus Example",
+              "position": "Chief Financial Officer",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ],
+          "success": true,
+          "total": 2
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000001",
+          "name": "Alex Example",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "position": "Chief Financial Officer",
+          "seniority": "C-Suite / Partner",
+          "department": "Finance",
+          "country": "AU",
+          "location": [
+            "Sydney",
+            "New South Wales",
+            "AU"
+          ],
+          "time_in_current_role": "1 year",
+          "month_joined": 6,
+          "year_joined": 2025,
+          "linkedin": "alex-example",
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Acme Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": [
+              "Computer software"
+            ]
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "alex.example@acme.example"
+              }
+            ],
+            "personal": []
+          },
+          "phones": []
+        }
+      },
+      "times": 1
+    }
+  ]
+}

@@ -1,0 +1,1362 @@
+{
+  "description": "Matches, evidence flags, an incomplete list, no data, a duplicate, an invalid domain and a 404.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "acme.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 12,
+          "tech_intelligence": [
+            {
+              "product": "Salesforce Sales Cloud",
+              "product_slug": "salesforce-sales-cloud",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 30,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  },
+                  {
+                    "type": "job_ad",
+                    "count": 27,
+                    "capped": true
+                  },
+                  {
+                    "type": "website",
+                    "count": 2,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "crm.acme.example",
+                    "record": "CNAME -> acme.my.salesforce.example",
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  },
+                  {
+                    "type": "job_ad",
+                    "product": "Synthetic",
+                    "found": "job_ad_on_vendor",
+                    "version": null,
+                    "location": "https://jobs.board.example/ad/123",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  },
+                  {
+                    "type": "website",
+                    "product": "Synthetic",
+                    "found": "script_tag",
+                    "version": null,
+                    "location": null,
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": 40,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  },
+                  {
+                    "type": "website",
+                    "product": "Synthetic",
+                    "found": "script_tag",
+                    "version": null,
+                    "location": "internal portal",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Zendesk",
+              "product_slug": "zendesk",
+              "vendor": "Zendesk",
+              "vendor_slug": "zendesk",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "medium",
+              "recency": "90d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "help.acme.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            }
+          ],
+          "next_cursor": "ACME-2"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "acme.example",
+          "withEvidence": "true",
+          "cursor": "ACME-2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 12,
+          "tech_intelligence": [
+            {
+              "product": "HubSpot Marketing Hub",
+              "product_slug": "hubspot-marketing",
+              "vendor": "HubSpot",
+              "vendor_slug": "hubspot",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "low",
+              "recency": "older",
+              "last_observed": "2026-03-02",
+              "nature": "derived",
+              "evidence_detail": null
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "beta.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "total": 25,
+          "tech_intelligence": [
+            {
+              "product": "Tool 1",
+              "product_slug": "tool-1",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 2",
+              "product_slug": "tool-2",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 3",
+              "product_slug": "tool-3",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 4",
+              "product_slug": "tool-4",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 5",
+              "product_slug": "tool-5",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 6",
+              "product_slug": "tool-6",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 7",
+              "product_slug": "tool-7",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 8",
+              "product_slug": "tool-8",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 9",
+              "product_slug": "tool-9",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 10",
+              "product_slug": "tool-10",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            }
+          ],
+          "next_cursor": "BETA-2"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "beta.example",
+          "withEvidence": "true",
+          "cursor": "BETA-2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "total": 25,
+          "tech_intelligence": [
+            {
+              "product": "Tool 11",
+              "product_slug": "tool-11",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 12",
+              "product_slug": "tool-12",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 13",
+              "product_slug": "tool-13",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 14",
+              "product_slug": "tool-14",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 15",
+              "product_slug": "tool-15",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 16",
+              "product_slug": "tool-16",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 17",
+              "product_slug": "tool-17",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 18",
+              "product_slug": "tool-18",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 19",
+              "product_slug": "tool-19",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Tool 20",
+              "product_slug": "tool-20",
+              "vendor": "Example Vendor",
+              "vendor_slug": "example-vendor",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "www.beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            }
+          ],
+          "next_cursor": "BETA-3"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "gamma.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "total": 0,
+          "tech_intelligence": []
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "ghost.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Company profile not found"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "delta.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000004",
+          "total": 3,
+          "tech_intelligence": [
+            {
+              "product": "SNOWFLAKE",
+              "product_slug": "snowflake-data-cloud",
+              "vendor": "Snowflake Inc",
+              "vendor_slug": "snowflake",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Data",
+              "category_slug": "data",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "website",
+                    "product": "Synthetic",
+                    "found": "script_tag",
+                    "version": null,
+                    "location": "https://www.delta.example/careers",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Snowflake Connector",
+              "product_slug": "snowflake-connector",
+              "vendor": "Connector Co",
+              "vendor_slug": "connector-co",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Data",
+              "category_slug": "data",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": null
+            },
+            {
+              "product": "<b>Bold</b> CRM",
+              "product_slug": "bold-crm",
+              "vendor": "Bold",
+              "vendor_slug": "bold",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": null
+            }
+          ]
+        }
+      },
+      "times": 1
+    }
+  ]
+}

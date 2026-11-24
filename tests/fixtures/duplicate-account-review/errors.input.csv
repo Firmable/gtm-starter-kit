@@ -1,0 +1,7 @@
+row_id,left_domain,right_domain
+e1,acme.example,beta.example
+e2,gamma.example,delta.example
+e3,eps.example,zeta.example
+e4,eta.example,theta.example
+e5,acme.example,gamma.example
+e6,beta.example,delta.example

@@ -1,1 +1,1 @@
-"""tech-sales-opportunities recipe for gtm-starter-kit."""
+"""Tech sales opportunities recipe for gtm-starter-kit."""

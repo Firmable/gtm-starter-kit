@@ -1,0 +1,8 @@
+row_id,domain,work_email,account_name
+b1,https://www.acme.example/about,Alex.Example@acme.example,Acme
+b2,beta.example,,Beta
+b3,ACME.example,alex.example@acme.example,Acme again
+b4,not a domain,,Broken
+b5,,not-an-email,Broken contact
+b6,,sam.sample@other.example,Contact only
+b7,<b>html</b>.example,,=cmd()

@@ -1,0 +1,13 @@
+row_id,domain,account_name
+h1,https://www.alpha.example/,Alpha
+h2,bravo.example,Bravo
+h3,charlie.example,Charlie
+h4,delta.example,Delta
+h5,echo.example,Echo
+h6,foxtrot.example,Foxtrot
+h7,golf.example,Golf
+h8,ALPHA.example,Alpha again
+h9,not a domain,Broken
+h10,hotel.example,<script>alert(1)</script>
+h11,india.example,=HYPERLINK("x")
+h12,juliet.example,Juliet

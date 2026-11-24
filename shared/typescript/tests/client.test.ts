@@ -193,3 +193,11 @@ test("throttle waits between requests to the same endpoint", async () => {
   await c.listDecisionTools();
   assert.deepEqual(waits, [0.1]);
 });
+
+test("people search with no match returns empty records", async () => {
+  const [client] = makeClient({ exchanges: [ex("POST", "/people/search", { json: { success: false, totalPeople: 0 } })] });
+  const r = await client.searchPeople({ companyId: "f900000000001" });
+  assert.deepEqual(r.records, []);
+  assert.equal(r.total, 0);
+  assert.equal(client.ledger.entries[0].outcome, "ok");
+});

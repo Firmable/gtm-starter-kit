@@ -1,0 +1,202 @@
+{
+  "description": "Credit limit reached before the second pair's first profile.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_same_business",
+              "summary": "Synthetic is_same_business",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "other_company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "other_company_id"
+                ]
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example Pty Ltd",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria",
+          "company_size": "51 - 200",
+          "employee_count": 80,
+          "industries": [
+            "Business support services"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2009,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M",
+          "industry_codes": {
+            "sic": null,
+            "duns": null,
+            "naics": null,
+            "anzsic": "7000",
+            "abn": "11 000 000 001",
+            "acn": "000000001"
+          }
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "Beta Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria",
+          "company_size": "51 - 200",
+          "employee_count": 80,
+          "industries": [
+            "Business support services"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2009,
+          "linkedin": "beta",
+          "revenue": "$10M - $50M",
+          "industry_codes": {
+            "sic": null,
+            "duns": null,
+            "naics": null,
+            "anzsic": "7000",
+            "abn": "22000000002"
+          }
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_same_business",
+          "question": {
+            "company_id": "f900000000001",
+            "other_company_id": "f900000000002"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.97,
+          "details": {
+            "matched": false,
+            "differed": [],
+            "other_company_name": null,
+            "other_firmable_id": "f900000000002"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "No shared ABN, NZBN or root domain.",
+            "source": "Firmable company records",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "Either record's ABN, NZBN or root domain changes."
+          }
+        }
+      }
+    }
+  ]
+}

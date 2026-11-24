@@ -68,15 +68,21 @@ class FirmableClient:
                           check=validate.person)
 
     def search_people(self, body: dict[str, Any]) -> dict[str, Any]:
-        """POST /people/search. companyId is required by the published schema. Free."""
+        """POST /people/search. companyId is required by the published schema. Free.
+
+        With no matches the API returns success false and no records; this returns records [] and total 0.
+        """
         if not body.get("companyId"):
             raise ValueError("people search needs companyId")
         allowed = {"companyId", "selectedCountry", "position", "seniority", "department", "from", "size"}
         unknown = set(body) - allowed
         if unknown:
             raise ValueError(f"people search does not accept: {', '.join(sorted(unknown))}")
-        return self._call("POST", "/people/search", body=body, parts=[],
-                          check=validate.people_search)
+        resp = self._call("POST", "/people/search", body=body, parts=[], check=validate.people_search)
+        if resp.get("success") is False and "records" not in resp:
+            # Documented no-match response. The ledger keeps it as returned; callers get an empty list.
+            return {**resp, "records": [], "total": resp.get("totalPeople", 0)}
+        return resp
 
     def list_decision_tools(self) -> dict[str, Any]:
         """GET /decisions. Free."""
@@ -117,6 +123,10 @@ class FirmableClient:
 
         Stops at the last page, the page limit, a repeated cursor, or an error. Pages already
         fetched are kept when a later page fails.
+
+        Errors are returned in the result's "error" field, not raised, so partial pages survive.
+        Callers must record that error themselves (see RunContext.record_error_dict) so a fatal
+        error such as budget_exceeded still stops the run.
         """
         if max_pages < 1:
             raise ValueError("max_pages must be at least 1")

@@ -47,7 +47,7 @@ export interface Recipe {
   readInput(path: string): Row[];
   plan(rows: Row[], config: Json): PlannedCall[];
   run(ctx: RunContext): Promise<RecipeOutput>;
-  csvColumns: string[];
+  csvColumns: string[] | ((result: Json) => string[]); // a list, or a function of the result
   csvRows(result: Json): Record<string, unknown>[];
   render(report: Report, result: Json): void;
 }
@@ -67,6 +67,14 @@ export class RunContext {
     const entry: ErrorEntry = { row_id: rowId, ...err.toDict() };
     this.errors.push(entry);
     if (FATAL_KINDS.has(err.kind) && this.stopped === null) this.stopped = entry;
+    return entry;
+  }
+
+  /** Records an error already in dict form, such as the `error` field of getTechIntel(). */
+  recordErrorDict(rowId: string | null, error: ErrorDict): ErrorEntry {
+    const entry: ErrorEntry = { row_id: rowId, ...error };
+    this.errors.push(entry);
+    if (FATAL_KINDS.has(error.kind) && this.stopped === null) this.stopped = entry;
     return entry;
   }
 
@@ -139,7 +147,8 @@ export function writeOutputs(recipe: Recipe, result: Json, outDir: string): Reco
   mkdirSync(outDir, { recursive: true });
   const paths: Record<string, string> = {
     json: writeJson(join(outDir, "results.json"), result),
-    csv: writeCsv(join(outDir, "results.csv"), recipe.csvColumns, recipe.csvRows(result)),
+    csv: writeCsv(join(outDir, "results.csv"),
+      typeof recipe.csvColumns === "function" ? recipe.csvColumns(result) : recipe.csvColumns, recipe.csvRows(result)),
   };
   const report = new Report(recipe.title, recipe.name, result);
   report.addRequestSection(recipe.description);

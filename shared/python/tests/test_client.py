@@ -214,3 +214,11 @@ def test_throttle_waits_between_requests_to_same_endpoint():
     c._cache.clear()
     c.list_decision_tools()
     assert waits == [0.1]
+
+
+def test_people_search_no_match_returns_empty_records():
+    client, _ = make_client({"exchanges": [ex("POST", "/people/search", {"json": {"success": False, "totalPeople": 0}})]})
+    r = client.search_people({"companyId": "f900000000001"})
+    assert r["records"] == [] and r["total"] == 0
+    assert client.ledger.entries[0]["outcome"] == "ok"
+    assert "records" not in client.ledger.entries[0]["response"]

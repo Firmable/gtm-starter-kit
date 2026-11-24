@@ -1,0 +1,155 @@
+{
+  "description": "A changed tool stops the run before paid calls.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_new_to_role",
+              "summary": "Synthetic is_new_to_role",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {
+                    "type": "integer"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "inside_same_company",
+                "months_at_company",
+                "months_in_role",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_new_exec",
+              "summary": "Synthetic is_new_exec",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {
+                    "type": "integer"
+                  },
+                  "seniorities": {
+                    "type": "array"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "months_in_role",
+                "seniority",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "has_changed_jobs_since",
+              "summary": "Synthetic has_changed_jobs_since",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "since": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "since"
+                ]
+              },
+              "details": [
+                "employer",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    }
+  ]
+}

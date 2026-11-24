@@ -1,0 +1,14 @@
+row_id,domain,company_id,account_name
+h1,https://www.acme.example/about,,Acme
+h2,beta.example,,Beta
+h3,gamma.example,,Gamma
+h4,delta.example,,Delta
+h5,eps.example,,Eps
+h6,zeta.example,,Zeta
+h7,ACME.example,,Acme again
+h8,not a domain,,Broken
+h9,ghost.example,,Ghost
+h10,,f900000000007,Iota
+h11,eta.example,,=HYPERLINK("http://x")
+h12,other.example,f900000000009,<script>alert(1)</script>
+h13,,12345,Bad id

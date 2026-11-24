@@ -1,0 +1,11 @@
+row_id,domain,company_id,person_id,work_email,linkedin_url,crm_note
+a1,https://www.acme.example/team,,,,,Key account
+a2,,f900000000002,,,,
+a3,ACME.example,,,,,Duplicate of a1
+c1,,,fp900000000010,,,<script>alert(1)</script>
+c2,,,,dana.example@delta.example,,
+c3,,,,,https://www.linkedin.com/company/acme-example,
+a4,not a domain,,,,,
+a5,ghost.example,,,,,
+c4,,,fp900000000011,,,=HYPERLINK("http://x")
+c5,,,fp900000000012,,,

@@ -1,0 +1,49 @@
+{
+  "levels": [
+    "NONE",
+    "BASIC",
+    "MEANINGFUL",
+    "MODERATE",
+    "STRONG",
+    "ADVANCED"
+  ],
+  "with_reasoning": true,
+  "decision_checks": [
+    {
+      "id": "b2b",
+      "label": "Sells to other businesses",
+      "tool": "is_imaginary",
+      "want": "yes"
+    }
+  ],
+  "segments": [
+    {
+      "id": "b2b_ai_leaders",
+      "label": "B2B AI leaders",
+      "conditions": [
+        {
+          "type": "overall_level",
+          "at_least": "STRONG"
+        },
+        {
+          "type": "decision",
+          "check": "b2b"
+        }
+      ]
+    },
+    {
+      "id": "everyone_else",
+      "label": "Everyone else",
+      "conditions": [
+        {
+          "type": "overall_level",
+          "at_least": "NONE"
+        }
+      ]
+    }
+  ],
+  "review_segment": {
+    "id": "manual_review",
+    "label": "Manual review"
+  }
+}

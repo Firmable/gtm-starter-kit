@@ -1,0 +1,54 @@
+{
+  "description": "with_evidence false: one page, no evidence_detail.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 2,
+          "tech_intelligence": [
+            {
+              "product": "Salesforce Sales Cloud",
+              "product_slug": "salesforce-sales-cloud",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct"
+            },
+            {
+              "product": "HubSpot CRM",
+              "product_slug": "hubspot-crm",
+              "vendor": "HubSpot",
+              "vendor_slug": "hubspot",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct"
+            }
+          ]
+        }
+      },
+      "times": 1
+    }
+  ]
+}

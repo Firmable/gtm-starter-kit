@@ -52,7 +52,7 @@ class Recipe:
     read_input: Callable[[Path], list[dict[str, str]]]
     plan: Callable[[list[dict[str, str]], dict[str, Any]], list[PlannedCall]]
     run: Callable[["RunContext"], dict[str, Any]]
-    csv_columns: list[str]
+    csv_columns: list[str] | Callable[[dict[str, Any]], list[str]]  # a list, or a function of the result
     csv_rows: Callable[[dict[str, Any]], list[dict[str, Any]]]
     render: Callable[[Report, dict[str, Any]], None]
 
@@ -71,6 +71,14 @@ class RunContext:
         entry = {"row_id": row_id, **err.to_dict()}
         self.errors.append(entry)
         if err.kind in FATAL_KINDS and self.stopped is None:
+            self.stopped = entry
+        return entry
+
+    def record_error_dict(self, row_id: str | None, error: dict[str, Any]) -> dict[str, Any]:
+        """Records an error already in dict form, such as the "error" field of get_tech_intel()."""
+        entry = {"row_id": row_id, **error}
+        self.errors.append(entry)
+        if error.get("kind") in FATAL_KINDS and self.stopped is None:
             self.stopped = entry
         return entry
 
@@ -139,7 +147,9 @@ def write_outputs(recipe: Recipe, result: dict[str, Any], out_dir: Path) -> dict
     out_dir.mkdir(parents=True, exist_ok=True)
     paths = {
         "json": write_json(out_dir / "results.json", result),
-        "csv": write_csv(out_dir / "results.csv", recipe.csv_columns, recipe.csv_rows(result)),
+        "csv": write_csv(out_dir / "results.csv",
+                         recipe.csv_columns(result) if callable(recipe.csv_columns) else recipe.csv_columns,
+                         recipe.csv_rows(result)),
     }
     report = Report(recipe.title, recipe.name, result)
     report.add_request_section(recipe.description)

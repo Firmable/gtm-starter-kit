@@ -1,0 +1,70 @@
+{
+  "description": "The credit limit is reached before the first contact profile.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "theta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000007",
+          "name": "Theta Example",
+          "fqdn": "theta.example",
+          "website": "https://www.theta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "theta",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000007",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "1",
+          "department": "2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 4,
+          "records": [
+            {
+              "id": "fp900000000030",
+              "person_id": "fp900000000030",
+              "name": "Sam Sample",
+              "pName": "Sam Sample",
+              "position": "Account Executive",
+              "company_name": "Theta Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

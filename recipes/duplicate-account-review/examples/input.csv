@@ -1,0 +1,4 @@
+row_id,left_row_id,left_domain,left_company_id,right_row_id,right_domain,right_company_id
+pair-001,crm-1001,canva.com,,crm-1002,canva.com.au,
+pair-002,crm-1003,xero.com,,crm-1004,xero.co.nz,
+pair-003,crm-1005,atlassian.com,,crm-1006,canva.com,

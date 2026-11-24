@@ -1,0 +1,70 @@
+{
+  "with_reasoning": true,
+  "company_checks": [
+    {
+      "id": "b2b",
+      "label": "Sells to other businesses",
+      "tool": "is_b2b",
+      "want": "yes"
+    },
+    {
+      "id": "au_head_office",
+      "label": "Head office in Australia",
+      "tool": "is_located_in",
+      "inputs": {
+        "countries": [
+          "AU"
+        ],
+        "where": "head_office"
+      }
+    }
+  ],
+  "contact_checks": [
+    {
+      "id": "new_in_role",
+      "label": "New to role in the last 6 months",
+      "tool": "is_imaginary",
+      "inputs": {
+        "within_months": 6
+      }
+    },
+    {
+      "id": "still_at_account",
+      "label": "Works at this account",
+      "tool": "matches_company_size"
+    }
+  ],
+  "contacts": {
+    "selected_country": "AU",
+    "searches": [
+      {
+        "id": "sales_leaders",
+        "label": "Sales leaders",
+        "seniority": "4",
+        "department": "2",
+        "size": 3
+      },
+      {
+        "id": "executives",
+        "label": "C-suite",
+        "seniority": "3",
+        "size": 2
+      }
+    ],
+    "max_contacts": 3,
+    "fetch_profiles": true
+  },
+  "tech_intel": {
+    "enabled": true,
+    "with_evidence": false,
+    "max_pages": 2
+  },
+  "ai_adoption": {
+    "enabled": true,
+    "with_evidence": true
+  },
+  "suggested_questions": {
+    "enabled": true,
+    "max_questions": 6
+  }
+}

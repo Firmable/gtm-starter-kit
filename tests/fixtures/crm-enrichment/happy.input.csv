@@ -1,0 +1,8 @@
+row_id,domain,work_email,company_name,website,industry,employee_count,company_type,year_founded,contact_name,contact_title,mobile,notes,employer_firmable_id
+h1,acme.example,alex@acme.example,ACME   example,https://www.acme.example/,,,,,,,,,
+h2,https://beta.example,,Beta Example,,,,Government,1999,,,,Existing CRM record,
+h3,ghost.example,nobody@ghost.example,Ghost,,,,,,,,,,
+h4,WWW.ACME.example,Alex@Acme.example,,,Software,120,,,Alex Example,Finance Lead,,,
+h5,not a domain,not-an-email,Broken,,,,,,,,,,
+h6,gamma.example,jo@gamma.example,Gamma Example,,,,,,Jo Example,cfo,,,f900000000003
+h7,,sam@delta.example,"=HYPERLINK(""http://x"")",,,,,,,,,<script>alert(1)</script>,

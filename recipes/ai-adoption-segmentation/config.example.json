@@ -1,0 +1,50 @@
+{
+  "levels": ["NONE", "BASIC", "MEANINGFUL", "MODERATE", "STRONG", "ADVANCED"],
+  "with_evidence": false,
+  "tech_intel_max_pages": 1,
+  "with_reasoning": true,
+  "decision_checks": [],
+  "segments": [
+    {
+      "id": "ai_leaders",
+      "label": "AI leaders",
+      "description": "Broad AI adoption with an AI workforce in place.",
+      "match": "all",
+      "conditions": [
+        { "type": "overall_level", "at_least": "STRONG" },
+        { "type": "dimension_level", "dimension": "workforce", "at_least": "MEANINGFUL" }
+      ]
+    },
+    {
+      "id": "ai_expanding",
+      "label": "Expanding AI programmes",
+      "description": "Growing momentum or repeated AI hiring.",
+      "match": "any",
+      "conditions": [
+        { "type": "momentum", "in": ["EXPANDING"] },
+        { "type": "momentum_signal", "kind": "AI hiring", "min_count": 2 }
+      ]
+    },
+    {
+      "id": "ai_tooling",
+      "label": "AI tooling without broad adoption",
+      "description": "An AI product is detected but the overall level is moderate or lower.",
+      "match": "all",
+      "conditions": [
+        { "type": "overall_level", "at_most": "MODERATE" },
+        { "type": "technology", "category_slug": ["ai-machine-learning"], "min_confidence": "medium" }
+      ]
+    },
+    {
+      "id": "low_adoption",
+      "label": "Low AI adoption level",
+      "description": "Firmable rates the overall level NONE or BASIC.",
+      "match": "all",
+      "conditions": [
+        { "type": "overall_level", "in": ["NONE", "BASIC"] }
+      ]
+    }
+  ],
+  "review_segment": { "id": "review", "label": "Needs review" },
+  "unmatched_segment": { "id": "unmatched", "label": "No segment matched" }
+}

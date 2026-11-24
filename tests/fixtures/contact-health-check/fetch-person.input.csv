@@ -1,0 +1,3 @@
+row_id,work_email,linkedin_url,expected_company_id,email_to_check,mobile_to_check
+f1,alex.example@acme.example,,f900000000001,alex.example@acme.example,0400 000 001
+f2,,https://linkedin.com/in/nobody-example,,,

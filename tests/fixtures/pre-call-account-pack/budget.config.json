@@ -1,0 +1,19 @@
+{
+  "contacts": {
+    "searches": [
+      {
+        "id": "sales",
+        "label": "Sales",
+        "department": "2",
+        "size": 1
+      }
+    ],
+    "max_contacts": 1
+  },
+  "tech_intel": {
+    "enabled": true
+  },
+  "ai_adoption": {
+    "enabled": false
+  }
+}

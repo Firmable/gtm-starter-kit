@@ -1,0 +1,374 @@
+{
+  "description": "Credit limit reached at the third answer.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "matches_department",
+              "summary": "Synthetic matches_department",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "departments": {
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "departments"
+                ]
+              },
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "matches_seniority",
+              "summary": "Synthetic matches_seniority",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "seniorities": {
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "seniorities"
+                ]
+              },
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_decision_maker",
+              "summary": "Synthetic is_decision_maker",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "seller": {
+                    "type": "string"
+                  },
+                  "buyer": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "seller"
+                ]
+              },
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "works_at_company",
+              "summary": "Synthetic works_at_company",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "company_id"
+                ]
+              },
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "body": {
+          "companyId": "f900000000001",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "5",
+          "department": "14",
+          "seniority": "3"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [
+            {
+              "id": "fp900000000001",
+              "person_id": "fp900000000001",
+              "name": "Alex Example",
+              "pName": "Alex Example",
+              "position": "CFO",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "id": "fp900000000002",
+              "person_id": "fp900000000002",
+              "name": "Bo Example",
+              "pName": "Bo Example",
+              "position": "CFO",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ],
+          "success": true,
+          "total": 2
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "body": {
+          "companyId": "f900000000001",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "5",
+          "department": "14",
+          "seniority": "4"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "records": [],
+          "success": true,
+          "total": 0
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "matches_department",
+          "question": {
+            "person_id": "fp900000000001",
+            "departments": [
+              "Finance"
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "matches_seniority",
+          "question": {
+            "person_id": "fp900000000001",
+            "seniorities": [
+              "C-Suite / Partner",
+              "VP/Director / Head of"
+            ]
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    }
+  ]
+}

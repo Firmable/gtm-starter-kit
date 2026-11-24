@@ -1,0 +1,10 @@
+row_id,person_id,work_email,linkedin_url,expected_company_id,expected_domain,expected_title,crm_name
+h1,fp900000000001,,,f900000000001,,Head of Operations,Alex Example
+h2,,jordan.example@beta.example,,,beta.example,,Jordan Example
+h3,,,https://www.linkedin.com/in/sam-example,f900000000001,,Finance Manager,Sam Example
+h4,fp900000000001,,,f900000000001,,Head of Operations,Alex Example again
+h5,fp900000000005,,,f900000000001,,Sales Director,<script>alert(1)</script>
+h6,12345,,,,,,Broken
+h7,fp900000000007,,,,ghost.example,Office Manager,Casey Example
+h8,fp900000000008,,,,,,=HYPERLINK("http://x")
+h10,fp900000000010,,,f900000000001,,<b>Data</b> Lead,Robin Example

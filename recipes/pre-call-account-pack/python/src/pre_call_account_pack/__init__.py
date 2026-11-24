@@ -1,1 +1,1 @@
-"""pre-call-account-pack recipe for gtm-starter-kit."""
+"""Pre-call account pack recipe for gtm-starter-kit."""

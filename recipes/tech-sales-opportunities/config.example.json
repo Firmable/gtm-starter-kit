@@ -1,0 +1,25 @@
+{
+  "with_evidence": true,
+  "max_pages": 3,
+  "fetch_company": false,
+  "targets": [
+    {
+      "id": "salesforce",
+      "label": "Salesforce",
+      "relationship": "integration",
+      "match": { "aliases": ["Salesforce"] }
+    },
+    {
+      "id": "hubspot",
+      "label": "HubSpot",
+      "relationship": "competitor",
+      "match": { "aliases": ["HubSpot"] }
+    },
+    {
+      "id": "anthropic",
+      "label": "Claude (Anthropic)",
+      "relationship": "implementation opportunity",
+      "match": { "product_slugs": ["anthropic"], "vendor_slugs": ["anthropic"] }
+    }
+  ]
+}

@@ -1,0 +1,331 @@
+{
+  "description": "First run: every account gets a baseline and no change claims.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "description": "Synthetic company.",
+          "linkedin": "acme",
+          "employee_count": 320,
+          "year_founded": 2011,
+          "hq_location": "Sydney, New South Wales, AU",
+          "hq_country": "AU",
+          "company_size": "201 - 500",
+          "company_type": "Private company",
+          "locations": [],
+          "industries": [
+            "Computer software"
+          ],
+          "revenue": "$10M - $50M",
+          "phones": [],
+          "emails": [],
+          "social_media": {},
+          "industry_codes": [],
+          "keywords": [],
+          "org_registers": [],
+          "states": [],
+          "abn_operation_status": "Active"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "alex.example@acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000001",
+          "name": "Alex Example",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "position": "Head of Partnerships",
+          "seniority": "Director / VP",
+          "department": "Sales",
+          "headline": "Head of Partnerships",
+          "country": "AU",
+          "location": [
+            "Sydney"
+          ],
+          "time_in_current_role": "1 year 2 months",
+          "month_joined": 9,
+          "year_joined": 2025,
+          "experience": [],
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Acme Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": []
+          },
+          "emails": {
+            "work": [],
+            "personal": []
+          },
+          "phones": [],
+          "skills": [],
+          "linkedin": null,
+          "slug": null,
+          "social_media": {},
+          "secondary_position": null
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "company_id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000001"
+          },
+          "company": {
+            "firmable_id": "f900000000001",
+            "company_name": "Acme Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "BASIC",
+            "explanation": "Synthetic explanation for Acme Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 140,
+          "tech_intelligence": [
+            {
+              "product": "Salesforce",
+              "product_slug": "salesforce",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-01",
+              "nature": "direct"
+            }
+          ],
+          "next_cursor": "CURSOR-ACME-2"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "Beta Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "description": "Synthetic company.",
+          "linkedin": "beta",
+          "employee_count": 320,
+          "year_founded": 2011,
+          "hq_location": "Sydney, New South Wales, AU",
+          "hq_country": "AU",
+          "company_size": "201 - 500",
+          "company_type": "Private company",
+          "locations": [],
+          "industries": [
+            "Computer software"
+          ],
+          "revenue": "$10M - $50M",
+          "phones": [],
+          "emails": [],
+          "social_media": {},
+          "industry_codes": [],
+          "keywords": [],
+          "org_registers": [],
+          "states": [],
+          "abn_operation_status": "Active"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "company_id": "f900000000002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000002"
+          },
+          "company": null,
+          "error": {
+            "code": "not_found",
+            "message": "No AI adoption data for this company"
+          },
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "total": 0,
+          "tech_intelligence": []
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "sam.sample@other.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000002",
+          "name": "Sam Sample",
+          "first_name": "Sam",
+          "last_name": "Sample",
+          "position": "Director of Revenue Operations",
+          "seniority": "Director / VP",
+          "department": "Sales",
+          "headline": "Director of Revenue Operations",
+          "country": "AU",
+          "location": [
+            "Sydney"
+          ],
+          "time_in_current_role": "1 year 2 months",
+          "month_joined": 9,
+          "year_joined": 2025,
+          "experience": [],
+          "current_company": {
+            "id": "f900000000009",
+            "name": "Other Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": []
+          },
+          "emails": {
+            "work": [],
+            "personal": []
+          },
+          "phones": [],
+          "skills": [],
+          "linkedin": null,
+          "slug": null,
+          "social_media": {},
+          "secondary_position": null
+        }
+      }
+    }
+  ]
+}

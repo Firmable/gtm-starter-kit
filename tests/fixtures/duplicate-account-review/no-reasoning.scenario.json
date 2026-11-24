@@ -1,0 +1,194 @@
+{
+  "description": "with_reasoning false asks the decision without reasoning.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_same_business",
+              "summary": "Synthetic is_same_business",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "other_company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "other_company_id"
+                ]
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example Pty Ltd",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria",
+          "company_size": "51 - 200",
+          "employee_count": 80,
+          "industries": [
+            "Business support services"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2009,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M",
+          "industry_codes": {
+            "sic": null,
+            "duns": null,
+            "naics": null,
+            "anzsic": "7000",
+            "abn": "11 000 000 001",
+            "acn": "000000001"
+          }
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme-group.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000011",
+          "name": "Acme Group",
+          "fqdn": "acme-group.example",
+          "website": "https://www.acme-group.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria",
+          "company_size": "51 - 200",
+          "employee_count": 80,
+          "industries": [
+            "Business support services"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2009,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M",
+          "industry_codes": {
+            "sic": null,
+            "duns": null,
+            "naics": null,
+            "anzsic": "7000",
+            "abn": "11000000001"
+          }
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {},
+        "body": {
+          "tool": "is_same_business",
+          "question": {
+            "company_id": "f900000000001",
+            "other_company_id": "f900000000011"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.04,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.97,
+          "details": {
+            "matched": true,
+            "differed": [],
+            "other_company_name": null,
+            "other_firmable_id": "f900000000011"
+          },
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    }
+  ]
+}

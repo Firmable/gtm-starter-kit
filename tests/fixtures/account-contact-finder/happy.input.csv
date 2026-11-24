@@ -1,0 +1,8 @@
+row_id,domain,company_id,account_name
+r1,https://www.acme.example,,Acme
+r2,,f900000000002,Beta by ID
+r3,ghost.example,,Ghost
+r4,WWW.ACME.example,,Acme again
+r5,,bogus,Bad ID
+r6,beta.example,,Beta by domain
+r7,delta.example,,Delta

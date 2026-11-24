@@ -33,6 +33,8 @@ def person(x: Any) -> None:
 
 def people_search(x: Any) -> None:
     d = _obj(x, "People search")
+    if d.get("success") is False and "records" not in d:
+        return  # documented no-match response: success false, no records, totalPeople 0
     if not isinstance(d.get("records"), list):
         raise InvalidResponseError("People search response has no records list.")
 

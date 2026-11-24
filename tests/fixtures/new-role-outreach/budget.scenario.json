@@ -1,0 +1,256 @@
+{
+  "description": "The credit limit stops the run before the next paid call.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_new_to_role",
+              "summary": "Synthetic is_new_to_role",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {
+                    "type": "integer"
+                  },
+                  "count_internal_moves": {
+                    "type": "boolean"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "inside_same_company",
+                "months_at_company",
+                "months_in_role",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_new_exec",
+              "summary": "Synthetic is_new_exec",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {
+                    "type": "integer"
+                  },
+                  "seniorities": {
+                    "type": "array"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "months_in_role",
+                "seniority",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "has_changed_jobs_since",
+              "summary": "Synthetic has_changed_jobs_since",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "since": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "since"
+                ]
+              },
+              "details": [
+                "employer",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000001",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "inside_same_company": false,
+            "started": "2026-09"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "person_id": "fp900000000001",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    }
+  ]
+}

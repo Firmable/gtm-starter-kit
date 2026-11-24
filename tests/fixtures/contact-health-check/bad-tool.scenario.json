@@ -1,0 +1,199 @@
+{
+  "description": "A missing tool stops the run before paid calls.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "works_at_company",
+              "summary": "Synthetic works_at_company",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "company_id"
+                ]
+              },
+              "details": [
+                "current_employer",
+                "matched_by",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_contact_current",
+              "summary": "Synthetic is_contact_current",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title"
+                ]
+              },
+              "details": [
+                "current_title",
+                "employer",
+                "ended",
+                "last_role",
+                "started"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_email_valid",
+              "summary": "Synthetic is_email_valid",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "as_at",
+                "deliverability_grade",
+                "live_result",
+                "matched_work_email"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_mobile_valid",
+              "summary": "Synthetic is_mobile_valid",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "mobile": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "country",
+                "is_mobile",
+                "matched_held_mobile"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    }
+  ]
+}

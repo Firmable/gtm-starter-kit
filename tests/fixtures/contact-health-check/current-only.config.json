@@ -1,0 +1,7 @@
+{
+  "with_reasoning": true,
+  "checks": [
+    "role",
+    "employment"
+  ]
+}

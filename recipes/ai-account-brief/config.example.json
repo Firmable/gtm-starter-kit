@@ -1,0 +1,16 @@
+{
+  "ai_evidence": true,
+  "tech_intel": true,
+  "tech_intel_with_evidence": false,
+  "tech_intel_max_pages": 1,
+  "seller_context": {
+    "offering": "our data platform"
+  },
+  "discovery_questions": [
+    { "id": "tech_rollout", "template": "You use {technology}. How is it rolled out across {company_name}?" },
+    { "id": "ai_role", "template": "You advertised a {ai_role} role. What will that person own?" },
+    { "id": "ai_tool", "template": "How widely is {ai_tool} used at {company_name}?" },
+    { "id": "momentum", "template": "Firmable reports AI momentum as {momentum_label}. What is driving it?" },
+    { "id": "offering", "template": "Where could {offering} support your AI work in {industry}?" }
+  ]
+}

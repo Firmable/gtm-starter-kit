@@ -78,11 +78,16 @@ def main(recipe: Recipe, argv: list[str] | None = None) -> int:
     return 3 if ctx.stopped else 0
 
 
+def _n(x: float) -> str:
+    """Prints 3.0 as 3, matching the TypeScript command line."""
+    return str(int(x)) if isinstance(x, float) and x.is_integer() else str(x)
+
+
 def _print_plan(plan: dict) -> None:
     print(f"{plan['recipe']}: {plan['rows']} input row(s)")
     for c in plan["calls"]:
         print(f"  {c['endpoint']:<22} up to {c['requests_upper_bound']:>4} request(s), "
-              f"up to {c['published_estimate_upper_bound']} credits  {c['purpose']}")
-    print(f"Published estimate, upper bound: {plan['published_estimate_upper_bound']} credits")
-    print(f"Reservation this code would hold, upper bound: {plan['reservation_upper_bound']} credits")
+              f"up to {_n(c['published_estimate_upper_bound'])} credits  {c['purpose']}")
+    print(f"Published estimate, upper bound: {_n(plan['published_estimate_upper_bound'])} credits")
+    print(f"Reservation this code would hold, upper bound: {_n(plan['reservation_upper_bound'])} credits")
     print(f"Prices as of {plan['pricing_as_of']}.")

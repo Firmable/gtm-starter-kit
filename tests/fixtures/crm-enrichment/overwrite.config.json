@@ -1,0 +1,71 @@
+{
+  "identifiers": {
+    "company": {
+      "column": "domain",
+      "type": "fqdn"
+    },
+    "person": {
+      "column": "work_email",
+      "type": "work_email"
+    }
+  },
+  "mappings": [
+    {
+      "column": "company_name",
+      "source": "company",
+      "field": "name"
+    },
+    {
+      "column": "website",
+      "source": "company",
+      "field": "website",
+      "compare_as": "domain"
+    },
+    {
+      "column": "industry",
+      "source": "company",
+      "field": "industries"
+    },
+    {
+      "column": "employee_count",
+      "source": "company",
+      "field": "employee_count"
+    },
+    {
+      "column": "company_type",
+      "source": "company",
+      "field": "company_type"
+    },
+    {
+      "column": "year_founded",
+      "source": "company",
+      "field": "year_founded"
+    },
+    {
+      "column": "contact_name",
+      "source": "person",
+      "field": "name"
+    },
+    {
+      "column": "contact_title",
+      "source": "person",
+      "field": "position"
+    },
+    {
+      "column": "mobile",
+      "source": "person",
+      "field": "phones.0.value"
+    },
+    {
+      "column": "employer_firmable_id",
+      "source": "person",
+      "field": "current_company.id"
+    }
+  ],
+  "merge_policy": "overwrite",
+  "comparison": {
+    "case_insensitive": false,
+    "collapse_whitespace": false
+  },
+  "skip_dnd_phones": true
+}

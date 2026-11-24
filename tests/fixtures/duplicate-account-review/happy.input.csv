@@ -1,0 +1,12 @@
+row_id,left_row_id,left_domain,left_company_id,right_row_id,right_domain,right_company_id
+p1,crm-001,https://www.acme.example/,,crm-101,acme-group.example,
+p2,crm-002,beta.example,,crm-102,gamma.example,
+p3,crm-003,,f900000000001,crm-103,ACME.example,
+p4,crm-004,delta.example,,crm-104,delta-holdings.example,
+p5,crm-005,eps.example,,crm-105,zeta.example,
+p6,crm-006,eta.example,,crm-106,theta.example,
+p7,crm-007,ghost.example,,crm-107,beta.example,
+p8,crm-008,gamma.example,,crm-108,beta.example,
+p9,crm-009,not a domain,,crm-109,beta.example,
+p10,crm-010,beta-old.example,f900000000002,crm-110,eta.example,
+p11,=SUM(1),,12345,crm-111,eta.example,

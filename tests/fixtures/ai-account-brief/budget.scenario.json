@@ -1,0 +1,278 @@
+{
+  "description": "Credit limit reached before Tech Intel.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 300,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000001"
+          },
+          "company": {
+            "firmable_id": "f900000000001",
+            "company_name": "Acme Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID_MARKET",
+            "overall_level": "STRONG",
+            "explanation": "AI workforce strong, meaningful architecture, basic AI hiring.",
+            "momentum": {
+              "label": "EXPANDING",
+              "signals": [
+                {
+                  "kind": "AI hiring",
+                  "count": 2,
+                  "latest": "2026-10-13"
+                }
+              ]
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "MEANINGFUL",
+                "headline": "4 of 14 capabilities: Serving, Data pipelines",
+                "observability": "HIGH",
+                "counts_toward_overall": true,
+                "sub_dimensions": [
+                  {
+                    "category": "Serving",
+                    "present": true,
+                    "technologies": 2,
+                    "top": "Model Server Example"
+                  }
+                ]
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "1 of 9 categories: General AI assistants",
+                "observability": "HIGH",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "BASIC",
+                "headline": "3 AI roles in 12 months",
+                "observability": "HIGH",
+                "counts_toward_overall": true,
+                "sub_dimensions": {
+                  "hiring_scale": {
+                    "roles_12m": 3,
+                    "roles_90d": 0
+                  }
+                }
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "LOW",
+                "counts_toward_overall": false
+              },
+              "workforce": {
+                "level": "STRONG",
+                "headline": "AI leadership in place, 11 AI specialists",
+                "observability": "HIGH",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 33,
+              "footprint": 2,
+              "hiring": 2,
+              "initiatives": 5,
+              "workforce": 3
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          },
+          "evidence": {
+            "architecture": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 33,
+              "truncated": true,
+              "items": [
+                {
+                  "ref": {
+                    "type": "technology",
+                    "id": "t1"
+                  },
+                  "qualifies": true,
+                  "technology": "Model Server Example",
+                  "category": "Serving",
+                  "first_seen": "2026-02-01",
+                  "last_seen": "2026-11-01",
+                  "observation": "DIRECT",
+                  "confidence_band": "HIGH",
+                  "state": "CURRENT"
+                },
+                {
+                  "ref": {
+                    "type": "technology",
+                    "id": "t2"
+                  },
+                  "qualifies": false,
+                  "technology": "Old Queue Example",
+                  "category": "Data pipelines",
+                  "first_seen": "2024-02-01",
+                  "last_seen": "2025-01-01",
+                  "observation": "INFERRED",
+                  "confidence_band": "LOW",
+                  "state": "DORMANT"
+                }
+              ]
+            },
+            "footprint": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 2,
+              "truncated": false,
+              "items": [
+                {
+                  "ref": {
+                    "type": "technology",
+                    "id": "t3"
+                  },
+                  "qualifies": true,
+                  "technology": "Claude (Anthropic)",
+                  "category": "General AI assistants",
+                  "group": "Workplace AI",
+                  "last_seen": "2026-11-02",
+                  "confidence_band": "HIGH",
+                  "state": "CURRENT"
+                },
+                {
+                  "ref": {
+                    "type": "technology",
+                    "id": "t4"
+                  },
+                  "technology": "Assistant Trial Example",
+                  "category": "General AI assistants",
+                  "last_seen": "2025-06-02",
+                  "confidence_band": "LOW",
+                  "state": "AGEING"
+                }
+              ]
+            },
+            "hiring": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 2,
+              "truncated": false,
+              "items": [
+                {
+                  "ref": {
+                    "type": "signal",
+                    "id": "s1"
+                  },
+                  "qualifies": true,
+                  "title": "Head of Machine Learning",
+                  "type": "AI_LEADERSHIP_ROLE",
+                  "date": "2026-10-13"
+                },
+                {
+                  "ref": {
+                    "type": "signal",
+                    "id": "s2"
+                  },
+                  "qualifies": false,
+                  "title": "Data Analyst",
+                  "type": "AI_ADJACENT_ROLE",
+                  "date": "2026-09-01"
+                }
+              ]
+            },
+            "workforce": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 3,
+              "truncated": false,
+              "items": [
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp900000000001"
+                  },
+                  "qualifies": true,
+                  "title": "Director of AI",
+                  "type": "AI_LEADER",
+                  "seniority": "Director",
+                  "first_seen": "2025-01-01",
+                  "confidence_band": "HIGH",
+                  "state": "CURRENT"
+                },
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp900000000002"
+                  },
+                  "qualifies": true,
+                  "title": "ML Engineer",
+                  "type": "AI_SPECIALIST",
+                  "seniority": "Senior",
+                  "first_seen": "2025-03-01",
+                  "confidence_band": "MEDIUM",
+                  "state": "CURRENT",
+                  "company_name": "Other Org Example"
+                },
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp900000000003"
+                  },
+                  "qualifies": false,
+                  "title": "Data Engineer",
+                  "type": "AI_ADJACENT",
+                  "seniority": "Mid",
+                  "first_seen": "2025-05-01",
+                  "confidence_band": "LOW",
+                  "state": "CURRENT",
+                  "company_name": "ACME EXAMPLE"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

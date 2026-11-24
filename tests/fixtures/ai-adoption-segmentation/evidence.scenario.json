@@ -1,0 +1,136 @@
+{
+  "description": "Evidence summary counts qualifying, non-qualifying and truncated items.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "domain": "kilo.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "kilo.example"
+          },
+          "company": {
+            "firmable_id": "f910000000011",
+            "company_name": "Kilo Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "STRONG",
+            "explanation": "Synthetic explanation for Kilo Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "STRONG",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          },
+          "evidence": {
+            "workforce": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 40,
+              "truncated": true,
+              "items": [
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp910000000001"
+                  },
+                  "title": "Head of Machine Learning",
+                  "type": "AI_LEADER",
+                  "seniority": "Director",
+                  "first_seen": "2025-02-01",
+                  "confidence_band": "HIGH",
+                  "state": "CURRENT",
+                  "qualifies": true
+                },
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp910000000002"
+                  },
+                  "title": "Data Analyst",
+                  "type": "AI_ADJACENT",
+                  "seniority": "Individual Contributor",
+                  "first_seen": "2024-06-01",
+                  "confidence_band": "LOW",
+                  "state": "DORMANT",
+                  "qualifies": false
+                }
+              ]
+            },
+            "hiring": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 1,
+              "truncated": false,
+              "items": [
+                {
+                  "ref": {
+                    "type": "signal",
+                    "id": "fs910000000001"
+                  },
+                  "title": "Machine Learning Engineer",
+                  "type": "AI_ROLE",
+                  "date": "2026-10-01",
+                  "qualifies": true
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

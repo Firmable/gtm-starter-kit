@@ -1,0 +1,3 @@
+row_id,work_email,expected_domain,expected_title,crm_owner
+contact-001,jane.citizen@example.com,canva.com,Head of Marketing,Sales team A
+contact-002,john.citizen@example.com,atlassian.com,,Sales team B

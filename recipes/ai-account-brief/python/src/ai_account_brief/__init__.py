@@ -1,1 +1,1 @@
-"""ai-account-brief recipe for gtm-starter-kit."""
+"""AI account brief recipe for gtm-starter-kit."""

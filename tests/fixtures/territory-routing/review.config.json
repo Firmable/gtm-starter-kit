@@ -1,0 +1,72 @@
+{
+  "with_reasoning": false,
+  "overlap": "review",
+  "default_team": "anz",
+  "teams": [
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "owner": null
+    },
+    {
+      "id": "finance",
+      "name": "Financial Services",
+      "owner": "FS queue"
+    },
+    {
+      "id": "vic",
+      "name": "Victoria Commercial",
+      "owner": "VIC queue"
+    },
+    {
+      "id": "anz",
+      "name": "ANZ General",
+      "owner": "General queue"
+    }
+  ],
+  "rules": [
+    {
+      "id": "big",
+      "label": "1000 or more staff",
+      "team": "enterprise",
+      "when": {
+        "employee_count_min": 1000
+      }
+    },
+    {
+      "id": "banking",
+      "label": "Banking industry",
+      "team": "finance",
+      "when": {
+        "industries_any": [
+          "banking"
+        ]
+      }
+    },
+    {
+      "id": "big_au",
+      "label": "AU and 1000 or more staff",
+      "team": "enterprise",
+      "when": {
+        "hq_country_in": [
+          "AU"
+        ],
+        "employee_count_min": 1000
+      }
+    },
+    {
+      "id": "vic_mid",
+      "label": "VIC mid-size",
+      "team": "vic",
+      "when": {
+        "states_any": [
+          "VIC"
+        ],
+        "company_size_in": [
+          "51 - 200",
+          "201 - 500"
+        ]
+      }
+    }
+  ]
+}

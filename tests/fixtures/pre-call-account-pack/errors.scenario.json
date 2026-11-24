@@ -1,0 +1,590 @@
+{
+  "description": "Company 503, check timeout, search 500, malformed Tech Intel, then 402 stops the run.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "is_located_in",
+              "summary": "Synthetic is_located_in",
+              "subject": "company or person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "countries": {
+                    "type": "array"
+                  },
+                  "where": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "matches_company_size",
+              "summary": "Synthetic matches_company_size",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "min_staff": {},
+                  "max_staff": {}
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "is_new_to_role",
+              "summary": "Synthetic is_new_to_role",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {},
+                  "count_internal_moves": {}
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "works_at_company",
+              "summary": "Synthetic works_at_company",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "company_id"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 503,
+        "json": {
+          "error": {
+            "code": "unavailable",
+            "message": "Service unavailable"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "epsilon.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000005",
+          "name": "Epsilon Example",
+          "fqdn": "epsilon.example",
+          "website": "https://www.epsilon.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "epsilon",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f900000000005"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "timeout": true
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "company_id": "f900000000005",
+            "countries": [
+              "AU"
+            ],
+            "where": "head_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "decision": "maybe",
+          "credits": 0.08
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000005",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "3",
+          "seniority": "4",
+          "department": "2"
+        }
+      },
+      "response": {
+        "status": 500,
+        "json": {
+          "error": "Internal error"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000005",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "2",
+          "seniority": "3"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 1,
+          "records": [
+            {
+              "id": "fp900000000020",
+              "person_id": "fp900000000020",
+              "name": "Alex Example",
+              "pName": "Alex Example",
+              "position": "Chief Executive Officer",
+              "company_name": "Epsilon Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000020"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Person profile not found"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000020",
+            "within_months": 6
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000020",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "works_at_company",
+          "question": {
+            "person_id": "fp900000000020",
+            "company_id": "f900000000005"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000020",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000005"
+        }
+      },
+      "response": {
+        "status": 200,
+        "text": "<html>gateway</html>"
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000005"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000005"
+          },
+          "company": {
+            "firmable_id": "f900000000005",
+            "company_name": "Epsilon Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "NONE",
+            "explanation": "Synthetic explanation: basic footprint, meaningful workforce.",
+            "momentum": {
+              "label": "EXPANDING",
+              "signals": [
+                {
+                  "kind": "AI hiring",
+                  "count": 2,
+                  "latest": "2026-10-13"
+                }
+              ]
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "2 of 14 capabilities",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "MEANINGFUL",
+                "headline": "4 AI specialists",
+                "observability": "LOW",
+                "counts_toward_overall": true
+              },
+              "governance": {
+                "level": "EMERGING",
+                "headline": "A level word this recipe has not seen before",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 2,
+              "footprint": 1,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 9
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "zeta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000006",
+          "name": "Zeta Example",
+          "fqdn": "zeta.example",
+          "website": "https://www.zeta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "zeta",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f900000000006"
+          }
+        }
+      },
+      "response": {
+        "status": 402,
+        "json": {
+          "error": {
+            "code": "insufficient_credits",
+            "message": "Your organisation hasn't enough credits"
+          }
+        }
+      }
+    }
+  ]
+}

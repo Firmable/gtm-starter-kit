@@ -1,0 +1,16 @@
+{
+  "rows": [
+    {
+      "row_id": "a1",
+      "abn": "51 900 000 001",
+      "name": "",
+      "hq": "Sydney"
+    },
+    {
+      "row_id": "a2",
+      "abn": "12345",
+      "name": "Short ABN",
+      "hq": ""
+    }
+  ]
+}

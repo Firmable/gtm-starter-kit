@@ -1,0 +1,80 @@
+{
+  "description": "The credit limit is reached before the Tech Intel request.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "whiskey.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "whiskey.example"
+          },
+          "company": {
+            "firmable_id": "f910000000030",
+            "company_name": "Whiskey Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "MODERATE",
+            "explanation": "Synthetic explanation for Whiskey Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "Synthetic architecture headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "Synthetic footprint headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": "Synthetic hiring headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": "Synthetic initiatives headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": "Synthetic workforce headline.",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    }
+  ]
+}

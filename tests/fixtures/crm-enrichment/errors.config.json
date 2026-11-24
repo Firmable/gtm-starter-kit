@@ -1,0 +1,24 @@
+{
+  "identifiers": {
+    "company": {
+      "column": "domain",
+      "type": "fqdn"
+    },
+    "person": {
+      "column": "work_email",
+      "type": "work_email"
+    }
+  },
+  "mappings": [
+    {
+      "column": "company_name",
+      "source": "company",
+      "field": "name"
+    },
+    {
+      "column": "contact_name",
+      "source": "person",
+      "field": "name"
+    }
+  ]
+}

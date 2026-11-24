@@ -1,0 +1,80 @@
+{
+  "levels": [
+    "NONE",
+    "BASIC",
+    "MEANINGFUL",
+    "MODERATE",
+    "STRONG",
+    "ADVANCED"
+  ],
+  "with_evidence": true,
+  "tech_intel_max_pages": 1,
+  "segments": [
+    {
+      "id": "ai_leaders",
+      "label": "AI leaders",
+      "match": "all",
+      "conditions": [
+        {
+          "type": "overall_level",
+          "at_least": "STRONG"
+        },
+        {
+          "type": "dimension_level",
+          "dimension": "workforce",
+          "at_least": "MEANINGFUL"
+        }
+      ]
+    },
+    {
+      "id": "ai_expanding",
+      "label": "Expanding AI programmes",
+      "match": "any",
+      "conditions": [
+        {
+          "type": "momentum",
+          "in": [
+            "EXPANDING"
+          ]
+        },
+        {
+          "type": "momentum_signal",
+          "kind": "AI hiring",
+          "min_count": 2
+        }
+      ]
+    },
+    {
+      "id": "ai_tooling",
+      "label": "AI tooling without broad adoption",
+      "match": "all",
+      "conditions": [
+        {
+          "type": "overall_level",
+          "at_most": "MODERATE"
+        },
+        {
+          "type": "technology",
+          "category_slug": [
+            "ai-machine-learning"
+          ],
+          "min_confidence": "medium"
+        }
+      ]
+    },
+    {
+      "id": "low_adoption",
+      "label": "Low AI adoption level",
+      "match": "all",
+      "conditions": [
+        {
+          "type": "overall_level",
+          "in": [
+            "NONE",
+            "BASIC"
+          ]
+        }
+      ]
+    }
+  ]
+}

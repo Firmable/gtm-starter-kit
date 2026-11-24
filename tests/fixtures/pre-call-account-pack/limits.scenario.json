@@ -1,0 +1,265 @@
+{
+  "description": "Page limit reached, contact limit applied, evidence with no source location, and Tech Intel not on the plan.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "gamma.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "name": "Gamma Example",
+          "fqdn": "gamma.example",
+          "website": "https://www.gamma.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "gamma",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000003",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "3",
+          "position": "Marketing",
+          "seniority": "5",
+          "department": "11"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 3,
+          "records": [
+            {
+              "id": "fp900000000010",
+              "person_id": "fp900000000010",
+              "name": "Riley Demo",
+              "pName": "Riley Demo",
+              "position": "Marketing Manager",
+              "company_name": "Gamma Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "id": "fp900000000011",
+              "person_id": "fp900000000011",
+              "name": "Casey Test",
+              "pName": "Casey Test",
+              "position": "Product Marketing Manager",
+              "company_name": "Gamma Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "name": "No Identifier",
+              "position": "Marketing Manager"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000003",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "total": 150,
+          "next_cursor": "cur-2",
+          "tech_intelligence": [
+            {
+              "product": "Marketo",
+              "product_slug": "marketo",
+              "vendor": "Adobe",
+              "vendor_slug": "adobe",
+              "filter": "Marketing automation",
+              "filter_slug": "marketing automation",
+              "category": "Marketing automation",
+              "category_slug": "marketing-automation",
+              "pillar_slug": "sales",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "evidence_by_type": [
+                  {
+                    "type": "web",
+                    "count": 2,
+                    "capped": false
+                  }
+                ],
+                "evidence_count": 2,
+                "first_seen": "2025-01-10",
+                "last_seen": "2026-11-01",
+                "records": [
+                  {
+                    "type": "web",
+                    "found": "script tag",
+                    "location": "https://gamma.example/",
+                    "record": "x",
+                    "confidence": "high",
+                    "first_seen": "2025-01-10",
+                    "last_seen": "2026-11-01",
+                    "belongs_because": [
+                      "company domain"
+                    ]
+                  },
+                  {
+                    "type": "web",
+                    "found": "script tag",
+                    "location": null,
+                    "record": "y",
+                    "confidence": "medium",
+                    "first_seen": "2025-03-01",
+                    "last_seen": "2026-10-01",
+                    "belongs_because": []
+                  }
+                ]
+              }
+            },
+            {
+              "product": "Google Analytics",
+              "product_slug": "google-analytics",
+              "vendor": "Google",
+              "vendor_slug": "google",
+              "filter": "Web analytics",
+              "filter_slug": "web analytics",
+              "category": "Web analytics",
+              "category_slug": "web-analytics",
+              "pillar_slug": "sales",
+              "confidence": "low",
+              "recency": "older",
+              "last_observed": "2025-06-01",
+              "nature": "direct",
+              "evidence_detail": {
+                "evidence_count": 1,
+                "records": []
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "delta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000004",
+          "name": "Delta Example",
+          "fqdn": "delta.example",
+          "website": "https://www.delta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "delta",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000004",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "3",
+          "position": "Marketing",
+          "seniority": "5",
+          "department": "11"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 1,
+          "records": [
+            {
+              "id": "fp900000000012",
+              "person_id": "fp900000000012",
+              "name": "Morgan Fixture",
+              "pName": "Morgan Fixture",
+              "position": "Marketing Manager",
+              "company_name": "Delta Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000004",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 403,
+        "json": {
+          "error": {
+            "code": "forbidden",
+            "message": "Tech Intel is not on your plan"
+          }
+        }
+      }
+    }
+  ]
+}

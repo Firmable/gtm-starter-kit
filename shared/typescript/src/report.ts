@@ -15,7 +15,7 @@ header .row{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:12px 
 header h1{margin:6px 0 0;font-size:24px;font-weight:800;letter-spacing:-.5px}
 header .meta{color:#C9CCD3;font-size:13px}
 main{max-width:1100px;margin:0 auto;padding:20px 16px 48px}
-section{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(24,29,39,.07);border-top:3px solid var(--ember);padding:18px 20px;margin:0 0 18px;overflow-wrap:anywhere}
+section{background:#fff;border-radius:14px;box-shadow:0 1px 8px rgba(24,29,39,.07);border-top:3px solid var(--ember);padding:18px 20px;margin:0 0 18px;overflow-wrap:break-word}
 .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;font-weight:700;color:var(--ember);margin:0 0 4px}
 h2{margin:0 0 10px;font-size:19px;font-weight:800;letter-spacing:-.3px}
 h3{margin:0 0 6px;font-size:16px;font-weight:700}
@@ -23,8 +23,10 @@ p{margin:0 0 8px}
 .muted{color:var(--muted);font-size:13px}
 table{border-collapse:collapse;width:100%;font-size:14px;margin:6px 0 10px}
 th,td{text-align:left;vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--shale)}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:700;white-space:nowrap}
+td{overflow-wrap:break-word;word-break:normal}
 .scroll{overflow-x:auto}
+.scroll td{min-width:6.5em}
 .badge{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap;border:1px solid}
 .t-good{background:#E8F5EC;color:#1E6B3A;border-color:#B7DFC4}
 .t-bad{background:#FCEBEA;color:#9B2C22;border-color:#F2C1BC}
@@ -35,7 +37,7 @@ th{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted
 .t-neutral{background:#fff;color:var(--dark);border-color:var(--shale)}
 .card{border:1px solid var(--shale);border-radius:12px;padding:14px 16px;margin:0 0 14px}
 .card-head{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-bottom:8px}
-.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.cols{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:16px}
 @media (max-width:760px){.cols{grid-template-columns:minmax(0,1fr)}}
 .note{border-left:4px solid var(--ember);background:#FFF7F2;padding:8px 12px;margin:8px 0;font-size:14px;border-radius:0}
 .note.t-unknown{border-left-color:#8A909C;background:#F7F8F9}
@@ -46,7 +48,10 @@ details{margin:6px 0}
 summary{cursor:pointer;color:var(--deep);font-weight:600;font-size:14px}
 pre{background:#0F131B;color:#E6E8EC;padding:12px;border-radius:10px;overflow:auto;max-height:420px;font-size:12px;line-height:1.45;white-space:pre-wrap;word-break:break-word}
 a{color:var(--ember)}
+.kv{table-layout:fixed}
+.kv td{overflow-wrap:anywhere}
 .kv td:first-child{color:var(--muted);width:34%}
+.card-head>div{min-width:0;overflow-wrap:anywhere}
 footer{max-width:1100px;margin:0 auto;padding:0 16px 32px;color:var(--muted);font-size:12px}
 `;
 
@@ -87,10 +92,12 @@ export function link(url: unknown, text?: unknown): string {
 export const badge = (text: unknown, tone = "neutral"): string => `<span class="badge t-${esc(tone)}">${esc(text)}</span>`;
 export const note = (textHtml: string, tone = "info"): string => `<div class="note t-${esc(tone)}">${textHtml}</div>`;
 
+export const MISSING = '<span class="muted">not returned</span>';
 const cell = (c: unknown): string => (c instanceof Raw ? c.html : esc(c));
 
 export function kv(pairs: [string, unknown][]): string {
-  return `<table class="kv">${pairs.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${cell(v)}</td></tr>`).join("")}</table>`;
+  const value = (v: unknown): string => (v instanceof Raw ? v.html : v === null || v === undefined || v === "" ? MISSING : esc(v));
+  return `<table class="kv">${pairs.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${value(v)}</td></tr>`).join("")}</table>`;
 }
 
 export function table(headers: string[], rows: unknown[][]): string {

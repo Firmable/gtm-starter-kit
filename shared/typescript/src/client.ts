@@ -87,7 +87,9 @@ export class FirmableClient {
     if (!body.companyId) throw new Error("people search needs companyId");
     const unknown = Object.keys(body).filter((k) => !SEARCH_FIELDS.has(k)).sort();
     if (unknown.length) throw new Error(`people search does not accept: ${unknown.join(", ")}`);
-    return this.call("POST", "/people/search", { body, parts: [], check: validate.peopleSearch });
+    return this.call("POST", "/people/search", { body, parts: [], check: validate.peopleSearch }).then((resp: Json) =>
+      // Documented no-match response. The ledger keeps it as returned; callers get an empty list.
+      resp.success === false && !("records" in resp) ? { ...resp, records: [], total: resp.totalPeople ?? 0 } : resp);
   }
 
   /** GET /decisions. Free. */

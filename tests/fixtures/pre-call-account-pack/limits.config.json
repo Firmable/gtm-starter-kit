@@ -1,0 +1,28 @@
+{
+  "with_reasoning": false,
+  "contacts": {
+    "searches": [
+      {
+        "id": "marketing",
+        "label": "Marketing managers",
+        "seniority": "5",
+        "department": "11",
+        "position": "Marketing",
+        "size": 3
+      }
+    ],
+    "max_contacts": 1,
+    "fetch_profiles": false
+  },
+  "tech_intel": {
+    "enabled": true,
+    "with_evidence": true,
+    "max_pages": 1
+  },
+  "ai_adoption": {
+    "enabled": false
+  },
+  "suggested_questions": {
+    "max_questions": 2
+  }
+}

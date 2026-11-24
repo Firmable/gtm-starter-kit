@@ -1,0 +1,142 @@
+{
+  "description": "Server error, later-page timeout, malformed response, then 402 stops the run.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "acme.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 500,
+        "json": {
+          "error": "Internal error"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "beta.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "total": 15,
+          "tech_intelligence": [
+            {
+              "product": "Salesforce Service Cloud",
+              "product_slug": "salesforce-service-cloud",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 1,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 1,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "beta.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            }
+          ],
+          "next_cursor": "BETA-2"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "beta.example",
+          "withEvidence": "true",
+          "cursor": "BETA-2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "timeout": true
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "gamma.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "total": 2
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "delta.example",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 402,
+        "json": {
+          "error": "Not enough credits"
+        }
+      },
+      "times": 1
+    }
+  ]
+}

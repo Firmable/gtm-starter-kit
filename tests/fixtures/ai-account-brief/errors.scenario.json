@@ -1,0 +1,344 @@
+{
+  "description": "AI Adoption 500, malformed AI Adoption, Tech Intel timeout, then 402 stops the run.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 300,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 500,
+        "json": {
+          "error": {
+            "code": "internal",
+            "message": "Something went wrong"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 1,
+          "tech_intelligence": [
+            {
+              "product": "Claude (Anthropic)",
+              "product_slug": "claude-(anthropic)",
+              "vendor": "Anthropic",
+              "vendor_slug": "anthropic",
+              "filter": "LLM APIs & apps",
+              "filter_slug": "llm-apis-apps",
+              "category": "AI & Machine Learning",
+              "category_slug": "ai-machine-learning",
+              "pillar_slug": "ai-machine-learning",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-10-28",
+              "nature": "direct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "Beta Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 300,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "beta",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000002"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "total": 0,
+          "tech_intelligence": []
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "gamma.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "name": "Gamma Example",
+          "fqdn": "gamma.example",
+          "website": "https://www.gamma.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 300,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "gamma",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000003"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000003"
+          },
+          "company": {
+            "firmable_id": "f900000000003",
+            "company_name": "Gamma Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID_MARKET",
+            "overall_level": "STRONG",
+            "explanation": "AI workforce strong, meaningful architecture, basic AI hiring.",
+            "momentum": {
+              "label": "EXPANDING",
+              "signals": [
+                {
+                  "kind": "AI hiring",
+                  "count": 2,
+                  "latest": "2026-10-13"
+                }
+              ]
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "MEANINGFUL",
+                "headline": "4 of 14 capabilities: Serving, Data pipelines",
+                "observability": "HIGH",
+                "counts_toward_overall": true,
+                "sub_dimensions": [
+                  {
+                    "category": "Serving",
+                    "present": true,
+                    "technologies": 2,
+                    "top": "Model Server Example"
+                  }
+                ]
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": "1 of 9 categories: General AI assistants",
+                "observability": "HIGH",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "BASIC",
+                "headline": "3 AI roles in 12 months",
+                "observability": "HIGH",
+                "counts_toward_overall": true,
+                "sub_dimensions": {
+                  "hiring_scale": {
+                    "roles_12m": 3,
+                    "roles_90d": 0
+                  }
+                }
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "LOW",
+                "counts_toward_overall": false
+              },
+              "workforce": {
+                "level": "STRONG",
+                "headline": "AI leadership in place, 11 AI specialists",
+                "observability": "HIGH",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 33,
+              "footprint": 2,
+              "hiring": 2,
+              "initiatives": 5,
+              "workforce": 3
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          },
+          "evidence": {}
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000003"
+        }
+      },
+      "response": {
+        "status": 200,
+        "timeout": true
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "delta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000004",
+          "name": "Delta Example",
+          "fqdn": "delta.example",
+          "website": "https://www.delta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 300,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "delta",
+          "revenue": "$10M - $50M"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000004"
+        }
+      },
+      "response": {
+        "status": 402,
+        "json": {
+          "error": {
+            "code": "insufficient_credits",
+            "message": "Your organisation hasn't enough credits"
+          }
+        }
+      }
+    }
+  ]
+}

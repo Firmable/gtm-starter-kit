@@ -1,0 +1,4 @@
+row_id,domain,work_email,company_name,website,industry,employee_count,hq_location,contact_name,contact_title
+crm-001,canva.com,,Canva,,,,,,
+crm-002,atlassian.com,jane.citizen@example.com,Atlassian,https://www.atlassian.com,,,,Jane Citizen,
+crm-003,xero.com,,,,Accounting software,,,,

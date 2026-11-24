@@ -25,6 +25,7 @@ export function person(x: unknown): void {
 
 export function peopleSearch(x: unknown): void {
   const d = obj(x, "People search");
+  if (d.success === false && !("records" in d)) return; // documented no-match response
   if (!Array.isArray(d.records)) throw new InvalidResponseError("People search response has no records list.");
 }
 

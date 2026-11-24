@@ -1,0 +1,119 @@
+{
+  "description": "Company and AI Adoption fit the limit; Tech Intel does not.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "description": "Synthetic company.",
+          "linkedin": "acme",
+          "employee_count": 320,
+          "year_founded": 2011,
+          "hq_location": "Sydney, New South Wales, AU",
+          "hq_country": "AU",
+          "company_size": "201 - 500",
+          "company_type": "Private company",
+          "locations": [],
+          "industries": [
+            "Computer software"
+          ],
+          "revenue": "$10M - $50M",
+          "phones": [],
+          "emails": [],
+          "social_media": {},
+          "industry_codes": [],
+          "keywords": [],
+          "org_registers": [],
+          "states": [],
+          "abn_operation_status": "Active"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "company_id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000001"
+          },
+          "company": {
+            "firmable_id": "f900000000001",
+            "company_name": "Acme Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "BASIC",
+            "explanation": "Synthetic explanation for Acme Example.",
+            "momentum": {
+              "label": "STEADY",
+              "signals": []
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 0,
+              "footprint": 0,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 0
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          }
+        }
+      }
+    }
+  ]
+}

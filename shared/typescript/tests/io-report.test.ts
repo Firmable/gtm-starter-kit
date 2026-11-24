@@ -95,3 +95,8 @@ test("report escapes and loads nothing external", () => {
   assert.ok(!out.includes("<script"));
   assert.ok(!out.includes('src="http'));
 });
+
+for (const phone of ["+61 412 345 678", "+1 (415) 555 0100", "+6141234"]) {
+  test(`phone ${phone} is not prefixed`, () => assert.equal(safeCell(phone), phone));
+}
+test("phone-like formula is still prefixed", () => assert.ok(safeCell("+1+cmd|' /C calc'!A0").startsWith("'")));

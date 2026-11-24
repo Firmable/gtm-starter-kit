@@ -12,6 +12,7 @@ export type Row = Record<string, string> & { row_id: string };
 
 const FORMULA_PREFIXES = ["=", "+", "-", "@", "\t", "\r"];
 const PLAIN_NUMBER = /^-?\d+(\.\d+)?$/;
+const PHONE = /^\+\d[\d ()]*$/; // +61 412 345 678: digits, spaces and brackets cannot form a formula
 const DOMAIN = /^(?=.{1,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/;
 
 /** Parses CSV the way Python's csv module does with the default dialect. Blank lines are skipped. */
@@ -167,7 +168,7 @@ export function safeCell(value: unknown): string {
   if (typeof value === "boolean") return value ? "true" : "false";
   if (Array.isArray(value)) value = value.map((v) => safeCell(v)).join("; ");
   const s = typeof value === "object" ? JSON.stringify(value) : String(value);
-  if (FORMULA_PREFIXES.some((p) => s.startsWith(p)) && !PLAIN_NUMBER.test(s)) return "'" + s;
+  if (FORMULA_PREFIXES.some((p) => s.startsWith(p)) && !PLAIN_NUMBER.test(s) && !PHONE.test(s)) return "'" + s;
   return s;
 }
 

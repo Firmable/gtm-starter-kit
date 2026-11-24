@@ -1,0 +1,326 @@
+{
+  "description": "Fills, equal values, conflicts, unmatched, duplicate, invalid, sparse profile, do-not-call phone and unsafe cells.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "51 - 200",
+          "employee_count": 120,
+          "industries": [
+            "Computer software",
+            "Information technology"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company used in tests.",
+          "phones": [
+            "+61 3 9000 0000"
+          ],
+          "emails": [],
+          "locations": [
+            "Melbourne, Victoria, AU"
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "alex@acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000001",
+          "name": "Alex Example",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "position": "Chief Financial Officer",
+          "seniority": "C-Suite / Partner",
+          "department": "Finance",
+          "headline": "Chief Financial Officer at Acme Example",
+          "country": "AU",
+          "location": [
+            "Melbourne",
+            "Victoria",
+            "AU"
+          ],
+          "time_in_current_role": "2 years",
+          "month_joined": 3,
+          "year_joined": 2024,
+          "linkedin": "alex-example",
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Acme Example",
+            "website": null,
+            "linkedin": null,
+            "size": "51 - 200",
+            "industry": [
+              "Computer software"
+            ]
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "alex@example.invalid"
+              }
+            ],
+            "personal": []
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 001",
+              "is_dnd": false
+            }
+          ],
+          "skills": [
+            "Budgeting"
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "Beta Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "1 - 10",
+          "employee_count": 4,
+          "industries": [
+            "Computer software",
+            "Information technology"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2031,
+          "linkedin": "beta",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company used in tests.",
+          "phones": [
+            "+61 3 9000 0000"
+          ],
+          "emails": [],
+          "locations": [
+            "Melbourne, Victoria, AU"
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Company profile not found"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "nobody@ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Person not found"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "gamma.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000003",
+          "name": "Gamma Example",
+          "fqdn": "gamma.example",
+          "website": null,
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "51 - 200",
+          "employee_count": null,
+          "industries": [],
+          "company_type": null,
+          "year_founded": null,
+          "linkedin": "gamma",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company used in tests.",
+          "phones": [
+            "+61 3 9000 0000"
+          ],
+          "emails": [],
+          "locations": [
+            "Melbourne, Victoria, AU"
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "jo@gamma.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000003",
+          "name": "Jo Example",
+          "first_name": "Jo",
+          "last_name": "Example",
+          "position": "CFO",
+          "seniority": "C-Suite / Partner",
+          "department": "Finance",
+          "headline": "CFO at Gamma Example",
+          "country": "AU",
+          "location": [
+            "Melbourne",
+            "Victoria",
+            "AU"
+          ],
+          "time_in_current_role": "2 years",
+          "month_joined": 3,
+          "year_joined": 2024,
+          "linkedin": "jo-example",
+          "current_company": {
+            "id": "f900000000003",
+            "name": "Gamma Example",
+            "website": null,
+            "linkedin": null,
+            "size": "51 - 200",
+            "industry": [
+              "Computer software"
+            ]
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "jo@example.invalid"
+              }
+            ],
+            "personal": []
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 003",
+              "is_dnd": true
+            }
+          ],
+          "skills": [
+            "Budgeting"
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "sam@delta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000004",
+          "name": "Sam Example",
+          "first_name": "Sam",
+          "last_name": "Example",
+          "position": "Head of Finance",
+          "seniority": "C-Suite / Partner",
+          "department": "Finance",
+          "headline": "Head of Finance at Delta Example",
+          "country": "AU",
+          "location": [
+            "Melbourne",
+            "Victoria",
+            "AU"
+          ],
+          "time_in_current_role": "2 years",
+          "month_joined": 3,
+          "year_joined": 2024,
+          "linkedin": "sam-example",
+          "current_company": {
+            "id": "f900000000004",
+            "name": "Delta Example",
+            "website": null,
+            "linkedin": null,
+            "size": "51 - 200",
+            "industry": [
+              "Computer software"
+            ]
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "sam@example.invalid"
+              }
+            ],
+            "personal": []
+          },
+          "phones": [],
+          "skills": [
+            "Budgeting"
+          ]
+        }
+      },
+      "times": 1
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+  "evaluation_date": "2026-12-01",
+  "company_fields": [
+    "name",
+    "company_size",
+    "employee_count",
+    "hq_country",
+    "hq_location",
+    "industries",
+    "company_type",
+    "year_founded",
+    "revenue",
+    "abn_operation_status"
+  ],
+  "person_fields": [
+    "position",
+    "seniority",
+    "department",
+    "current_company.id",
+    "current_company.name",
+    "country"
+  ],
+  "ai_adoption_fields": [
+    "overall_level",
+    "momentum.label",
+    "dimensions.architecture.level",
+    "dimensions.footprint.level",
+    "dimensions.hiring.level",
+    "dimensions.initiatives.level",
+    "dimensions.workforce.level"
+  ],
+  "tech_intel": {
+    "enabled": true,
+    "max_pages": 1
+  },
+  "previous_snapshot": {
+    "snapshot_format": "gtm-account-change-monitor/1",
+    "taken_on": "2026-11-01",
+    "monitored": {
+      "company_fields": [
+        "name",
+        "company_size",
+        "employee_count",
+        "hq_country",
+        "hq_location",
+        "industries",
+        "company_type",
+        "year_founded",
+        "revenue",
+        "abn_operation_status"
+      ],
+      "person_fields": [
+        "position",
+        "seniority",
+        "department",
+        "current_company.id",
+        "current_company.name",
+        "country"
+      ],
+      "ai_adoption_fields": [
+        "overall_level",
+        "momentum.label",
+        "dimensions.architecture.level",
+        "dimensions.footprint.level",
+        "dimensions.hiring.level",
+        "dimensions.initiatives.level",
+        "dimensions.workforce.level"
+      ],
+      "tech_intel": {
+        "enabled": true,
+        "max_pages": 1
+      }
+    },
+    "accounts": {
+      "company:fqdn=acme.example|person:work_email=alex.example@acme.example": {
+        "key": "company:fqdn=acme.example|person:work_email=alex.example@acme.example",
+        "identifiers": {
+          "company": {
+            "fqdn": "acme.example"
+          },
+          "person": {
+            "work_email": "alex.example@acme.example"
+          }
+        },
+        "sources": {
+          "company": {
+            "values": {
+              "id": "f900000000001",
+              "name": "Acme Example",
+              "company_size": "201 - 500",
+              "employee_count": 320,
+              "hq_country": "AU",
+              "hq_location": "Sydney, New South Wales, AU",
+              "industries": [],
+              "company_type": "Private company",
+              "year_founded": 2011,
+              "revenue": "$10M - $50M",
+              "abn_operation_status": "Active"
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01"
+          },
+          "person": {
+            "values": {
+              "id": "fp900000000001",
+              "position": "Head of Partnerships",
+              "seniority": "Director / VP",
+              "department": "Sales",
+              "current_company.id": "f900000000001",
+              "current_company.name": "Acme Example",
+              "country": "AU"
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01"
+          },
+          "ai_adoption": {
+            "values": {
+              "firmable_id": "f900000000001",
+              "overall_level": "BASIC",
+              "momentum.label": "STEADY",
+              "dimensions.architecture.level": "BASIC",
+              "dimensions.footprint.level": "BASIC",
+              "dimensions.hiring.level": "NONE",
+              "dimensions.initiatives.level": "NONE",
+              "dimensions.workforce.level": "BASIC"
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01",
+            "context": {
+              "framework_version": "2026.09",
+              "as_of": "2026-11-10"
+            }
+          },
+          "tech_intel": {
+            "values": {
+              "total": 3,
+              "complete": true,
+              "technologies": {
+                "crm/salesforce": {
+                  "product": "Salesforce",
+                  "vendor": "Salesforce",
+                  "category": "Business Applications",
+                  "confidence": "high",
+                  "nature": "direct"
+                },
+                "marketing-automation/marketo": {
+                  "product": "Marketo",
+                  "vendor": "Marketo",
+                  "category": "Business Applications",
+                  "confidence": "high",
+                  "nature": "direct"
+                },
+                "help-desk/zendesk": {
+                  "product": "Zendesk",
+                  "vendor": "Zendesk",
+                  "category": "Business Applications",
+                  "confidence": "medium",
+                  "nature": "direct"
+                }
+              }
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01"
+          }
+        }
+      },
+      "company:fqdn=beta.example": {
+        "key": "company:fqdn=beta.example",
+        "identifiers": {
+          "company": {
+            "fqdn": "beta.example"
+          },
+          "person": null
+        },
+        "sources": {
+          "company": {
+            "values": {
+              "id": "f900000000002",
+              "name": "Beta Example",
+              "company_size": "201 - 500",
+              "employee_count": 320,
+              "hq_country": "AU",
+              "hq_location": "Sydney, New South Wales, AU",
+              "industries": [
+                "Computer software"
+              ],
+              "company_type": "Private company",
+              "year_founded": 2011,
+              "revenue": "$10M - $50M",
+              "abn_operation_status": "Active"
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01"
+          },
+          "person": {
+            "values": null,
+            "observed_on": null,
+            "last_result": "not_requested",
+            "last_attempt_on": "2026-11-01"
+          },
+          "ai_adoption": {
+            "values": {
+              "firmable_id": "f900000000002",
+              "overall_level": "BASIC",
+              "momentum.label": "STEADY",
+              "dimensions.architecture.level": "BASIC",
+              "dimensions.footprint.level": "BASIC",
+              "dimensions.hiring.level": "NONE",
+              "dimensions.initiatives.level": "NONE",
+              "dimensions.workforce.level": "BASIC"
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01",
+            "context": {
+              "framework_version": "2026.10",
+              "as_of": "2026-11-10"
+            }
+          },
+          "tech_intel": {
+            "values": {
+              "total": 0,
+              "complete": true,
+              "technologies": {}
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01"
+          }
+        }
+      },
+      "company:fqdn=gamma.example": {
+        "key": "company:fqdn=gamma.example",
+        "identifiers": {
+          "company": {
+            "fqdn": "gamma.example"
+          },
+          "person": null
+        },
+        "sources": {
+          "company": {
+            "values": {
+              "id": "f900000000003",
+              "name": "Gamma Example",
+              "company_size": "201 - 500",
+              "employee_count": 320,
+              "hq_country": "AU",
+              "hq_location": "Sydney, New South Wales, AU",
+              "industries": [
+                "Computer software"
+              ],
+              "company_type": "Private company",
+              "year_founded": 2011,
+              "revenue": "$10M - $50M",
+              "abn_operation_status": "Active"
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01"
+          },
+          "person": {
+            "values": null,
+            "observed_on": null,
+            "last_result": "not_requested",
+            "last_attempt_on": "2026-11-01"
+          },
+          "ai_adoption": {
+            "values": {
+              "firmable_id": "f900000000003",
+              "overall_level": "BASIC",
+              "momentum.label": "STEADY",
+              "dimensions.architecture.level": "BASIC",
+              "dimensions.footprint.level": "BASIC",
+              "dimensions.hiring.level": "NONE",
+              "dimensions.initiatives.level": "NONE",
+              "dimensions.workforce.level": "BASIC"
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01",
+            "context": {
+              "framework_version": "2026.10",
+              "as_of": "2026-11-10"
+            }
+          },
+          "tech_intel": {
+            "values": {
+              "total": 1,
+              "complete": true,
+              "technologies": {
+                "chat/slack": {
+                  "product": "Slack",
+                  "vendor": "Slack",
+                  "category": "Business Applications",
+                  "confidence": "high",
+                  "nature": "direct"
+                }
+              }
+            },
+            "observed_on": "2026-11-01",
+            "last_result": "ok",
+            "last_attempt_on": "2026-11-01"
+          }
+        }
+      }
+    }
+  }
+}

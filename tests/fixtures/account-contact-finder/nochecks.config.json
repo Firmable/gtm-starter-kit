@@ -1,0 +1,14 @@
+{
+  "search": {
+    "country": "NZ",
+    "page_size": 5,
+    "queries": [
+      {
+        "id": "cfo",
+        "label": "Finance leaders",
+        "position": "Chief Financial Officer"
+      }
+    ]
+  },
+  "max_details_per_account": 1
+}

@@ -1,1 +1,1 @@
-"""ai-adoption-segmentation recipe for gtm-starter-kit."""
+"""AI adoption segmentation recipe for gtm-starter-kit."""

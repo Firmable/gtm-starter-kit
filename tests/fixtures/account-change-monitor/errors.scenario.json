@@ -1,0 +1,128 @@
+{
+  "description": "Every source fails for e1, a 402 stops the run during e2, e3 is not processed.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "timeout": true
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "work_email": "alex.example@acme.example"
+        }
+      },
+      "response": {
+        "status": 500,
+        "json": {
+          "error": "Internal error"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "domain": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "domain": "acme.example"
+          },
+          "unexpected": true
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 403,
+        "json": {
+          "error": {
+            "code": "forbidden",
+            "message": "Tech Intel is not on your plan"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "Beta Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "description": "Synthetic company.",
+          "linkedin": "beta",
+          "employee_count": 320,
+          "year_founded": 2011,
+          "hq_location": "Sydney, New South Wales, AU",
+          "hq_country": "AU",
+          "company_size": "201 - 500",
+          "company_type": "Private company",
+          "locations": [],
+          "industries": [
+            "Computer software"
+          ],
+          "revenue": "$10M - $50M",
+          "phones": [],
+          "emails": [],
+          "social_media": {},
+          "industry_codes": [],
+          "keywords": [],
+          "org_registers": [],
+          "states": [],
+          "abn_operation_status": "Active"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {},
+        "body": {
+          "company_id": "f900000000002"
+        }
+      },
+      "response": {
+        "status": 402,
+        "json": {
+          "error": {
+            "code": "insufficient_credits",
+            "message": "Your organisation hasn't enough credits"
+          }
+        }
+      }
+    }
+  ]
+}

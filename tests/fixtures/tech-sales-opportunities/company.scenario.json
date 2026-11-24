@@ -1,0 +1,129 @@
+{
+  "description": "Company profile first, Tech Intel by Firmable ID.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme-group.example",
+          "hq_country": "AU",
+          "company_size": "201 - 500",
+          "industries": [
+            "Computer software"
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000001",
+          "withEvidence": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 1,
+          "tech_intelligence": [
+            {
+              "product": "Salesforce Sales Cloud",
+              "product_slug": "salesforce-sales-cloud",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "Business Applications",
+              "category_slug": "business-applications",
+              "pillar_slug": "software",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct",
+              "evidence_detail": {
+                "confidence": "high",
+                "first_seen": "2026-05-01",
+                "last_seen": "2026-11-10",
+                "evidence_count": 2,
+                "evidence_by_type": [
+                  {
+                    "type": "dns_record",
+                    "count": 2,
+                    "capped": false
+                  }
+                ],
+                "records": [
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "careers.acme-group.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  },
+                  {
+                    "type": "dns_record",
+                    "product": "Synthetic",
+                    "found": "subdomain_alias",
+                    "version": null,
+                    "location": "acme.example",
+                    "record": null,
+                    "context": null,
+                    "departments": null,
+                    "rating": null,
+                    "site_count": null,
+                    "belongs_because": [
+                      "company_domain"
+                    ],
+                    "first_seen": "2026-05-01",
+                    "last_seen": "2026-11-10",
+                    "confidence": "high"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Company profile not found"
+        }
+      }
+    }
+  ]
+}

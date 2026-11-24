@@ -1,0 +1,36 @@
+{
+  "evaluation_date": "2026-11-24",
+  "company_fields": [
+    "name",
+    "company_size",
+    "employee_count",
+    "hq_country",
+    "hq_location",
+    "industries",
+    "company_type",
+    "year_founded",
+    "revenue",
+    "abn_operation_status"
+  ],
+  "person_fields": [
+    "position",
+    "seniority",
+    "department",
+    "current_company.id",
+    "current_company.name",
+    "country"
+  ],
+  "ai_adoption_fields": [
+    "overall_level",
+    "momentum.label",
+    "dimensions.architecture.level",
+    "dimensions.footprint.level",
+    "dimensions.hiring.level",
+    "dimensions.initiatives.level",
+    "dimensions.workforce.level"
+  ],
+  "tech_intel": {
+    "enabled": true,
+    "max_pages": 1
+  }
+}

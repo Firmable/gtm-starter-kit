@@ -1,0 +1,44 @@
+{
+  "description": "Overwrite policy with case-sensitive comparison.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "Beta Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "1 - 10",
+          "employee_count": 4,
+          "industries": [
+            "Computer software",
+            "Information technology"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2031,
+          "linkedin": "beta",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company used in tests.",
+          "phones": [
+            "+61 3 9000 0000"
+          ],
+          "emails": [],
+          "locations": [
+            "Melbourne, Victoria, AU"
+          ]
+        }
+      },
+      "times": 1
+    }
+  ]
+}

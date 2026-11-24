@@ -1,0 +1,48 @@
+{
+  "search": {
+    "country": "AU",
+    "page_size": 5,
+    "max_pages": 1,
+    "queries": [
+      {
+        "id": "finance_exec",
+        "label": "Finance executives",
+        "department": "Finance",
+        "seniority": "C-Suite / Partner"
+      },
+      {
+        "id": "finance_heads",
+        "label": "Finance heads",
+        "department": "14",
+        "seniority": "4"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "in_finance",
+      "label": "Works in finance",
+      "tool": "matches_department",
+      "inputs": {
+        "departments": [
+          "Finance"
+        ]
+      },
+      "mandatory": true
+    },
+    {
+      "id": "senior",
+      "label": "Senior enough",
+      "tool": "matches_seniority",
+      "inputs": {
+        "seniorities": [
+          "C-Suite / Partner",
+          "VP/Director / Head of"
+        ]
+      },
+      "mandatory": true
+    }
+  ],
+  "max_candidates_checked": 4,
+  "max_details_per_account": 2
+}

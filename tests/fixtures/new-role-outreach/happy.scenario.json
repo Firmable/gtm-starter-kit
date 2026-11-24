@@ -1,0 +1,1473 @@
+{
+  "description": "Accounts and contacts, every non-error status, a duplicate, a no-match search, skipped search records and conflicting trigger answers.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_new_to_role",
+              "summary": "Synthetic is_new_to_role",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {
+                    "type": "integer"
+                  },
+                  "count_internal_moves": {
+                    "type": "boolean"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "inside_same_company",
+                "months_at_company",
+                "months_in_role",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "is_new_exec",
+              "summary": "Synthetic is_new_exec",
+              "subject": "person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {
+                    "type": "integer"
+                  },
+                  "seniorities": {
+                    "type": "array"
+                  }
+                },
+                "required": []
+              },
+              "details": [
+                "months_in_role",
+                "seniority",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            },
+            {
+              "name": "has_changed_jobs_since",
+              "summary": "Synthetic has_changed_jobs_since",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "since": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "since"
+                ]
+              },
+              "details": [
+                "employer",
+                "started",
+                "title"
+              ],
+              "example": {
+                "person_id": "fp900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "company_size": "201 - 500",
+          "industries": [
+            "Computer software"
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "body": {
+          "companyId": "f900000000001",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "4",
+          "seniority": "4"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 6,
+          "records": [
+            {
+              "id": "fp900000000001",
+              "person_id": "fp900000000001",
+              "name": "<b>Alex</b> Example",
+              "pName": "<b>Alex</b> Example",
+              "position": "Head of Operations",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "id": "fp900000000002",
+              "person_id": "fp900000000002",
+              "name": "Blair Example",
+              "pName": "Blair Example",
+              "position": "Director of Finance",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "id": "f900000000099",
+              "name": "Record Example",
+              "position": "Director",
+              "company_name": "Acme Example"
+            },
+            {
+              "id": "fp900000000003",
+              "person_id": "fp900000000003",
+              "name": "Casey Example",
+              "pName": "Casey Example",
+              "position": "VP Sales",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000001",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "inside_same_company": false,
+            "months_at_company": 3,
+            "months_in_role": 3,
+            "started": "2026-08",
+            "title": "Head of Operations"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "person_id": "fp900000000001",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "has_changed_jobs_since",
+          "question": {
+            "person_id": "fp900000000001",
+            "since": "2026-05-24"
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "employer": "Acme Example",
+            "started": "2026-08",
+            "title": "Head of Operations"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000001",
+          "name": "Alex Example",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "position": "Head of Operations",
+          "seniority": "VP/Director / Head of",
+          "department": "Operations",
+          "country": "AU",
+          "location": [
+            "Sydney, New South Wales, AU"
+          ],
+          "time_in_current_role": "3 months",
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Acme Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": []
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "alex.example@acme.example"
+              }
+            ],
+            "personal": []
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 010",
+              "is_dnd": false
+            }
+          ],
+          "linkedin": null
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000002",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "person_id": "fp900000000002",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "has_changed_jobs_since",
+          "question": {
+            "person_id": "fp900000000002",
+            "since": "2026-05-24"
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000002",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000002",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000003",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Synthetic answer unknown.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "person_id": "fp900000000003",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Synthetic answer unknown.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "has_changed_jobs_since",
+          "question": {
+            "person_id": "fp900000000003",
+            "since": "2026-05-24"
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000003",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000003",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Synthetic answer unknown.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "body": {
+          "companyId": "f900000000002",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "4",
+          "seniority": "4"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": false,
+          "totalPeople": 0
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000010",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "inside_same_company": false,
+            "started": "2026-09",
+            "title": "Chief Operating Officer"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000010",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000010",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "person_id": "fp900000000010",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "months_in_role": 2,
+            "seniority": "C-Suite",
+            "started": "2026-10",
+            "title": "Chief Operating Officer"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000010",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000010",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "has_changed_jobs_since",
+          "question": {
+            "person_id": "fp900000000010",
+            "since": "2026-05-24"
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "employer": "Beta Example",
+            "started": "2026-09",
+            "title": "Chief Operating Officer"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000010",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000010",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000010"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000010",
+          "name": "Jordan Example",
+          "first_name": "Jordan",
+          "last_name": "Example",
+          "position": "Chief Operating Officer",
+          "seniority": "VP/Director / Head of",
+          "department": "Operations",
+          "country": "AU",
+          "location": [
+            "Sydney, New South Wales, AU"
+          ],
+          "time_in_current_role": "3 months",
+          "current_company": {
+            "id": "f900000000005",
+            "name": "Beta Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": []
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "jordan.example@beta.example"
+              }
+            ],
+            "personal": []
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 010",
+              "is_dnd": true
+            }
+          ],
+          "linkedin": null
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "work_email": "dana.example@delta.example",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000013",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000013",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "work_email": "dana.example@delta.example",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000013",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000013",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Synthetic answer unknown.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "has_changed_jobs_since",
+          "question": {
+            "work_email": "dana.example@delta.example",
+            "since": "2026-05-24"
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000013",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000013",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Company profile not found"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000011",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "inside_same_company": true,
+            "started": "2025-01",
+            "title": "Operations Manager"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000011",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000011",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "person_id": "fp900000000011",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000011",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000011",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "has_changed_jobs_since",
+          "question": {
+            "person_id": "fp900000000011",
+            "since": "2026-05-24"
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000011",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000011",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000011"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Person not found"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000012",
+            "within_months": 6,
+            "count_internal_moves": true
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000012",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000012",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "is_new_exec",
+          "question": {
+            "person_id": "fp900000000012",
+            "within_months": 6
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000012",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000012",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": "A newer role record."
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "body": {
+          "tool": "has_changed_jobs_since",
+          "question": {
+            "person_id": "fp900000000012",
+            "since": "2026-05-24"
+          }
+        },
+        "query": {
+          "withReasoning": "true"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "employer": "Gamma Example",
+            "started": "2026-07",
+            "title": "Head of Data"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000012",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/person/fp900000000012",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable person profile",
+            "fact_date": null,
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000012"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000012",
+          "name": "Robin Example",
+          "first_name": "Robin",
+          "last_name": "Example",
+          "position": "Head of Data",
+          "seniority": "VP/Director / Head of",
+          "department": "Operations",
+          "country": "AU",
+          "location": [
+            "Sydney, New South Wales, AU"
+          ],
+          "time_in_current_role": "3 months",
+          "current_company": {
+            "id": "f900000000006",
+            "name": "Gamma Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": []
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "robin.example@gamma.example"
+              }
+            ],
+            "personal": []
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 010",
+              "is_dnd": false
+            }
+          ],
+          "linkedin": null
+        }
+      },
+      "times": 1
+    }
+  ]
+}

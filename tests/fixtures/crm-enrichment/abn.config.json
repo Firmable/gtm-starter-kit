@@ -1,0 +1,25 @@
+{
+  "identifiers": {
+    "company": {
+      "column": "abn",
+      "type": "abn"
+    }
+  },
+  "mappings": [
+    {
+      "column": "name",
+      "source": "company",
+      "field": "name"
+    },
+    {
+      "column": "hq",
+      "source": "company",
+      "field": "hq_location"
+    },
+    {
+      "column": "abn_status",
+      "source": "company",
+      "field": "abn_operation_status"
+    }
+  ]
+}

@@ -1,0 +1,1358 @@
+{
+  "description": "A complete pack, a duplicate, an invalid domain, a missing profile, and a pack with valid empty answers.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "is_located_in",
+              "summary": "Synthetic is_located_in",
+              "subject": "company or person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "countries": {
+                    "type": "array"
+                  },
+                  "where": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "matches_company_size",
+              "summary": "Synthetic matches_company_size",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "min_staff": {},
+                  "max_staff": {}
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "is_new_to_role",
+              "summary": "Synthetic is_new_to_role",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "within_months": {},
+                  "count_internal_moves": {}
+                },
+                "required": []
+              }
+            },
+            {
+              "name": "works_at_company",
+              "summary": "Synthetic works_at_company",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "person_id": {
+                    "type": "string"
+                  },
+                  "linkedin_url": {
+                    "type": "string"
+                  },
+                  "work_email": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "company": {
+                    "type": "string"
+                  },
+                  "company_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "company_id"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Sells software to businesses.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "company_id": "f900000000001",
+            "countries": [
+              "AU"
+            ],
+            "where": "head_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Synthetic answer unknown.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000001",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "3",
+          "seniority": "4",
+          "department": "2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 7,
+          "records": [
+            {
+              "id": "fp900000000001",
+              "person_id": "fp900000000001",
+              "name": "Alex Example",
+              "pName": "Alex Example",
+              "position": "Head of Sales",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "id": "fp900000000002",
+              "person_id": "fp900000000002",
+              "name": "Sam Sample",
+              "pName": "Sam Sample",
+              "position": "Sales Director",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000001",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "2",
+          "seniority": "3"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 2,
+          "records": [
+            {
+              "id": "fp900000000002",
+              "person_id": "fp900000000002",
+              "name": "Sam Sample",
+              "pName": "Sam Sample",
+              "position": "Sales Director",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            },
+            {
+              "id": "fp900000000003",
+              "person_id": "fp900000000003",
+              "name": "Jordan Placeholder",
+              "pName": "Jordan Placeholder",
+              "position": "Chief Revenue Officer",
+              "company_name": "Acme Example",
+              "has_email": true,
+              "has_phone": true,
+              "has_dnd_phone": false,
+              "has_mobile": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000001",
+          "name": "Alex Example",
+          "first_name": "Alex",
+          "last_name": "Example",
+          "position": "Head of Sales",
+          "seniority": "Head of / Senior Manager",
+          "department": "Sales",
+          "headline": "Head of Sales",
+          "country": "AU",
+          "location": [
+            "Melbourne",
+            "Victoria",
+            "AU"
+          ],
+          "time_in_current_role": "1 year 2 months",
+          "month_joined": 9,
+          "year_joined": 2025,
+          "linkedin": "linkedin.com/in/alex-example-example",
+          "slug": "alex-example",
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Acme Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": [
+              "Computer software"
+            ]
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "alex.example@acme.example"
+              }
+            ],
+            "personal": [
+              {
+                "value": "alexexample@personal.example"
+              }
+            ]
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 000",
+              "is_dnd": true
+            },
+            {
+              "value": "+61 3 9000 0000",
+              "is_dnd": false
+            }
+          ],
+          "skills": [
+            "Selling"
+          ],
+          "experience": []
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000001",
+            "within_months": 6
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {
+            "months_in_role": 2,
+            "started": "2026-09",
+            "title": "Head of Sales"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "works_at_company",
+          "question": {
+            "person_id": "fp900000000001",
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000001",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000002",
+          "name": "Sam Sample",
+          "first_name": "Sam",
+          "last_name": "Sample",
+          "position": "Sales Director",
+          "seniority": "Director / VP",
+          "department": "Sales",
+          "headline": "Sales Director",
+          "country": "AU",
+          "location": [
+            "Melbourne",
+            "Victoria",
+            "AU"
+          ],
+          "time_in_current_role": "1 year 2 months",
+          "month_joined": 9,
+          "year_joined": 2025,
+          "linkedin": "linkedin.com/in/sam-sample-example",
+          "slug": "sam-sample",
+          "current_company": {
+            "id": "f900000000001",
+            "name": "Acme Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": [
+              "Computer software"
+            ]
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "sam.sample@acme.example"
+              }
+            ],
+            "personal": [
+              {
+                "value": "samsample@personal.example"
+              }
+            ]
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 000",
+              "is_dnd": true
+            },
+            {
+              "value": "+61 3 9000 0000",
+              "is_dnd": false
+            }
+          ],
+          "skills": [
+            "Selling"
+          ],
+          "experience": []
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000002",
+            "within_months": 6
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000002",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "works_at_company",
+          "question": {
+            "person_id": "fp900000000002",
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000002",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/people",
+        "query": {
+          "id": "fp900000000003"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "fp900000000003",
+          "name": "Jordan Placeholder",
+          "first_name": "Jordan",
+          "last_name": "Placeholder",
+          "position": "Chief Revenue Officer",
+          "seniority": "C-Suite / Partner",
+          "department": "Sales",
+          "headline": "Chief Revenue Officer",
+          "country": "AU",
+          "location": [
+            "Melbourne",
+            "Victoria",
+            "AU"
+          ],
+          "time_in_current_role": "1 year 2 months",
+          "month_joined": 9,
+          "year_joined": 2025,
+          "linkedin": "linkedin.com/in/jordan-placeholder-example",
+          "slug": "jordan-placeholder",
+          "current_company": {
+            "id": "f900000000099",
+            "name": "Other Example",
+            "website": null,
+            "linkedin": null,
+            "size": "201 - 500",
+            "industry": [
+              "Computer software"
+            ]
+          },
+          "emails": {
+            "work": [
+              {
+                "value": "jordan.placeholder@other.example"
+              }
+            ],
+            "personal": [
+              {
+                "value": "jordanplaceholder@personal.example"
+              }
+            ]
+          },
+          "phones": [
+            {
+              "value": "+61 400 000 000",
+              "is_dnd": true
+            },
+            {
+              "value": "+61 3 9000 0000",
+              "is_dnd": false
+            }
+          ],
+          "skills": [
+            "Selling"
+          ],
+          "experience": []
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_new_to_role",
+          "question": {
+            "person_id": "fp900000000003",
+            "within_months": 6
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0,
+          "external_id": null,
+          "decision": "unknown",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "person",
+            "id": "fp900000000003",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": false
+          },
+          "reasoning": {
+            "reason": "Synthetic answer unknown.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "works_at_company",
+          "question": {
+            "person_id": "fp900000000003",
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "no",
+          "confidence": 0.9,
+          "details": {
+            "current_employer": "Other Example"
+          },
+          "entity": {
+            "type": "person",
+            "id": "fp900000000003",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer no.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 3,
+          "next_cursor": "cur-2",
+          "tech_intelligence": [
+            {
+              "product": "Salesforce Sales Cloud",
+              "product_slug": "salesforce-sales-cloud",
+              "vendor": "Salesforce",
+              "vendor_slug": "salesforce",
+              "filter": "CRM",
+              "filter_slug": "crm",
+              "category": "CRM",
+              "category_slug": "crm",
+              "pillar_slug": "sales",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-10",
+              "nature": "direct"
+            },
+            {
+              "product": "HubSpot Marketing Hub",
+              "product_slug": "hubspot-marketing-hub",
+              "vendor": "HubSpot",
+              "vendor_slug": "hubspot",
+              "filter": "Marketing automation",
+              "filter_slug": "marketing automation",
+              "category": "Marketing automation",
+              "category_slug": "marketing-automation",
+              "pillar_slug": "sales",
+              "confidence": "medium",
+              "recency": "90d",
+              "last_observed": "2026-08-01",
+              "nature": "direct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000001",
+          "cursor": "cur-2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "total": 3,
+          "tech_intelligence": [
+            {
+              "product": "Snowflake",
+              "product_slug": "snowflake",
+              "vendor": "Snowflake",
+              "vendor_slug": "snowflake",
+              "filter": "Data warehouse",
+              "filter_slug": "data warehouse",
+              "category": "Data warehouse",
+              "category_slug": "data-warehouse",
+              "pillar_slug": "sales",
+              "confidence": "high",
+              "recency": "30d",
+              "last_observed": "2026-11-02",
+              "nature": "direct"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000001"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000001"
+          },
+          "company": {
+            "firmable_id": "f900000000001",
+            "company_name": "Acme Example",
+            "country": "AU",
+            "industry_group": "Software",
+            "size_band": "MID",
+            "overall_level": "MODERATE",
+            "explanation": "Synthetic explanation: basic footprint, meaningful workforce.",
+            "momentum": {
+              "label": "EXPANDING",
+              "signals": [
+                {
+                  "kind": "AI hiring",
+                  "count": 2,
+                  "latest": "2026-10-13"
+                }
+              ]
+            },
+            "dimensions": {
+              "architecture": {
+                "level": "BASIC",
+                "headline": "2 of 14 capabilities",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "footprint": {
+                "level": "BASIC",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "hiring": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "initiatives": {
+                "level": "NONE",
+                "headline": null,
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              },
+              "workforce": {
+                "level": "MEANINGFUL",
+                "headline": "4 AI specialists",
+                "observability": "LOW",
+                "counts_toward_overall": true
+              },
+              "governance": {
+                "level": "EMERGING",
+                "headline": "A level word this recipe has not seen before",
+                "observability": "MEDIUM",
+                "counts_toward_overall": true
+              }
+            },
+            "evidence_available": {
+              "architecture": 2,
+              "footprint": 1,
+              "hiring": 0,
+              "initiatives": 0,
+              "workforce": 9
+            },
+            "as_of": "2026-11-10",
+            "framework_version": "2026.10"
+          },
+          "usage": {
+            "billable": true
+          },
+          "evidence": {
+            "workforce": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 9,
+              "truncated": true,
+              "items": [
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp900000000050"
+                  },
+                  "title": "Head of Machine Learning",
+                  "type": "AI_LEADER",
+                  "seniority": "Director",
+                  "first_seen": "2025-02-01",
+                  "confidence_band": "HIGH",
+                  "state": "CURRENT",
+                  "qualifies": true
+                },
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp900000000051"
+                  },
+                  "title": "Data Analyst",
+                  "type": "ADJACENT",
+                  "seniority": "Individual",
+                  "first_seen": "2024-06-01",
+                  "confidence_band": "LOW",
+                  "state": "CURRENT",
+                  "qualifies": false
+                },
+                {
+                  "ref": {
+                    "type": "person",
+                    "id": "fp900000000052"
+                  },
+                  "title": "ML Engineer",
+                  "type": "AI_SPECIALIST",
+                  "seniority": "Individual",
+                  "first_seen": "2025-08-01",
+                  "confidence_band": "MEDIUM",
+                  "state": "CURRENT"
+                }
+              ]
+            },
+            "architecture": {
+              "as_of": "2026-11-05",
+              "framework_version": "2026.10",
+              "item_count": 2,
+              "truncated": false,
+              "items": [
+                {
+                  "ref": {
+                    "type": "technology",
+                    "id": "t1"
+                  },
+                  "technology": "Docker",
+                  "qualifies": true
+                },
+                {
+                  "ref": {
+                    "type": "technology",
+                    "id": "t2"
+                  },
+                  "technology": "Airflow",
+                  "qualifies": true
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "ghost.example"
+        }
+      },
+      "response": {
+        "status": 404,
+        "json": {
+          "error": "Company profile not found"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "beta.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "name": "<b>Beta</b> Example",
+          "fqdn": "beta.example",
+          "website": "https://www.beta.example",
+          "hq_country": "AU",
+          "hq_location": "Melbourne, Victoria, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2012,
+          "linkedin": "beta",
+          "revenue": "$10M - $50M",
+          "description": "A fictional company."
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f900000000002"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000002",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_located_in",
+          "question": {
+            "company_id": "f900000000002",
+            "countries": [
+              "AU"
+            ],
+            "where": "head_office"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.9,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000099",
+            "country": "AU",
+            "profile_url": null,
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "Synthetic answer yes.",
+            "source": "Firmable profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000002",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "3",
+          "seniority": "4",
+          "department": "2"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": false,
+          "totalPeople": 0
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/people/search",
+        "query": {},
+        "body": {
+          "companyId": "f900000000002",
+          "selectedCountry": "AU",
+          "from": "0",
+          "size": "2",
+          "seniority": "3"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "success": true,
+          "total": 0,
+          "records": []
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/tech-intel",
+        "query": {
+          "id": "f900000000002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000002",
+          "total": 0,
+          "tech_intelligence": []
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/ai-adoption",
+        "query": {
+          "withEvidence": "true"
+        },
+        "body": {
+          "company_id": "f900000000002"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "input": {
+            "company_id": "f900000000002"
+          },
+          "company": null,
+          "error": {
+            "code": "not_found",
+            "message": "No AI adoption data for this company"
+          },
+          "usage": {
+            "billable": false
+          }
+        }
+      }
+    }
+  ]
+}

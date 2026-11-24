@@ -102,3 +102,12 @@ def test_report_has_no_external_resources_and_escapes():
     for bad in ("http://", "https://"):
         # the only URLs allowed are inside escaped text; no src or href to external resources
         assert f'src="{bad}' not in out and f"@import url({bad}" not in out
+
+
+@pytest.mark.parametrize("phone", ["+61 412 345 678", "+1 (415) 555 0100", "+6141234"])
+def test_phone_numbers_are_not_prefixed(phone):
+    assert safe_cell(phone) == phone
+
+
+def test_phone_like_formula_is_still_prefixed():
+    assert safe_cell("+1+cmd|' /C calc'!A0").startswith("'")

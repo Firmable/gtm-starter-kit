@@ -1,0 +1,68 @@
+{
+  "search": {
+    "country": "AU",
+    "page_size": 3,
+    "max_pages": 2,
+    "queries": [
+      {
+        "id": "finance_exec",
+        "label": "Finance executives",
+        "department": "Finance",
+        "seniority": "C-Suite / Partner"
+      },
+      {
+        "id": "finance_heads",
+        "label": "Finance heads",
+        "department": "14",
+        "seniority": "4"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "id": "in_finance",
+      "label": "Works in finance",
+      "tool": "matches_department",
+      "inputs": {
+        "departments": [
+          "Finance"
+        ]
+      },
+      "mandatory": true
+    },
+    {
+      "id": "senior",
+      "label": "Senior enough",
+      "tool": "matches_seniority",
+      "inputs": {
+        "seniorities": [
+          "C-Suite / Partner",
+          "VP/Director / Head of"
+        ]
+      },
+      "mandatory": true
+    },
+    {
+      "id": "decision_maker",
+      "label": "Decision maker",
+      "tool": "is_decision_maker",
+      "inputs": {
+        "seller": "Accounts payable automation software"
+      },
+      "mandatory": false
+    },
+    {
+      "id": "at_account",
+      "label": "Works at the account",
+      "tool": "works_at_company",
+      "inputs": {},
+      "mandatory": false
+    }
+  ],
+  "policy": {
+    "min_optional_passes": 1
+  },
+  "with_reasoning": false,
+  "max_candidates_checked": 4,
+  "max_details_per_account": 2
+}

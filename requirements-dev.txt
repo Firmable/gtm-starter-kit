@@ -1,0 +1,16 @@
+# Installs the shared client, every recipe and the test runner in editable mode.
+# Run from the repository root: pip install -r requirements-dev.txt
+pytest>=8
+-e shared/python
+-e recipes/account-qualification/python
+-e recipes/tech-sales-opportunities/python
+-e recipes/ai-account-brief/python
+-e recipes/crm-enrichment/python
+-e recipes/account-contact-finder/python
+-e recipes/contact-health-check/python
+-e recipes/new-role-outreach/python
+-e recipes/account-change-monitor/python
+-e recipes/ai-adoption-segmentation/python
+-e recipes/territory-routing/python
+-e recipes/duplicate-account-review/python
+-e recipes/pre-call-account-pack/python
