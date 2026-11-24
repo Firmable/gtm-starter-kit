@@ -1,0 +1,21 @@
+{
+  "name": "gtm-account-contact-finder",
+  "version": "0.1.0",
+  "private": true,
+  "description": "gtm-starter-kit recipe: account-contact-finder.",
+  "type": "module",
+  "main": "dist/src/recipe.js",
+  "bin": {
+    "gtm-account-contact-finder": "dist/src/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "firmable-gtm-client": "0.1.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "tsc -b && node --test \"dist/tests/**/*.test.js\""
+  }
+}

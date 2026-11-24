@@ -1,0 +1,9 @@
+row_id,domain,account_name
+r1,https://www.acme.example/about,Acme
+r2,beta.example,Beta
+r3,gamma.example,Gamma
+r4,ACME.example,Acme again
+r5,not a domain,Broken
+r6,ghost.example,Ghost
+r7,delta.example,=HYPERLINK("http://x")
+r8,eps.example,<script>alert(1)</script>

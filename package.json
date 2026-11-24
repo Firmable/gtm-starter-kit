@@ -1,0 +1,21 @@
+{
+  "name": "gtm-starter-kit",
+  "private": true,
+  "description": "Firmable GTM recipes in TypeScript. npm workspaces: the shared client and one package per recipe.",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "workspaces": [
+    "shared/typescript",
+    "recipes/*/typescript"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b --noEmit false && echo typecheck ok",
+    "test": "npm run build && node --test \"shared/typescript/dist/tests/**/*.test.js\" \"recipes/*/typescript/dist/tests/**/*.test.js\"",
+    "clean": "tsc -b --clean"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

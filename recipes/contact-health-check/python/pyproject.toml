@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gtm-contact-health-check"
+version = "0.1.0"
+description = "gtm-starter-kit recipe: contact-health-check."
+requires-python = ">=3.11"
+dependencies = ["firmable-gtm-client"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+gtm-contact-health-check = "contact_health_check.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

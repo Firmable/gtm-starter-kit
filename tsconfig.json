@@ -1,0 +1,44 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "shared/typescript"
+    },
+    {
+      "path": "recipes/account-change-monitor/typescript"
+    },
+    {
+      "path": "recipes/account-contact-finder/typescript"
+    },
+    {
+      "path": "recipes/account-qualification/typescript"
+    },
+    {
+      "path": "recipes/ai-account-brief/typescript"
+    },
+    {
+      "path": "recipes/ai-adoption-segmentation/typescript"
+    },
+    {
+      "path": "recipes/contact-health-check/typescript"
+    },
+    {
+      "path": "recipes/crm-enrichment/typescript"
+    },
+    {
+      "path": "recipes/duplicate-account-review/typescript"
+    },
+    {
+      "path": "recipes/new-role-outreach/typescript"
+    },
+    {
+      "path": "recipes/pre-call-account-pack/typescript"
+    },
+    {
+      "path": "recipes/tech-sales-opportunities/typescript"
+    },
+    {
+      "path": "recipes/territory-routing/typescript"
+    }
+  ]
+}

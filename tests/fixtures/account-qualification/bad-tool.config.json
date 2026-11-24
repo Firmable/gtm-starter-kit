@@ -1,0 +1,49 @@
+{
+  "fetch_company": true,
+  "with_reasoning": true,
+  "checks": [
+    {
+      "id": "b2b",
+      "label": "Sells to other businesses",
+      "tool": "is_imaginary",
+      "inputs": {},
+      "want": "yes",
+      "mandatory": true
+    },
+    {
+      "id": "au_head_office",
+      "label": "Head office in Australia",
+      "tool": "is_located_in",
+      "inputs": {
+        "countries": [
+          "AU"
+        ],
+        "where": "head_office"
+      },
+      "want": "yes",
+      "mandatory": true
+    },
+    {
+      "id": "size_200_plus",
+      "label": "200 or more staff",
+      "tool": "matches_company_size",
+      "inputs": {
+        "min_staff": 200,
+        "colour": "orange"
+      },
+      "want": "yes",
+      "mandatory": false
+    },
+    {
+      "id": "not_public_sector",
+      "label": "Not public sector or non-profit",
+      "tool": "is_public_sector_or_nonprofit",
+      "inputs": {},
+      "want": "no",
+      "mandatory": false
+    }
+  ],
+  "policy": {
+    "min_optional_passes": 1
+  }
+}

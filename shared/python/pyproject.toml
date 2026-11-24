@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "firmable-gtm-client"
+version = "0.1.0"
+description = "Shared Firmable REST client, credit budget, ledger, input and report helpers for gtm-starter-kit recipes."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+firmable_client = ["py.typed", "report.css"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

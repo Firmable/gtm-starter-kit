@@ -1,0 +1,26 @@
+# Dependencies and builds
+node_modules/
+dist/
+*.tsbuildinfo
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+.pytest_cache/
+
+# Run outputs: reports, results and raw responses can hold personal data
+out/
+**/out/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.key
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/

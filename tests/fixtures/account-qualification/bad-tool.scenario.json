@@ -1,0 +1,159 @@
+{
+  "description": "Unknown tool and unknown input stop the run before paid calls.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_located_in",
+              "summary": "Synthetic is_located_in",
+              "subject": "company or person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "countries": {
+                    "type": "array"
+                  },
+                  "places": {
+                    "type": "array"
+                  },
+                  "where": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "matches_company_size",
+              "summary": "Synthetic matches_company_size",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "min_staff": {},
+                  "max_staff": {},
+                  "staff_in": {}
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_public_sector_or_nonprofit",
+              "summary": "Synthetic is_public_sector_or_nonprofit",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_new_to_role",
+              "summary": "Synthetic is_new_to_role",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "within_months": {}
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    }
+  ]
+}

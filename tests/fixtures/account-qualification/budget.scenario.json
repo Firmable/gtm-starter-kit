@@ -1,0 +1,234 @@
+{
+  "description": "Credit limit reached before the second check.",
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/decisions",
+        "query": {}
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "version": "v1",
+          "tools": [
+            {
+              "name": "is_b2b",
+              "summary": "Synthetic is_b2b",
+              "subject": "company",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_located_in",
+              "summary": "Synthetic is_located_in",
+              "subject": "company or person",
+              "uses_decision_model": true,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "countries": {
+                    "type": "array"
+                  },
+                  "places": {
+                    "type": "array"
+                  },
+                  "where": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "matches_company_size",
+              "summary": "Synthetic matches_company_size",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "min_staff": {},
+                  "max_staff": {},
+                  "staff_in": {}
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_public_sector_or_nonprofit",
+              "summary": "Synthetic is_public_sector_or_nonprofit",
+              "subject": "company",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  }
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            },
+            {
+              "name": "is_new_to_role",
+              "summary": "Synthetic is_new_to_role",
+              "subject": "person",
+              "uses_decision_model": false,
+              "input_schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "company_id": {
+                    "type": "string"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "external_id": {
+                    "type": "string"
+                  },
+                  "within_months": {}
+                },
+                "required": []
+              },
+              "example": {
+                "company_id": "f900000000001"
+              }
+            }
+          ]
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/company",
+        "query": {
+          "fqdn": "acme.example"
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "id": "f900000000001",
+          "name": "Acme Example",
+          "fqdn": "acme.example",
+          "website": "https://www.acme.example",
+          "hq_country": "AU",
+          "hq_location": "Sydney, New South Wales, AU",
+          "company_size": "201 - 500",
+          "employee_count": 320,
+          "industries": [
+            "Computer software"
+          ],
+          "company_type": "Private company",
+          "year_founded": 2011,
+          "linkedin": "acme",
+          "revenue": "$10M - $50M"
+        }
+      },
+      "times": 1
+    },
+    {
+      "request": {
+        "method": "POST",
+        "path": "/decisions",
+        "query": {
+          "withReasoning": "true"
+        },
+        "body": {
+          "tool": "is_b2b",
+          "question": {
+            "company_id": "f900000000001"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "json": {
+          "request_id": "req_synthetic",
+          "version": "v1",
+          "answered_at": "2026-11-20T05:24:50Z",
+          "credits": 0.08,
+          "external_id": null,
+          "decision": "yes",
+          "confidence": 0.95,
+          "details": {},
+          "entity": {
+            "type": "company",
+            "id": "f900000000001",
+            "country": "AU",
+            "profile_url": "https://app.firmable.com/dashboard/company/f900000000001",
+            "company_url": null
+          },
+          "error": null,
+          "usage": {
+            "billable": true
+          },
+          "reasoning": {
+            "reason": "B2B.",
+            "source": "Firmable company profile",
+            "last_refreshed": "2026-11-01",
+            "would_change_if": null
+          }
+        }
+      }
+    }
+  ]
+}
