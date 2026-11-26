@@ -18,7 +18,7 @@ Every fact carries `source`: the endpoint and the ledger sequence number of the 
 from. Suggested questions are predefined templates and are kept apart from facts.
 
 Row status: complete when every requested section was retrieved, partial when a section has an
-error, was not asked because the run stopped, or is not available on the plan. A valid "not found"
+error, was not asked because the run stopped, or was refused with 403 because the API key cannot use it. A valid "not found"
 or "no data" answer is not an error.
 """
 from __future__ import annotations
@@ -48,7 +48,7 @@ SECTION_TONE = {"ok": "good", "no_data": "unknown", "no_match": "unknown", "not_
                 "not_available": "review", "error": "error", "not_asked": "neutral", "not_requested": "neutral"}
 RESULT_TONE = {"pass": "good", "fail": "bad", "unknown": "unknown", "error": "error", "not_asked": "neutral"}
 PROBLEM_WORDS = {"error": "error", "not_asked": "not asked because the run stopped",
-                 "not_available": "not available on this plan"}
+                 "not_available": "access denied"}
 SECTION_LABELS = [("company_checks", "Company checks"), ("contacts", "Contacts"), ("tech_intel", "Tech Intel"),
                   ("ai_adoption", "AI Adoption")]
 COUNTRIES = ["AU", "NZ", "SG", "MY", "ID", "PH", "HK", "JP", "VN", "KR", "TH", "US", "CA"]

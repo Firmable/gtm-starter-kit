@@ -353,7 +353,7 @@ export async function run(ctx: RunContext): Promise<{ rows: Json[]; summary: Jso
   const techSection = async (rowId: string, companyId: string): Promise<Json> => {
     if (!cfg.tech_intel) return { status: "not_requested", reason: "Tech Intel is turned off in the configuration." };
     if (ctx.stopped !== null) return { status: "not_requested", reason: "The run stopped before Tech Intel was requested." };
-    if (state.techForbidden) return { status: "not_on_plan", reason: "Tech Intel returned 403 earlier in this run, so it was not requested." };
+    if (state.techForbidden) return { status: "access_denied", reason: "Tech Intel returned 403 earlier in this run, so it was not requested." };
     const ti = await client.getTechIntel({ id: companyId }, { withEvidence: cfg.tech_intel_with_evidence, maxPages: cfg.tech_intel_max_pages });
     const entry: Json = ti.error ? recordError(ctx, rowId, ti.error) : null;
     const items: Json[] = ti.items.filter((i) => isObj(i));
@@ -363,7 +363,7 @@ export async function run(ctx: RunContext): Promise<{ rows: Json[]; summary: Jso
       const kind = entry?.kind;
       if (kind === "forbidden") {
         state.techForbidden = true;
-        return { ...out, status: "not_on_plan", reason: "Tech Intel returned 403: it is not on your plan, or this key cannot use it." };
+        return { ...out, status: "access_denied", reason: "Firmable returned 403 Forbidden for Tech Intel. This API key cannot use this endpoint." };
       }
       if (kind === "not_found") return { ...out, status: "not_found", reason: "Tech Intel has no company for this Firmable ID (404)." };
       return { ...out, status: "error", reason: `Tech Intel could not be read: ${stripDots(entry?.message)}.` };
@@ -449,7 +449,7 @@ export async function run(ctx: RunContext): Promise<{ rows: Json[]; summary: Jso
       "shown; this code does not correct upstream data.");
   }
   if (state.techForbidden) {
-    coverage.push("Tech Intel returned 403: it is not on your plan, or this key cannot use it. It was not " +
+    coverage.push("Firmable returned 403 Forbidden for Tech Intel. This API key cannot use this endpoint. It was not " +
       "requested again in this run.");
   }
   return { rows, summary: { status_counts: counts, overall_level_counts: levels, skipped_question_counts: skipped }, coverage };

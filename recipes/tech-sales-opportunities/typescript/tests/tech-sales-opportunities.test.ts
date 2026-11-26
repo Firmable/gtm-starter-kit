@@ -79,10 +79,10 @@ test("errors are kept and 402 stops the run", async () => {
   assert.equal(transport.sent.length, 5);
 });
 
-test("forbidden means not on plan and stops", async () => {
+test("forbidden means access denied and stops", async () => {
   const [result, transport] = await run("forbidden");
   const rows = byId(result);
-  assert.equal(rows.f1.status, "not_on_plan");
+  assert.equal(rows.f1.status, "access_denied");
   assert.equal(rows.f2.status, "not_processed");
   assert.equal(transport.sent.length, 1);
 });

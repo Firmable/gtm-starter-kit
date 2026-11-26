@@ -122,11 +122,11 @@ def test_errors_are_kept_and_402_stops_the_run():
 def test_forbidden_tech_intel_is_not_asked_again():
     result, transport = run("forbidden")
     rows = by_id(result)
-    assert rows["f1"]["status"] == "incomplete" and rows["f1"]["tech_intel"]["status"] == "not_on_plan"
+    assert rows["f1"]["status"] == "incomplete" and rows["f1"]["tech_intel"]["status"] == "access_denied"
     assert rows["f1"]["ai_adoption"]["status"] == "found"
-    assert rows["f2"]["tech_intel"]["status"] == "not_on_plan"
+    assert rows["f2"]["tech_intel"]["status"] == "access_denied"
     assert [r.path for r in transport.sent].count("/tech-intel") == 1
-    assert result["coverage"][-1].startswith("Tech Intel returned 403")
+    assert result["coverage"][-1].startswith("Firmable returned 403 Forbidden for Tech Intel")
 
 
 def test_budget_stops_before_tech_intel():

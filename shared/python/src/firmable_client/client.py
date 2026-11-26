@@ -335,6 +335,9 @@ def _error_message(parsed: Any, response: HttpResponse) -> tuple[str, str | None
 
 def _decision_credits(parsed: Any) -> float | None:
     if isinstance(parsed, dict) and isinstance(parsed.get("results"), list):
+        # A batch reports its total at the top level; rows may not carry credits.
+        if isinstance(parsed.get("credits"), (int, float)) and not isinstance(parsed.get("credits"), bool):
+            return float(parsed["credits"])
         vals = [r.get("credits") for r in parsed["results"] if isinstance(r, dict)]
         nums = [v for v in vals if isinstance(v, (int, float))]
         return pricing.round4(sum(nums)) if nums else None

@@ -381,7 +381,7 @@ def run(ctx: RunContext) -> dict[str, Any]:
         if ctx.stopped is not None:
             return {"status": "not_requested", "reason": "The run stopped before Tech Intel was requested."}
         if state["tech_forbidden"]:
-            return {"status": "not_on_plan", "reason": "Tech Intel returned 403 earlier in this run, so it was not requested."}
+            return {"status": "access_denied", "reason": "Tech Intel returned 403 earlier in this run, so it was not requested."}
         ti = client.get_tech_intel({"id": company_id}, with_evidence=cfg["tech_intel_with_evidence"],
                                    max_pages=cfg["tech_intel_max_pages"])
         entry = _record_error(ctx, row_id, ti["error"]) if ti["error"] else None
@@ -392,8 +392,8 @@ def run(ctx: RunContext) -> dict[str, Any]:
             kind = (entry or {}).get("kind")
             if kind == "forbidden":
                 state["tech_forbidden"] = True
-                return {**out, "status": "not_on_plan",
-                        "reason": "Tech Intel returned 403: it is not on your plan, or this key cannot use it."}
+                return {**out, "status": "access_denied",
+                        "reason": "Firmable returned 403 Forbidden for Tech Intel. This API key cannot use this endpoint."}
             if kind == "not_found":
                 return {**out, "status": "not_found", "reason": "Tech Intel has no company for this Firmable ID (404)."}
             message = str((entry or {}).get("message") or "").rstrip(".")
@@ -476,7 +476,7 @@ def run(ctx: RunContext) -> dict[str, Any]:
         coverage.append("Some company facts differ between the company profile and AI Adoption. Both values are "
                         "shown; this code does not correct upstream data.")
     if state["tech_forbidden"]:
-        coverage.append("Tech Intel returned 403: it is not on your plan, or this key cannot use it. It was not "
+        coverage.append("Firmable returned 403 Forbidden for Tech Intel. This API key cannot use this endpoint. It was not "
                         "requested again in this run.")
     return {"rows": rows, "summary": {"status_counts": counts, "overall_level_counts": levels,
                                       "skipped_question_counts": skipped},

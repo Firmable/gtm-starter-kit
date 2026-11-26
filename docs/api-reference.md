@@ -12,7 +12,7 @@ Base URL: `https://api.firmable.com`. Authentication: `Authorization: Bearer <ke
 | `GET /decisions` | None | Free. Lists the decision tools switched on, with each tool's `input_schema`. Tools change without notice. |
 | `POST /decisions` | `{tool, question}`; `?withReasoning=true` | `question` holds who the question is about plus the tool's inputs. Up to 100 `records` per request. Each answer is `yes`, `no` or `unknown`. |
 | `POST /ai-adoption` | `{company_id}` or `{domain}`, or `{records: [...]}` up to 100; `?withEvidence=true` | A company with no data returns `200` with `company: null` and is free. |
-| `GET /tech-intel` | One company identifier; `withEvidence=true`; `cursor` | 100 technologies a page, 10 with evidence. Follow `next_cursor` until it is missing. `403` when Tech Intelligence is not on your plan. |
+| `GET /tech-intel` | One company identifier; `withEvidence=true`; `cursor` | 100 technologies a page, 10 with evidence. Follow `next_cursor` until it is missing. `403` when the key cannot use this endpoint. |
 
 ## Decisions
 

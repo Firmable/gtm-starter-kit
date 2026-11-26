@@ -222,3 +222,11 @@ def test_people_search_no_match_returns_empty_records():
     assert r["records"] == [] and r["total"] == 0
     assert client.ledger.entries[0]["outcome"] == "ok"
     assert "records" not in client.ledger.entries[0]["response"]
+
+
+def test_decision_batch_reports_top_level_credits():
+    resp = {"json": {"tool": "is_b2b", "credits": 0.28, "usage": {"billable_rows": 7},
+                     "results": [{"decision": "yes", "credits": None}, {"decision": "unknown", "credits": None}]}}
+    client, _ = make_client({"exchanges": [ex("POST", "/decisions", resp)]})
+    client.make_decision("is_b2b", {"records": [{"domain": "a.example"}, {"domain": "b.example"}]})
+    assert client.budget.reported == 0.28

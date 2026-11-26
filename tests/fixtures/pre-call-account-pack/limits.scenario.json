@@ -1,5 +1,5 @@
 {
-  "description": "Page limit reached, contact limit applied, evidence with no source location, and Tech Intel not on the plan.",
+  "description": "Page limit reached, contact limit applied, evidence with no source location, and a 403 Forbidden from Tech Intel.",
   "exchanges": [
     {
       "request": {
@@ -256,7 +256,7 @@
         "json": {
           "error": {
             "code": "forbidden",
-            "message": "Tech Intel is not on your plan"
+            "message": "Forbidden"
           }
         }
       }

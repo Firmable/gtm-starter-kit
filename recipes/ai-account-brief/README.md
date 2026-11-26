@@ -144,7 +144,7 @@ The underlying requests are in [curl/requests.sh](curl/requests.sh).
 
 - A request that times out or gets a 5xx response may still have been charged. It is counted under "Requests with an uncertain charge" and its reservation is kept.
 - A bad key, no credits, a blocked redirect or reaching `--max-credits` stops the run. Results so far are written, and later rows are marked `not_processed`.
-- Tech Intel must be on your plan. After a 403, Tech Intel is not requested for later rows, and those briefs are `incomplete`.
+- A 403 response means the API key cannot use Tech Intel. After a 403, Tech Intel is not requested for later rows, and those briefs are `incomplete`.
 - Nothing is retried automatically.
 - This code computes no AI score and no historical trend. Levels, explanations and headlines are the API's own words and are not rewritten.
 - An AI adoption level or a detected technology does not prove buying intent.

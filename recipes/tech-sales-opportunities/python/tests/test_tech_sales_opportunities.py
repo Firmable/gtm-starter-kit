@@ -97,10 +97,10 @@ def test_errors_are_kept_and_402_stops_the_run():
     assert len(transport.sent) == 5
 
 
-def test_forbidden_means_not_on_plan_and_stops():
+def test_forbidden_means_access_denied_and_stops():
     result, transport = run("forbidden")
     rows = by_id(result)
-    assert rows["f1"]["status"] == "not_on_plan"
+    assert rows["f1"]["status"] == "access_denied"
     assert rows["f2"]["status"] == "not_processed"
     assert result["errors"][0]["kind"] == "forbidden"
     assert len(transport.sent) == 1

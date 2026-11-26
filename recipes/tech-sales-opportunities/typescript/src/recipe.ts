@@ -17,7 +17,7 @@ export const DESCRIPTION = "Finds the technologies in the configuration in each 
 
 const STATUS_TONE: Record<string, string> = {
   matched: "good", not_observed: "neutral", not_observed_incomplete: "review", no_technology_data: "unknown",
-  company_not_found: "unknown", not_on_plan: "error", invalid_input: "error", error: "error", not_processed: "unknown",
+  company_not_found: "unknown", access_denied: "error", invalid_input: "error", error: "error", not_processed: "unknown",
 };
 const RESULT_TONE: Record<string, string> = {
   observed: "good", not_observed: "neutral", not_observed_in_pages_retrieved: "review", not_checked: "error",
@@ -247,7 +247,7 @@ export async function run(ctx: RunContext): Promise<{ rows: Json[]; summary: Jso
       const kind = err?.kind;
       if (kind === "not_found") return { ...base, status: "company_not_found", status_reason: "Tech Intel has no company for this identifier (404)." };
       if (kind === "forbidden") {
-        return { ...base, status: "not_on_plan", status_reason: "Tech Intel returned 403: it is not on your plan, or this key cannot use it. " +
+        return { ...base, status: "access_denied", status_reason: "Firmable returned 403 Forbidden for Tech Intel. This API key cannot use this endpoint. " +
           "No further rows were requested." };
       }
       return { ...base, status: "error", status_reason: `Tech Intel could not be read: ${err?.message}` };

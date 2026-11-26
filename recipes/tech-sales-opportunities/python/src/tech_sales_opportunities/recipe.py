@@ -36,7 +36,7 @@ DESCRIPTION = ("Finds the technologies in the configuration in each company's Fi
                "observed in retrieved data.")
 
 STATUS_TONE = {"matched": "good", "not_observed": "neutral", "not_observed_incomplete": "review",
-               "no_technology_data": "unknown", "company_not_found": "unknown", "not_on_plan": "error",
+               "no_technology_data": "unknown", "company_not_found": "unknown", "access_denied": "error",
                "invalid_input": "error", "error": "error", "not_processed": "unknown"}
 RESULT_TONE = {"observed": "good", "not_observed": "neutral", "not_observed_in_pages_retrieved": "review",
                "not_checked": "error"}
@@ -284,8 +284,8 @@ def run(ctx: RunContext) -> dict[str, Any]:
                 return {**base, "status": "company_not_found",
                         "status_reason": "Tech Intel has no company for this identifier (404)."}
             if kind == "forbidden":
-                return {**base, "status": "not_on_plan",
-                        "status_reason": ("Tech Intel returned 403: it is not on your plan, or this key cannot use it. "
+                return {**base, "status": "access_denied",
+                        "status_reason": ("Firmable returned 403 Forbidden for Tech Intel. This API key cannot use this endpoint. "
                                           "No further rows were requested.")}
             return {**base, "status": "error",
                     "status_reason": f"Tech Intel could not be read: {(err or {}).get('message')}"}

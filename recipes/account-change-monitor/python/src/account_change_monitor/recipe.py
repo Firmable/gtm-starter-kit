@@ -614,7 +614,7 @@ def run(ctx: RunContext) -> dict[str, Any]:
         coverage.append(f"{len(incomplete_tech)} Tech Intel list(s) are incomplete because of the page limit or an "
                         "error. Technologies missing from an incomplete list are not reported as no longer observed.")
     if forbidden_tech[0]:
-        coverage.append(f"Tech Intel returned 403 for {forbidden_tech[0]} request(s). Tech Intel must be on your plan.")
+        coverage.append(f"Tech Intel returned 403 for {forbidden_tech[0]} request(s). This API key cannot use Tech Intel.")
     snapshot = {"snapshot_format": SNAPSHOT_FORMAT, "taken_on": today,
                 "monitored": {"company_fields": cfg["company_fields"], "person_fields": cfg["person_fields"],
                               "ai_adoption_fields": cfg["ai_adoption_fields"], "tech_intel": cfg["tech_intel"]},
