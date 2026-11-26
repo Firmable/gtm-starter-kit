@@ -101,7 +101,7 @@ test("valid empty answers are not errors", async () => {
   assert.ok(result.coverage.some((c: string) => c.includes("success false without a records list")));
 });
 
-test("limits: page limit, contact limit and Tech Intel not on plan", async () => {
+test("limits: page limit, contact limit and Tech Intel access denied", async () => {
   const [result, transport] = await run("limits", { config: "limits.config.json" });
   const rows = byId(result);
   assert.equal(rows.l1.status, "complete");

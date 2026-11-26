@@ -61,7 +61,7 @@
         "json": {
           "error": {
             "code": "forbidden",
-            "message": "Tech Intel is not on your plan"
+            "message": "Forbidden"
           }
         }
       }

@@ -345,6 +345,8 @@ function errorMessage(parsed: Json, response: HttpResponse): [string, string | n
 
 function decisionCredits(parsed: Json): number | null {
   if (parsed && Array.isArray(parsed.results)) {
+    // A batch reports its total at the top level; rows may not carry credits.
+    if (typeof parsed.credits === "number") return parsed.credits;
     const nums = parsed.results.map((r: Json) => r?.credits).filter((v: unknown) => typeof v === "number");
     return nums.length ? pricing.round4(nums.reduce((a: number, b: number) => a + b, 0)) : null;
   }

@@ -102,7 +102,7 @@ The recipe does not combine check results into a qualification decision. Use the
 | `no_match` | People search ran and found nobody. |
 | `no_data` | Tech Intel holds no technology for this company. |
 | `not_found` | AI Adoption holds no data for this company. |
-| `not_available` | Tech Intel answered 403, which means it is not on the API plan. |
+| `not_available` | Tech Intel answered 403 Forbidden, which means the API key cannot use Tech Intel. |
 | `error` | A request in the section failed. |
 | `not_asked` | The run stopped before the section was asked. |
 | `not_requested` | The configuration does not ask for the section. |

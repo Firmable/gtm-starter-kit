@@ -1,5 +1,5 @@
 {
-  "description": "403 from Tech Intel means it is not on the plan; the run stops.",
+  "description": "403 Forbidden from Tech Intel stops the run.",
   "exchanges": [
     {
       "request": {
@@ -13,7 +13,7 @@
       "response": {
         "status": 403,
         "json": {
-          "error": "Tech Intelligence is not on your plan"
+          "error": "Forbidden"
         }
       },
       "times": 1

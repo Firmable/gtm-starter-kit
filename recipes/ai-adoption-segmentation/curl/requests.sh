@@ -18,7 +18,7 @@ COMPANY_ID=$(echo "$AI" | python3 -c 'import json,sys; print((json.load(sys.stdi
 echo "2. AI Adoption with evidence (3 credits per company found with evidence), only when with_evidence is true"
 echo "   curl -sS -X POST \"$API/ai-adoption?withEvidence=true\" -H \"Authorization: Bearer \$FIRMABLE_API_KEY\" -H \"Content-Type: application/json\" -d '{\"domain\": \"$DOMAIN\"}'"
 
-echo "3. Tech Intel, first page (up to 5 credits per company, charged once; 403 if not on your plan)"
+echo "3. Tech Intel, first page (up to 5 credits per company, charged once; 403 if the key cannot use it)"
 curl -sS -G "$API/tech-intel" --data-urlencode "id=$COMPANY_ID" -H "Authorization: Bearer $FIRMABLE_API_KEY" | head -c 600; echo
 
 echo "4. List the decision tools (free)"

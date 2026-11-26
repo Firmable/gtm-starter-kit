@@ -25,7 +25,7 @@ const SECTION_TONE: Record<string, string> = {
 };
 const RESULT_TONE: Record<string, string> = { pass: "good", fail: "bad", unknown: "unknown", error: "error", not_asked: "neutral" };
 const PROBLEM_WORDS: Record<string, string> = {
-  error: "error", not_asked: "not asked because the run stopped", not_available: "not available on this plan",
+  error: "error", not_asked: "not asked because the run stopped", not_available: "access denied",
 };
 const SECTION_LABELS: [string, string][] = [["company_checks", "Company checks"], ["contacts", "Contacts"],
   ["tech_intel", "Tech Intel"], ["ai_adoption", "AI Adoption"]];

@@ -201,3 +201,11 @@ test("people search with no match returns empty records", async () => {
   assert.equal(r.total, 0);
   assert.equal(client.ledger.entries[0].outcome, "ok");
 });
+
+test("decision batch reports top-level credits", async () => {
+  const resp = { json: { tool: "is_b2b", credits: 0.28, usage: { billable_rows: 7 },
+    results: [{ decision: "yes", credits: null }, { decision: "unknown", credits: null }] } };
+  const [client] = makeClient({ exchanges: [ex("POST", "/decisions", resp)] });
+  await client.makeDecision("is_b2b", { records: [{ domain: "a.example" }, { domain: "b.example" }] });
+  assert.equal(client.budget.reported, 0.28);
+});

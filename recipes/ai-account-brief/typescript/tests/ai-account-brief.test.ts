@@ -101,8 +101,8 @@ test("errors are kept and 402 stops the run", async () => {
 test("forbidden Tech Intel is not asked again", async () => {
   const [result, transport] = await run("forbidden");
   const rows = byId(result);
-  assert.equal(rows.f1.tech_intel.status, "not_on_plan");
-  assert.equal(rows.f2.tech_intel.status, "not_on_plan");
+  assert.equal(rows.f1.tech_intel.status, "access_denied");
+  assert.equal(rows.f2.tech_intel.status, "access_denied");
   assert.equal(transport.sent.filter((r) => r.path === "/tech-intel").length, 1);
 });
 

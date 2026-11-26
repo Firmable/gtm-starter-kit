@@ -285,7 +285,7 @@
       "response": {
         "status": 403,
         "json": {
-          "error": "Tech Intelligence is not on your plan"
+          "error": "Forbidden"
         }
       }
     },

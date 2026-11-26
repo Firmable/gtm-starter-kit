@@ -148,7 +148,7 @@ The underlying requests are in [curl/requests.sh](curl/requests.sh).
 - A request that times out or gets a 5xx response may still have been charged. It is counted under "Requests with an uncertain charge" and its reservation is kept.
 - A bad key, no credits, a blocked redirect or reaching `--max-credits` stops the run. Results so far are written, and later rows are marked `not_processed`.
 - Nothing is retried automatically.
-- Tech Intel returns 403 when it is not on your plan. Accounts that reach a technology condition then get `incomplete`.
+- Tech Intel returns 403 when the API key cannot use it. Accounts that reach a technology condition then get `incomplete`.
 - Technology conditions use the Tech Intel list without evidence, so they rely on Firmable's `confidence` value and cannot check the source of each detection. Tech Intel evidence is not requested.
 - The rules do not use AI Adoption evidence. With `with_evidence` set to true, the output counts qualifying and non-qualifying items and flags truncated areas. The code cannot tell whether an evidence item, such as a workforce member, belongs to a different organisation; check the evidence in `results.json` before relying on it.
 - Some decision tools use a decision model inside Firmable's service. The report names them. This code adds no model of its own.

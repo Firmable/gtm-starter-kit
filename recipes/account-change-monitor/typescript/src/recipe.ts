@@ -552,7 +552,7 @@ export async function run(ctx: RunContext): Promise<{ rows: Json[]; summary: Jso
     coverage.push(`${incompleteTech.size} Tech Intel list(s) are incomplete because of the page limit or an error. ` +
       "Technologies missing from an incomplete list are not reported as no longer observed.");
   }
-  if (forbiddenTech) coverage.push(`Tech Intel returned 403 for ${forbiddenTech} request(s). Tech Intel must be on your plan.`);
+  if (forbiddenTech) coverage.push(`Tech Intel returned 403 for ${forbiddenTech} request(s). This API key cannot use Tech Intel.`);
   const snapshot = {
     snapshot_format: SNAPSHOT_FORMAT, taken_on: today,
     monitored: { company_fields: cfg.company_fields, person_fields: cfg.person_fields,

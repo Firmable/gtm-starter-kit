@@ -24,5 +24,5 @@ curl -sS -X POST "$API/ai-adoption" \
   -H "Authorization: Bearer $FIRMABLE_API_KEY" -H "Content-Type: application/json" \
   -d "{\"company_id\": \"$COMPANY_ID\"}" | head -c 600; echo
 
-echo "4. Tech Intel, first page (up to 5 credits per company, charged once; 403 if not on your plan)"
+echo "4. Tech Intel, first page (up to 5 credits per company, charged once; 403 if the key cannot use it)"
 curl -sS -G "$API/tech-intel" --data-urlencode "id=$COMPANY_ID" -H "Authorization: Bearer $FIRMABLE_API_KEY" | head -c 600; echo

@@ -31,5 +31,5 @@ Or copy `.env.example` to `.env`, fill it in, and load it with your shell or a t
 | Status | Meaning |
 | - | - |
 | `401` | The key is missing or invalid. The run stops. |
-| `403` | The key cannot use this endpoint, for example Tech Intelligence is not on your plan. |
+| `403` | The key cannot use this endpoint. Check the key in the developer portal. |
 | `402` | Not enough credits. The run stops. |

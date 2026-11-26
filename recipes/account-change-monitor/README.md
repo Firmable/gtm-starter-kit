@@ -154,7 +154,7 @@ The underlying requests are in [curl/requests.sh](curl/requests.sh).
 - A request that times out or gets a 5xx response may still have been charged. It is counted under "Requests with an uncertain charge" and its reservation is kept.
 - A bad key, no credits, a blocked redirect or reaching `--max-credits` stops the run. Results so far are written, later rows are marked `not_processed`, and the snapshot keeps their previous values.
 - Nothing is retried automatically.
-- Tech Intel returns 403 when it is not on your plan. Each affected source is reported as `not_compared_fetch_failed` and the coverage notes say so.
+- Tech Intel returns 403 when the API key cannot use it. Each affected source is reported as `not_compared_fetch_failed` and the coverage notes say so.
 - Firmable data has its own refresh cycle. Two runs a day apart can show no differences even when the company changed, and a difference can appear when Firmable refreshes data that changed long ago. The comparison dates are the snapshot dates, not the dates the facts changed.
 - The REST API has no change feed or history endpoint, so this recipe can only compare snapshots it saved itself. It cannot report changes from before the first run.
 - Company sources need a company identifier in the row. The recipe does not follow a contact's current employer to a company, because a job change would silently switch the monitored company.

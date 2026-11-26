@@ -135,7 +135,7 @@ def test_limits_page_limit_contact_limit_and_plan_restriction():
     assert len(l1["suggested_questions"]) == 2
     l2 = rows["l2"]
     assert l2["status"] == "partial" and l2["tech_intel"]["status"] == "not_available"
-    assert "Tech Intel (not available on this plan)" in l2["status_reason"]
+    assert "Tech Intel (access denied)" in l2["status_reason"]
     assert not any(r.path == "/people" for r in transport.sent)
     assert not any(r.path == "/decisions" for r in transport.sent)
 

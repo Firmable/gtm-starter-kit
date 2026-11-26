@@ -82,7 +82,7 @@ Each company gets one status:
 | `not_observed_incomplete` | No target was observed in the pages retrieved, and the list is incomplete. |
 | `no_technology_data` | Firmable knows the company but holds no technology data for it (`total` is 0). |
 | `company_not_found` | Tech Intel or the company profile returned 404. |
-| `not_on_plan` | Tech Intel returned 403. The run stops, because every later request would also be refused. |
+| `access_denied` | Tech Intel returned 403 Forbidden, so the API key cannot use Tech Intel. The run stops, because every later request would also be refused. |
 | `invalid_input` | The domain is not a valid domain. |
 | `error` | The first Tech Intel page failed. |
 | `not_processed` | The run stopped before this row. |
@@ -138,7 +138,7 @@ The underlying requests are in [curl/requests.sh](curl/requests.sh).
 
 ## Errors, limitations and unknowns
 
-- Tech Intel must be on your plan. A 403 stops the run and every row is reported.
+- A 403 response means the API key cannot use Tech Intel. The run stops and every row is reported. Check the key in the developer portal.
 - A request that times out or gets a 5xx response may still have been charged. It is counted under "Requests with an uncertain charge" and its reservation is kept.
 - A bad key, no credits, a blocked redirect or reaching `--max-credits` stops the run. Results so far are written, and later rows are marked `not_processed`.
 - Nothing is retried automatically.
